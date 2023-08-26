@@ -13,24 +13,15 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          var tcontroller = TextEditingController();
-          var contentCtrl = TextEditingController();
-          showModalBottomSheet(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            isScrollControlled: true,
-            context: context,
-            builder: (context) => SheetNote(
-              titController: tcontroller,
-              subController: contentCtrl,
-            ),
-          );
+          BottomSheet.build(context);
         },
       ),
       body: const Column(
         children: [
-          CustomAppBar(),
+          CustomAppBar(
+            title: 'Notes',
+            icon: Icon(Icons.delete),
+          ),
           VerticalSizedBox(8),
           ListViewNotes(),
         ],
@@ -40,8 +31,9 @@ class HomePage extends StatelessWidget {
 }
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  const CustomAppBar({super.key, required this.title, required this.icon});
+  final String title;
+  final Widget icon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -49,8 +41,8 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const CustomText(
-            text: 'Notes',
+          CustomText(
+            text: title,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -61,9 +53,7 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.grey.withOpacity(.05),
             ),
             child: CustomIconButton(
-              icon: const Icon(
-                Icons.search,
-              ),
+              icon: icon,
               iconSize: 32,
               onPressed: () {},
             ),
@@ -175,6 +165,55 @@ class SheetNote extends StatelessWidget {
             child: const CustomText(text: 'Save', color: Colors.black),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class EditNote extends StatelessWidget {
+  const EditNote(
+      {super.key, required this.titController, required this.subController});
+  final TextEditingController titController;
+  final TextEditingController subController;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CustomAppBar(
+            title: 'Edit Note',
+            icon: Icon(Icons.done),
+          ),
+          CustomFormField(
+            controller: titController,
+            lablelText: 'Title',
+          ),
+          CustomFormField(
+            controller: subController,
+            lablelText: 'Content',
+            maxLine: 10,
+          ),
+          const VerticalSizedBox(24),
+        ],
+      ),
+    );
+  }
+}
+
+class BottomSheet {
+  static var titleCtrl = TextEditingController();
+  static var contentCtrl = TextEditingController();
+  static Future<Widget> build(BuildContext context) async {
+    return await showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      isScrollControlled: true,
+      context: context,
+      builder: (context) => SheetNote(
+        titController: titleCtrl,
+        subController: contentCtrl,
       ),
     );
   }
