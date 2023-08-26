@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/widgets/custom_text.dart';
+import 'package:noteapp/views/widgets/custom_text.dart';
 
 
 class CustomTextButton extends StatelessWidget {
