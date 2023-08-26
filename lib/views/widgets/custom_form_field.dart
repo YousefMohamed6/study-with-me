@@ -13,6 +13,7 @@ class CustomFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.onChanged,
     this.autovalidateMode,
+    this.contentPadding, this.maxLine,
   });
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -24,11 +25,14 @@ class CustomFormField extends StatelessWidget {
   final void Function(String)? onFieldSubmitted;
   final void Function(String)? onChanged;
   final AutovalidateMode? autovalidateMode;
+  final EdgeInsetsGeometry? contentPadding;
+  final int? maxLine;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: TextFormField(
+        maxLines: maxLine,
         autovalidateMode:
             autovalidateMode ?? AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
@@ -50,6 +54,7 @@ class CustomFormField extends StatelessWidget {
               Radius.circular(8),
             ),
           ),
+          contentPadding: contentPadding,
           labelText: lablelText,
           labelStyle: const TextStyle(fontSize: 16, color: Colors.white),
           hintText: hintText,
