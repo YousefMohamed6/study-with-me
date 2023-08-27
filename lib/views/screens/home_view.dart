@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.search),
             onPressed: () {},
           ),
-          const VerticalSizedBox(8),
+          const VerticalSizedBox(8),   
           const ListViewNotes(),
         ],
       ),
