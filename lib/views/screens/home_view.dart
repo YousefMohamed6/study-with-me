@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/widgets/bottom_shhet.dart';
+import 'package:noteapp/views/screens/sheet_note.dart';
 import 'package:noteapp/views/widgets/custom_appbar.dart';
 import 'package:noteapp/views/widgets/note_list_view.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
@@ -12,17 +12,30 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          ButtomSheet.build(context);
+          var contentCtrl = TextEditingController();
+          var titleCtrl = TextEditingController();
+          showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SheetNote(
+              titleCtrl: titleCtrl,
+              contentCtrl: contentCtrl,
+            ),
+          );
         },
       ),
-      body: const Column(
+      body: Column(
         children: [
           CustomAppBar(
             title: 'Notes',
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.search),
+            onPressed: () {},
           ),
-          VerticalSizedBox(8),
-          ListViewNotes(),
+          const VerticalSizedBox(8),
+          const ListViewNotes(),
         ],
       ),
     );

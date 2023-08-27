@@ -3,13 +3,14 @@ import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title, required this.icon});
+  const CustomAppBar({super.key, required this.title, required this.icon, required this.onPressed});
   final String title;
   final Widget icon;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24, right: 24, left: 24),
+      padding: const EdgeInsets.only(top: 8, right: 24, left: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -19,7 +20,7 @@ class CustomAppBar extends StatelessWidget {
             fontSize: 24,
           ),
           Container(
-            margin: const EdgeInsets.only(top: 8),
+            margin: const EdgeInsets.only(top: 0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.grey.withOpacity(.05),
@@ -27,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
             child: CustomIconButton(
               icon: icon,
               iconSize: 32,
-              onPressed: () {},
+              onPressed: onPressed,
             ),
           ),
         ],

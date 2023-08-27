@@ -6,9 +6,9 @@ import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
 class SheetNote extends StatelessWidget {
   const SheetNote(
-      {super.key, required this.titController, required this.subController});
-  final TextEditingController titController;
-  final TextEditingController subController;
+      {super.key, required this.titleCtrl, required this.contentCtrl});
+  final TextEditingController titleCtrl;
+  final TextEditingController contentCtrl;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,11 +16,11 @@ class SheetNote extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomFormField(
-            controller: titController,
+            controller: titleCtrl,
             lablelText: 'Title',
           ),
           CustomFormField(
-            controller: subController,
+            controller: contentCtrl,
             lablelText: 'Content',
             maxLine: 10,
           ),
