@@ -4,6 +4,7 @@ import 'package:noteapp/views/widgets/custom_form_field.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
 class EditNote extends StatelessWidget {
+  static String id = 'EditNote';
   const EditNote(
       {super.key, required this.titleCtrl, required this.contentCtrl});
   final TextEditingController titleCtrl;
