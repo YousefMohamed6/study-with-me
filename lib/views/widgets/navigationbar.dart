@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubit/navigatore_cubit.dart';
+import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
 class CustombottomBar extends StatelessWidget {
@@ -14,33 +14,33 @@ class CustombottomBar extends StatelessWidget {
       unselectedItemColor: Colors.grey.shade50,
       currentIndex: currentIndex,
       onTap: (select) {
-        BlocProvider.of<NavigatoreCubit>(context).chengeIndex(select);
+        BlocProvider.of<NavigationBarCubit>(context).chengeIndex(select);
       },
       items: const [
         BottomNavigationBarItem(
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Home',
+              text: 'Book',
               color: Colors.white,
             ),
           ),
           label: '',
           icon: Icon(
-            Icons.home,
+            Icons.menu_book,
           ),
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Pdf',
+              text: 'Files',
               color: Colors.white,
             ),
           ),
           label: '',
           icon: Icon(
-            Icons.picture_as_pdf,
+            Icons.file_open,
           ),
         ),
         BottomNavigationBarItem(

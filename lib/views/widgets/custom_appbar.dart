@@ -3,7 +3,11 @@ import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title, required this.icon, required this.onPressed});
+  const CustomAppBar(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.onPressed});
   final String title;
   final Widget icon;
   final VoidCallback onPressed;
@@ -20,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
             fontSize: 24,
           ),
           Container(
-            margin: const EdgeInsets.only(top: 0),
+            margin: const EdgeInsets.only(top: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.grey.withOpacity(.05),

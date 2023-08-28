@@ -12,8 +12,7 @@ class EditNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: [
           CustomAppBar(
             title: 'Edit Note',
@@ -22,6 +21,7 @@ class EditNote extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          const VerticalSizedBox(50),
           CustomFormField(
             controller: titleCtrl,
             lablelText: 'Title',
