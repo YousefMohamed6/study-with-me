@@ -7,6 +7,7 @@ import 'package:noteapp/cubits/file/file_cubit.dart';
 import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
 import 'package:noteapp/cubits/note/note_cubit.dart';
 import 'package:noteapp/cubits/todo/todo_cubit.dart';
+import 'package:noteapp/model/note_model.dart';
 import 'package:noteapp/views/screens/books_view.dart';
 import 'package:noteapp/views/screens/home_view.dart';
 import 'package:noteapp/views/screens/note_view.dart';
@@ -15,10 +16,11 @@ import 'package:noteapp/views/screens/todo_view.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kBookBox);
-  await Hive.openBox(kFileBox);
   await Hive.openBox(kNoteBox);
-  await Hive.openBox(kToDoBox);
+  Hive.registerAdapter(NoteModelAdapter());
+  // await Hive.openBox(kFileBox);
+  // await Hive.openBox(kNoteBox);
+  // await Hive.openBox(kToDoBox);
   runApp(const MyApp());
 }
 

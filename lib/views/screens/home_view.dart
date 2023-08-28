@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
             onPressed: () {
               if (state is File) {
               } else if (state is Note) {
-                BlocProvider.of<NoteCubit>(context).addNote(context);
+                BlocProvider.of<NoteCubit>(context).showBottomSheet(context);
               } else if (state is ToDo) {
               } else {}
             },

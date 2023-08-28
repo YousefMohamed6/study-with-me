@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/note/note_cubit.dart';
 import 'package:noteapp/views/widgets/note_item.dart';
 
 class ListViewNotes extends StatelessWidget {
@@ -9,12 +11,12 @@ class ListViewNotes extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.zero,
-        itemCount: 10,
-        itemBuilder: (context, index) => const NoteItem(
+        itemCount: BlocProvider.of<NoteCubit>(context).notes.length,
+        itemBuilder: (context, index) => NoteItem(
           color: Colors.lightGreen,
-          title: 'flutter Tibs',
-          content: 'my name is yousef iam flutter devolper',
-          time: '2023-8-26',
+          title: BlocProvider.of<NoteCubit>(context).notes[index].title,
+          content: BlocProvider.of<NoteCubit>(context).notes[index].content,
+          time: BlocProvider.of<NoteCubit>(context).notes[index].date,
         ),
       ),
     );
