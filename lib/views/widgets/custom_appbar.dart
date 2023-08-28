@@ -18,16 +18,23 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CustomText(
-            text: title,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.white.withOpacity(.05),
+            ),
+            child: CustomText(
+              text: title,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
           ),
           Container(
             margin: const EdgeInsets.only(top: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.grey.withOpacity(.05),
+              color: Colors.white.withOpacity(.05),
             ),
             child: CustomIconButton(
               icon: icon,

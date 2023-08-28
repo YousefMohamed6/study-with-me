@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/model/note_model.dart';
-import 'package:noteapp/views/screens/note_sheet.dart';
+import 'package:noteapp/views/widgets/note_sheet.dart';
 part 'note_state.dart';
 
 class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
   List<NoteModel> notes = [];
+  var contentCtrl = TextEditingController();
+  var titleCtrl = TextEditingController();
   void showBottomSheet(context) {
-    var contentCtrl = TextEditingController();
-    var titleCtrl = TextEditingController();
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

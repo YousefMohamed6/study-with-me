@@ -8,31 +8,33 @@ class CustomFormField extends StatelessWidget {
     this.prefixIcon,
     this.lablelText,
     this.hintText,
-    this.obscureText,
     this.controller,
     this.onFieldSubmitted,
     this.onChanged,
     this.autovalidateMode,
-    this.contentPadding, this.maxLine,
+    this.contentPadding,
+    this.maxLine,
+    this.onSaved,
   });
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final TextInputType? textInputType;
   final String? lablelText;
   final String? hintText;
-  final bool? obscureText;
   final TextEditingController? controller;
   final void Function(String)? onFieldSubmitted;
   final void Function(String)? onChanged;
   final AutovalidateMode? autovalidateMode;
   final EdgeInsetsGeometry? contentPadding;
   final int? maxLine;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: TextFormField(
         maxLines: maxLine,
+        onSaved: onSaved,
         autovalidateMode:
             autovalidateMode ?? AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
@@ -66,7 +68,6 @@ class CustomFormField extends StatelessWidget {
         ),
         enabled: true,
         keyboardType: textInputType,
-        obscureText: obscureText ?? false,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "This Field is Requird";

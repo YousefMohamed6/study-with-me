@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/screens/edit_view.dart';
+import 'package:noteapp/views/widgets/edit_view.dart';
 import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
@@ -17,16 +17,10 @@ class NoteItem extends StatelessWidget {
   final String time;
   @override
   Widget build(BuildContext context) {
-    var titleCtrl = TextEditingController();
-    var contentCtrl=TextEditingController();
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    EditNote(titleCtrl: titleCtrl, contentCtrl: contentCtrl)));
-      },
+        Navigator.pushNamed(context, EditNote.id);
+      },                                                                                                                                                                                                                                                       
       child: Container(
         padding: const EdgeInsets.only(
             top: 24.0, bottom: 24.0, left: 24.0, right: 16),

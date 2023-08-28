@@ -1,6 +1,6 @@
 part of 'todo_cubit.dart';
 
+sealed class ToDoState {}
 
-sealed class TodoState {}
+final class TodoInitial extends ToDoState {}
 
-final class TodoInitial extends TodoState {}

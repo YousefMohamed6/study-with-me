@@ -1,8 +1,7 @@
 import 'package:hive/hive.dart';
 part 'note_model.g.dart';
 
-//flutter packages pub run build_runner build
-//flutter dart run build_runner build
+//dart run build_runner build
 @HiveType(typeId: 0)
 class NoteModel extends HiveObject {
   @HiveField(0)
@@ -20,12 +19,5 @@ class NoteModel extends HiveObject {
     required this.content,
     required this.date,
   });
-  factory NoteModel.fromUsser(Map data) {
-    return NoteModel(
-      color: data['color'],
-      content: data['contant'],
-      title: data['title'],
-      date: data['date'],
-    );
-  }
+
 }

@@ -29,38 +29,38 @@ class NoteSheet extends StatelessWidget {
         }
       },
       builder: (context, state) => Scaffold(
-        body: Form(
-          key: formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomFormField(
-                controller: titleCtrl,
-                lablelText: 'Title',
-              ),
-              CustomFormField(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomFormField(
+              controller: titleCtrl,
+              lablelText: 'Title',
+            ),
+            Form(
+              key: formkey,
+              child: CustomFormField(
                 controller: contentCtrl,
                 lablelText: 'Content',
                 maxLine: 10,
               ),
-              const VerticalSizedBox(24),
-              CustomButton(
-                onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    NoteModel note = NoteModel(
-                      color: 1,
-                      title: titleCtrl.text,
-                      content: contentCtrl.text,
-                      date: DateTime.now().toString().substring(0, 9),
-                    );
-                    BlocProvider.of<NoteCubit>(context).saveNote(note);
-                  }
-                },
-                color: Colors.white,
-                child: const CustomText(text: 'Save', color: Colors.black),
-              ),
-            ],
-          ),
+            ),
+            const VerticalSizedBox(24),
+            CustomButton(
+              onPressed: () {
+                if (formkey.currentState!.validate()) {
+                  NoteModel note = NoteModel(
+                    color: 1,
+                    title: titleCtrl.text,
+                    content: contentCtrl.text,
+                    date: DateTime.now().toString().substring(0, 9),
+                  );
+                  BlocProvider.of<NoteCubit>(context).saveNote(note);
+                }
+              },
+              color: Colors.white,
+              child: const CustomText(text: 'Save', color: Colors.black),
+            ),
+          ],
         ),
       ),
     );
