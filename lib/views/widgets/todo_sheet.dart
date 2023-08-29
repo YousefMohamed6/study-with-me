@@ -42,10 +42,7 @@ class ToDoSheet extends StatelessWidget {
               CustomButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-<<<<<<< HEAD
                        formKey.currentState!.save();
-=======
->>>>>>> dc1833ce2324b726344686853a23dcdc368addf7
                     BlocProvider.of<ToDoCubit>(context).addTask();
                   }
                 },
