@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/note/note_cubit.dart';
+import 'package:noteapp/model/note_model.dart';
 import 'package:noteapp/views/widgets/edit_view.dart';
 import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
@@ -6,28 +9,23 @@ import 'package:noteapp/views/widgets/custom_text.dart';
 class NoteItem extends StatelessWidget {
   const NoteItem({
     super.key,
-    required this.color,
-    required this.title,
-    required this.content,
-    required this.time,
+    required this.noteModel,
   });
-  final Color color;
-  final String title;
-  final String content;
-  final String time;
+  final NoteModel noteModel;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, EditNote.id);
-      },                                                                                                                                                                                                                                                       
+      },
       child: Container(
         padding: const EdgeInsets.only(
             top: 24.0, bottom: 24.0, left: 24.0, right: 16),
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: color,
+          color: Color(noteModel.color),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -35,23 +33,26 @@ class NoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: CustomText(
-                text: title.toUpperCase(),
+                text: noteModel.title,
                 fontWeight: FontWeight.bold,
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: CustomText(
-                  text: content,
+                  text: noteModel.content,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               trailing: CustomIconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<NoteCubit>(context)
+                      .showAlertDialog(context, noteModel);
+                },
               ),
             ),
             CustomText(
-              text: time,
+              text: noteModel.date,
             ),
           ],
         ),

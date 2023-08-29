@@ -58,7 +58,7 @@ class NoteSheet extends StatelessWidget {
                     color: Colors.lightGreen.value,
                     title: titleCtrl.text,
                     content: contentCtrl.text,
-                    date: DateTime.now().toString().substring(0, 9),
+                    date: DateTime.now().toString().substring(0, 16),
                   );
                   BlocProvider.of<NoteCubit>(context).addNote(note);
                 }

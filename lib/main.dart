@@ -20,7 +20,7 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNoteBox);
   Hive.registerAdapter(ToDoModelAdapter());
-  await Hive.openBox<ToDoModel>(kToDoBox);
+  await Hive.openBox<TaskModel>(kToDoBox);
 
   // await Hive.openBox(kFileBox);
   // await Hive.openBox(kNoteBox);

@@ -17,8 +17,12 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.white,
-            child: const Icon(Icons.add, size: 32),
+            backgroundColor: Colors.white.withOpacity(0.25),
+            child: const Icon(
+              Icons.add,
+              size: 24,
+              color: Colors.white,
+            ),
             onPressed: () {
               if (state is File) {
               } else if (state is Note) {
@@ -37,8 +41,10 @@ class HomeView extends StatelessWidget {
               if (state is File) {
                 return const FileView();
               } else if (state is Note) {
+                BlocProvider.of<NoteCubit>(context).fetshNotes();
                 return const NoteView();
               } else if (state is ToDo) {
+                BlocProvider.of<ToDoCubit>(context).fetchTasks();
                 return const ToDoView();
               } else {
                 return const BookView();

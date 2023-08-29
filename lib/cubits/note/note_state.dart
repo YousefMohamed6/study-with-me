@@ -6,12 +6,11 @@ class NoteInitial extends NoteState {}
 
 class Add extends NoteState {}
 
+class Remove extends NoteState {}
+
 class AddNoteSuccess extends NoteState {}
 
 class AddNoteFailure extends NoteState {
   final String errMessage;
-
   AddNoteFailure(this.errMessage);
 }
-
-class Remove extends NoteState {}

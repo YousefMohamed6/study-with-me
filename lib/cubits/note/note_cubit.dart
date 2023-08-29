@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/model/note_model.dart';
+import 'package:noteapp/views/widgets/custom_text.dart';
+import 'package:noteapp/views/widgets/custom_text_button.dart';
 import 'package:noteapp/views/widgets/note_sheet.dart';
 part 'note_state.dart';
 
@@ -30,10 +32,55 @@ class NoteCubit extends Cubit<NoteState> {
     try {
       var noteBox = Hive.box<NoteModel>(kNoteBox);
       await noteBox.add(note);
-      notes.add(note);
+      fetshNotes();
       emit(AddNoteSuccess());
+      emit(NoteInitial());
     } on Exception {
       emit(AddNoteFailure('Failed'));
+      emit(NoteInitial());
     }
   }
+
+  void fetshNotes() async {
+    notes.clear();
+    var noteBox = Hive.box<NoteModel>(kNoteBox);
+    notes.addAll(noteBox.values.toList());
+    emit(NoteInitial());
+  }
+
+  void deleteNote(NoteModel note) {
+    note.delete();
+    fetshNotes();
+  }
+
+  showAlertDialog(BuildContext context, NoteModel note) {
+    Widget cancelButton = CustomTextButton(
+      text: 'Cancel',
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = CustomTextButton(
+      text: "Ok",
+      onPressed: () {
+        deleteNote(note);
+         Navigator.pop(context);
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: const CustomText(text: "Alert"),
+      content: const CustomText(text: "Would you like to delete it"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }

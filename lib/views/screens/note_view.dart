@@ -22,7 +22,7 @@ class NoteView extends StatelessWidget {
           const VerticalSizedBox(16),
           Expanded(
             child: ListViewNotes(
-              list: BlocProvider.of<NoteCubit>(context).notes,
+              notes: BlocProvider.of<NoteCubit>(context).notes,
             ),
           ),
         ],

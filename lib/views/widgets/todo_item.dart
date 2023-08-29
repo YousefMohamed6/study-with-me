@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/todo/todo_cubit.dart';
+import 'package:noteapp/model/todo_model.dart';
 import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
-class ToDoItem extends StatelessWidget {
-  const ToDoItem({super.key, required this.title, required this.isComplete});
-  final String title;
-  final bool isComplete;
+class TaskItem extends StatelessWidget {
+  const TaskItem({super.key, required this.task});
+
+  final TaskModel task;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,14 +24,16 @@ class ToDoItem extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         leading: CustomIconButton(
           icon: Icon(
-            isComplete ? Icons.check_box : Icons.check_box_outline_blank,
+            task.isComplete ? Icons.check_box : Icons.check_box_outline_blank,
           ),
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<ToDoCubit>(context).showAlertDialog(context, task);
+          },
         ),
         title: CustomText(
-          text: title,
+          text: task.taskNames,
           fontWeight: FontWeight.bold,
-          decoration: isComplete ? TextDecoration.lineThrough : null,
+          decoration: task.isComplete ? TextDecoration.lineThrough : null,
         ),
         trailing: CustomIconButton(
           icon: const Icon(Icons.delete),
