@@ -22,15 +22,20 @@ class NoteSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<NoteCubit, NoteState>(
       listener: (context, state) {
-        if (state is AddSuccess) {
+        if (state is AddNoteSuccess) {
           ShowMessage.show(context, msg: 'Success');
-        } else if (state is AddFailure) {
+          Navigator.pop(context);
+        } else if (state is AddNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);
         }
       },
-      builder: (context, state) => Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      builder: (context, state) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          top: 16,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             CustomFormField(
               controller: titleCtrl,
@@ -41,25 +46,27 @@ class NoteSheet extends StatelessWidget {
               child: CustomFormField(
                 controller: contentCtrl,
                 lablelText: 'Content',
-                maxLine: 10,
+                maxLine: 5,
               ),
             ),
             const VerticalSizedBox(24),
             CustomButton(
               onPressed: () {
                 if (formkey.currentState!.validate()) {
+                  formkey.currentState!.save();
                   NoteModel note = NoteModel(
-                    color: 1,
+                    color: Colors.lightGreen.value,
                     title: titleCtrl.text,
                     content: contentCtrl.text,
                     date: DateTime.now().toString().substring(0, 9),
                   );
-                  BlocProvider.of<NoteCubit>(context).saveNote(note);
+                  BlocProvider.of<NoteCubit>(context).addNote(note);
                 }
               },
               color: Colors.white,
-              child: const CustomText(text: 'Save', color: Colors.black),
+              child: const CustomText(text: 'Add', color: Colors.black),
             ),
+            const VerticalSizedBox(16),
           ],
         ),
       ),

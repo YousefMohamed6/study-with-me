@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/todo/todo_cubit.dart';
+import 'package:noteapp/helper/show_message.dart';
 import 'package:noteapp/views/widgets/custom_button.dart';
 import 'package:noteapp/views/widgets/custom_form_field.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
@@ -10,35 +13,50 @@ class ToDoSheet extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
-              key: formKey,
-              child: CustomFormField(
-                controller: taskCtrl,
-                hintText: 'Enter your Task',
-                maxLine: 1,
+    return BlocConsumer<ToDoCubit, ToDoState>(
+      listener: (context, state) {
+        if (state is AddTaskSuccess) {
+          ShowMessage.show(context, msg: 'Success');
+          Navigator.pop(context);
+        }
+        if (state is AddTaskFailed) {
+          ShowMessage.show(context, msg: state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Form(
+                key: formKey,
+                child: CustomFormField(
+                  controller: taskCtrl,
+                  hintText: 'Enter your Task',
+                  maxLine: 1,
+                ),
               ),
-            ),
-            const VerticalSizedBox(16),
-            CustomButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {}
-              },
-              color: Colors.white,
-              child: const CustomText(
-                text: 'add',
-                color: Colors.black,
+              const VerticalSizedBox(16),
+              CustomButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                       formKey.currentState!.save();
+                    BlocProvider.of<ToDoCubit>(context).addTask();
+                  }
+                },
+                color: Colors.white,
+                child: const CustomText(
+                  text: 'add',
+                  color: Colors.black,
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+              const VerticalSizedBox(16),
+            ],
+          ),
+        );
+      },
     );
   }
 }
