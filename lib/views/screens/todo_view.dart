@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/widgets/Todo_list_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/todo/todo_cubit.dart';
 import 'package:noteapp/views/widgets/custom_appbar.dart';
+import 'package:noteapp/views/widgets/todo_list_view.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
 class ToDoView extends StatelessWidget {
@@ -18,9 +20,9 @@ class ToDoView extends StatelessWidget {
             onPressed: () {},
           ),
           const VerticalSizedBox(16),
-          const Expanded(
-            child: ListViewToDo(
-              list: [],
+          Expanded(
+            child: ListViewTasks(
+              tasks: BlocProvider.of<ToDoCubit>(context).tasks,
             ),
           )
         ],

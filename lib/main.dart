@@ -17,10 +17,11 @@ import 'package:noteapp/views/screens/todo_view.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kNoteBox);
   Hive.registerAdapter(NoteModelAdapter());
-  await Hive.openBox(kToDoBox);
+  await Hive.openBox<NoteModel>(kNoteBox);
   Hive.registerAdapter(ToDoModelAdapter());
+  await Hive.openBox<ToDoModel>(kToDoBox);
+
   // await Hive.openBox(kFileBox);
   // await Hive.openBox(kNoteBox);
 
