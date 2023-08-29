@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/views/widgets/custom_appbar.dart';
+import 'package:noteapp/views/widgets/custom_button.dart';
 import 'package:noteapp/views/widgets/custom_form_field.dart';
+import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
 class EditNote extends StatelessWidget {
-  static String id = 'EditNote';
-  const EditNote(
-      {super.key, required this.titleCtrl, required this.contentCtrl});
-  final TextEditingController titleCtrl;
-  final TextEditingController contentCtrl;
+  const EditNote({
+    super.key,
+    required this.title,
+    required this.contant,
+    required this.formKey,
+  });
+  final String title;
+  final String contant;
+  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
+    return Form(
+      key: formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          CustomAppBar(
-            title: 'Edit Note',
-            icon: const Icon(Icons.done),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          const VerticalSizedBox(50),
           CustomFormField(
-            controller: titleCtrl,
+            controller: TextEditingController(text: title),
             lablelText: 'Title',
           ),
           CustomFormField(
-            controller: contentCtrl,
-            lablelText: 'Content',
-            maxLine: 10,
+            controller: TextEditingController(text: contant),
+            lablelText: 'content',
+            maxLine: 5,
           ),
           const VerticalSizedBox(24),
+          CustomButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              }
+            },
+            child: const CustomText(text: 'Save'),
+          )
         ],
       ),
     );

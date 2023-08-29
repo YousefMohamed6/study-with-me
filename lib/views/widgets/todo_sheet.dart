@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/cubits/todo/todo_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
+import 'package:noteapp/model/todo_model.dart';
 import 'package:noteapp/views/widgets/custom_button.dart';
 import 'package:noteapp/views/widgets/custom_form_field.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
@@ -21,6 +22,7 @@ class ToDoSheet extends StatelessWidget {
         }
         if (state is AddTaskFailed) {
           ShowMessage.show(context, msg: state.errMessage);
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
@@ -42,13 +44,18 @@ class ToDoSheet extends StatelessWidget {
               CustomButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                       formKey.currentState!.save();
-                    BlocProvider.of<ToDoCubit>(context).addTask();
+                    formKey.currentState!.save();
+                    BlocProvider.of<ToDoCubit>(context).addTask(
+                      TaskModel(
+                        isComplete: false,
+                        taskNames: taskCtrl.text,
+                      ),
+                    );
                   }
                 },
                 color: Colors.white,
                 child: const CustomText(
-                  text: 'add',
+                  text: 'Add',
                   color: Colors.black,
                 ),
               ),

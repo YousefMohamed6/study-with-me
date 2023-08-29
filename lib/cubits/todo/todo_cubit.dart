@@ -32,10 +32,10 @@ class ToDoCubit extends Cubit<ToDoState> {
     emit(TodoInitial());
   }
 
-  void addTask() async {
+  void addTask(TaskModel task) async {
     try {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
-      var task = TaskModel(isComplete: false, taskNames: taskCtrl.text);
+
       await taskBox.add(task);
       emit(AddTaskSuccess());
       fetchTasks();
@@ -46,6 +46,7 @@ class ToDoCubit extends Cubit<ToDoState> {
 
   void deleteTask(TaskModel tast) {
     tast.delete();
+    fetchTasks();
   }
 
   showAlertDialog(BuildContext context, TaskModel task) {
@@ -76,5 +77,16 @@ class ToDoCubit extends Cubit<ToDoState> {
         return alert;
       },
     );
+  }
+
+  void editTask(TaskModel task) {
+    deleteTask(task);
+    addTask(
+      TaskModel(
+        isComplete: !task.isComplete,
+        taskNames: task.taskNames,
+      ),
+    );
+    fetchTasks();
   }
 }

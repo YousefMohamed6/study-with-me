@@ -27,7 +27,7 @@ class TaskItem extends StatelessWidget {
             task.isComplete ? Icons.check_box : Icons.check_box_outline_blank,
           ),
           onPressed: () {
-            BlocProvider.of<ToDoCubit>(context).showAlertDialog(context, task);
+            BlocProvider.of<ToDoCubit>(context).editTask(task);
           },
         ),
         title: CustomText(
@@ -37,7 +37,9 @@ class TaskItem extends StatelessWidget {
         ),
         trailing: CustomIconButton(
           icon: const Icon(Icons.delete),
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<ToDoCubit>(context).showAlertDialog(context, task);
+          },
         ),
       ),
     );

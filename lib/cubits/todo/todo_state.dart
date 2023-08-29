@@ -1,12 +1,12 @@
 part of 'todo_cubit.dart';
 
-sealed class ToDoState {}
+abstract class ToDoState {}
 
-final class TodoInitial extends ToDoState {}
+class TodoInitial extends ToDoState {}
 
-final class AddTaskSuccess extends ToDoState {}
+class AddTaskSuccess extends ToDoState {}
 
-final class AddTaskFailed extends ToDoState {
+class AddTaskFailed extends ToDoState {
   final String errMessage;
 
   AddTaskFailed(this.errMessage);

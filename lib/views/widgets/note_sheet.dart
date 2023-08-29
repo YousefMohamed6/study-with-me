@@ -27,6 +27,7 @@ class NoteSheet extends StatelessWidget {
           Navigator.pop(context);
         } else if (state is AddNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);
+          Navigator.pop(context);
         }
       },
       builder: (context, state) => Padding(
