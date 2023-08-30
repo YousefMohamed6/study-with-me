@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'navigatore_state.dart';
+part 'home_state.dart';
 
-class NavigationBarCubit extends Cubit<NavigationBarState> {
-  NavigationBarCubit() : super(Book());
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit() : super(Book());
   int _currentIndex = 0;
   get currentIndex => _currentIndex;
   void changeIndex(int select) {

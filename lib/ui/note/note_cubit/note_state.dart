@@ -1,6 +1,6 @@
 part of 'note_cubit.dart';
 
-abstract class NoteState extends NavigationBarState {}
+abstract class NoteState extends HomeState {}
 
 class NoteInitial extends NoteState {}
 

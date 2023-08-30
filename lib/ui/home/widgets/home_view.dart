@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
+import 'package:noteapp/ui/home/cubit/home_cubit.dart';
 import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
-import 'package:noteapp/ui/note/note_sheet.dart';
-import 'package:noteapp/ui/todo/add_task.dart';
+import 'package:noteapp/ui/note/widgets/note_sheet.dart';
+import 'package:noteapp/ui/todo/widgets/add_task.dart';
 import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
-import 'package:noteapp/views/screens/books_view.dart';
-import 'package:noteapp/views/screens/file_view.dart';
-import 'package:noteapp/views/screens/note_view.dart';
-import 'package:noteapp/views/screens/todo_view.dart';
-import 'package:noteapp/views/screens/webview.dart';
-import 'package:noteapp/views/widgets/navigationbar.dart';
+import 'package:noteapp/ui/books/widgets/books_view.dart';
+import 'package:noteapp/ui/files/widgets/file_view.dart';
+import 'package:noteapp/ui/note/widgets/note_view.dart';
+import 'package:noteapp/ui/todo/widgets/todo_view.dart';
+import 'package:noteapp/ui/youtube/webview.dart';
+import 'package:noteapp/ui/home/widgets/navigationbar.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationBarCubit, NavigationBarState>(
+    return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is Youtube) {
           return const WebViewApp(url: 'https://www.youtube.com/');
@@ -50,7 +50,7 @@ class HomeView extends StatelessWidget {
                       } else if (state is Note) {
                         BlocProvider.of<NoteCubit>(context).fetshNotes();
                         BlocProvider.of<NoteCubit>(context).addColor();
-                        BlocProvider.of<NavigationBarCubit>(context).refresh();
+                        BlocProvider.of<HomeCubit>(context).refresh();
                       } else if (state is ToDo) {
                         BlocProvider.of<ToDoCubit>(context).showBottomSheet(
                             context,
@@ -62,10 +62,9 @@ class HomeView extends StatelessWidget {
                     },
                   ),
             bottomNavigationBar: CustombottomBar(
-              currentIndex:
-                  BlocProvider.of<NavigationBarCubit>(context).currentIndex,
+              currentIndex: BlocProvider.of<HomeCubit>(context).currentIndex,
             ),
-            body: BlocBuilder<NavigationBarCubit, NavigationBarState>(
+            body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 if (state is File) {
                   return const FileView();

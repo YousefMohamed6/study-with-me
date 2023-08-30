@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
-import 'package:noteapp/cubits/book/book_cubit.dart';
-import 'package:noteapp/cubits/file/file_cubit.dart';
-import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
+import 'package:noteapp/ui/books/cubit/book_cubit.dart';
+import 'package:noteapp/ui/files/cubit/file_cubit.dart';
+import 'package:noteapp/ui/home/cubit/home_cubit.dart';
 import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/ui/note/model/note_model.dart';
 import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
 import 'package:noteapp/simple_observer.dart';
-import 'package:noteapp/views/screens/books_view.dart';
-import 'package:noteapp/views/screens/home_view.dart';
-import 'package:noteapp/views/screens/note_view.dart';
-import 'package:noteapp/views/screens/file_view.dart';
-import 'package:noteapp/views/screens/todo_view.dart';
+import 'package:noteapp/ui/books/widgets/books_view.dart';
+import 'package:noteapp/ui/home/widgets/home_view.dart';
+import 'package:noteapp/ui/note/widgets/note_view.dart';
+import 'package:noteapp/ui/files/widgets/file_view.dart';
+import 'package:noteapp/ui/todo/widgets/todo_view.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) => NavigationBarCubit(),
+          create: (context) => HomeCubit(),
         ),
         RepositoryProvider(
           create: (context) => BookCubit(),

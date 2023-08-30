@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
-import 'package:noteapp/views/widgets/custom_text.dart';
+import 'package:noteapp/ui/home/cubit/home_cubit.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewApp extends StatefulWidget {
@@ -14,14 +14,13 @@ class WebViewApp extends StatefulWidget {
 
 class _WebViewAppState extends State<WebViewApp> {
   @override
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            BlocProvider.of<NavigationBarCubit>(context).changeIndex(0);
+            BlocProvider.of<HomeCubit>(context).changeIndex(0);
           },
         ),
         centerTitle: true,

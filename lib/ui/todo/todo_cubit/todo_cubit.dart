@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
-import 'package:noteapp/views/widgets/custom_text.dart';
-import 'package:noteapp/views/widgets/custom_text_button.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 
 part 'todo_state.dart';
 

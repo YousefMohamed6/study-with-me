@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:noteapp/helper/helper.dart';
 
-import '../views/widgets/custom_text.dart';
+import 'helper_widgets/custom_text.dart';
 
 class ShowMessage {
   static void show(context, {required msg}) {

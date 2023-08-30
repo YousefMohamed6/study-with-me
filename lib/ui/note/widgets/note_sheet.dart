@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
 import 'package:noteapp/ui/note/model/note_model.dart';
-import 'package:noteapp/views/widgets/custom_button.dart';
-import 'package:noteapp/views/widgets/custom_form_field.dart';
-import 'package:noteapp/views/widgets/custom_text.dart';
-import 'package:noteapp/views/widgets/vertical_sizebox.dart';
+import 'package:noteapp/helper/helper_widgets/custom_button.dart';
+import 'package:noteapp/helper/helper_widgets/custom_form_field.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper/helper_widgets/vertical_sizebox.dart';
 
 class AddNoteSheet extends StatelessWidget {
   static String id = 'NoteSheet';

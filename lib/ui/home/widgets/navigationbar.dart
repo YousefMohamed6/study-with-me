@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
-import 'package:noteapp/views/widgets/custom_text.dart';
+import 'package:noteapp/ui/home/cubit/home_cubit.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text.dart';
 
 class CustombottomBar extends StatelessWidget {
   const CustombottomBar({super.key, required this.currentIndex});
@@ -15,7 +15,7 @@ class CustombottomBar extends StatelessWidget {
       unselectedItemColor: Colors.grey.shade50,
       currentIndex: currentIndex,
       onTap: (select) {
-        BlocProvider.of<NavigationBarCubit>(context).changeIndex(select);
+        BlocProvider.of<HomeCubit>(context).changeIndex(select);
       },
       items: const [
         BottomNavigationBarItem(
