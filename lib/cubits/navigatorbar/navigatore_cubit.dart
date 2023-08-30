@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'navigatore_state.dart';
 
-class NavigationBarCubit extends Cubit<NavigatoreBarState> {
+class NavigationBarCubit extends Cubit<NavigationBarState> {
   NavigationBarCubit() : super(Book());
   int _currentIndex = 0;
   get currentIndex => _currentIndex;
@@ -19,5 +19,9 @@ class NavigationBarCubit extends Cubit<NavigatoreBarState> {
     } else {
       emit(Youtube());
     }
+  }
+
+  void refresh() {
+    emit(AddColors());
   }
 }

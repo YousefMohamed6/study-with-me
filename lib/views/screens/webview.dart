@@ -4,15 +4,17 @@ import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebView extends StatefulWidget {
-  const WebView({super.key, required this.url});
+class WebViewApp extends StatefulWidget {
+  const WebViewApp({super.key, required this.url});
   final String url;
 
   @override
-  State<WebView> createState() => _WebViewState();
+  State<WebViewApp> createState() => _WebViewAppState();
 }
 
-class _WebViewState extends State<WebView> {
+class _WebViewAppState extends State<WebViewApp> {
+  @override
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

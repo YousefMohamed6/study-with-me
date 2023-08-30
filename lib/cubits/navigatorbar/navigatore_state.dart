@@ -1,13 +1,15 @@
 part of 'navigatore_cubit.dart';
 
-abstract class NavigatoreBarState {}
+abstract class NavigationBarState {}
 
-class Book extends NavigatoreBarState {}
+class Book extends NavigationBarState {}
 
-class File extends NavigatoreBarState {}
+class File extends NavigationBarState {}
 
-class Note extends NavigatoreBarState {}
+class Note extends NavigationBarState {}
 
-class ToDo extends NavigatoreBarState {}
+class ToDo extends NavigationBarState {}
 
-class Youtube extends NavigatoreBarState {}
+class Youtube extends NavigationBarState {}
+
+class AddColors extends NavigationBarState {}

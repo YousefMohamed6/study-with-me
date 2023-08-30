@@ -14,10 +14,11 @@ class AddNoteSheet extends StatelessWidget {
       {super.key,
       required this.titleCtrl,
       required this.contentCtrl,
-      required this.formkey});
+      required this.formkey, required this.color});
   final TextEditingController titleCtrl;
   final TextEditingController contentCtrl;
   final GlobalKey<FormState> formkey;
+  final int color;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NoteCubit, NoteState>(
@@ -56,7 +57,7 @@ class AddNoteSheet extends StatelessWidget {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
                   NoteModel note = NoteModel(
-                    color: Colors.lightGreen.value,
+                    color: color,
                     title: titleCtrl.text,
                     content: contentCtrl.text,
                     date: DateTime.now().toString().substring(0, 16),
