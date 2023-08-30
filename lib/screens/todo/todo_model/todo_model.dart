@@ -7,9 +7,11 @@ class TaskModel extends HiveObject {
   bool isComplete;
   @HiveField(1)
   String taskNames;
-
+  @HiveField(2)
+ final int color;
   TaskModel({
     required this.isComplete,
     required this.taskNames,
+    required this.color,
   });
 }

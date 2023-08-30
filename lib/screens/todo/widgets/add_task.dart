@@ -4,6 +4,8 @@ import 'package:noteapp/helper_widgets/custom_button.dart';
 import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
 import 'package:noteapp/screens/todo/todo_model/todo_model.dart';
@@ -43,15 +45,16 @@ class AddTaskView extends StatelessWidget {
                 maxLine: 1,
               ),
             ),
+            BlocProvider.of<HomeCubit>(context).colorPicker(),
             const VerticalSizedBox(16),
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   BlocProvider.of<ToDoCubit>(context).addTask(
                     TaskModel(
-                      isComplete: false,
-                      taskNames: taskCtrl.text,
-                    ),
+                        isComplete: false,
+                        taskNames: taskCtrl.text,
+                        color: BlocProvider.of<NoteCubit>(context).color),
                   );
                 }
               },

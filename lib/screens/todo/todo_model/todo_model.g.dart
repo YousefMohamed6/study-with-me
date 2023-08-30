@@ -6,7 +6,7 @@ part of 'todo_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ToDoModelAdapter extends TypeAdapter<TaskModel> {
+class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
   final int typeId = 1;
 
@@ -19,17 +19,20 @@ class ToDoModelAdapter extends TypeAdapter<TaskModel> {
     return TaskModel(
       isComplete: fields[0] as bool,
       taskNames: fields[1] as String,
+      color: fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, TaskModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.isComplete)
       ..writeByte(1)
-      ..write(obj.taskNames);
+      ..write(obj.taskNames)
+      ..writeByte(2)
+      ..write(obj.color);
   }
 
   @override
@@ -38,7 +41,7 @@ class ToDoModelAdapter extends TypeAdapter<TaskModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ToDoModelAdapter &&
+      other is TaskModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

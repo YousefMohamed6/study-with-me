@@ -10,12 +10,12 @@ import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
 
 class AddNoteView extends StatelessWidget {
-  const AddNoteView(
-      {super.key,
-      required this.titleCtrl,
-      required this.contentCtrl,
-      required this.formkey,
-      });
+  const AddNoteView({
+    super.key,
+    required this.titleCtrl,
+    required this.contentCtrl,
+    required this.formkey,
+  });
   final TextEditingController titleCtrl;
   final TextEditingController contentCtrl;
   final GlobalKey<FormState> formkey;
@@ -42,6 +42,7 @@ class AddNoteView extends StatelessWidget {
           top: 16,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomFormField(
@@ -57,16 +58,13 @@ class AddNoteView extends StatelessWidget {
               ),
             ),
             const VerticalSizedBox(8),
-            SizedBox(
-              height: 40,
-              child: BlocProvider.of<HomeCubit>(context).colorPicker(),
-            ),
+            BlocProvider.of<HomeCubit>(context).colorPicker(),
             const VerticalSizedBox(16),
             CustomButton(
               onPressed: () {
                 if (formkey.currentState!.validate()) {
                   NoteModel note = NoteModel(
-                    color:  BlocProvider.of<NoteCubit>(context).color,
+                    color: BlocProvider.of<NoteCubit>(context).color,
                     title: titleCtrl.text,
                     content: contentCtrl.text,
                     date: DateTime.now().toString().substring(0, 16),

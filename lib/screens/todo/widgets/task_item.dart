@@ -30,7 +30,7 @@ class TaskItem extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.white.withOpacity(0.05),
+          color: Color(task.color),
         ),
         child: ListTile(
           shape:

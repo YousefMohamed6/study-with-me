@@ -12,4 +12,3 @@ class ToDo extends HomeState {}
 
 class Youtube extends HomeState {}
 
-class AddColors extends HomeState {}

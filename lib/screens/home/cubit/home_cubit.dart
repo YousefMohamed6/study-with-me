@@ -24,10 +24,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void refresh() {
-    emit(AddColors());
-  }
-
   showAlertDialog({
     required BuildContext context,
     required Function() ok,
@@ -61,7 +57,7 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  void showBottomSheet( {required Widget builder,required context}) async {
+  void showBottomSheet({required Widget builder, required context}) async {
     await showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -73,24 +69,29 @@ class HomeCubit extends Cubit<HomeState> {
 
   Widget colorPicker() {
     List<int> colors = [
-      Colors.blue.value,
       Colors.lightGreen.value,
       Colors.lightBlue.value,
       Colors.orange.shade300.value,
+      Colors.red.shade300.value,
+      Colors.grey.value,
     ];
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: colors.length,
-      itemBuilder: (context, index) => ElevatedButton(
-        onPressed: () {
-          BlocProvider.of<NoteCubit>(context).color = colors[index];
-        },
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-          padding: const EdgeInsets.all(20),
-          backgroundColor: Color(colors[index]),
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: SizedBox(
+        height: 40,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          physics: const ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          itemCount: colors.length,
+          itemBuilder: (context, index) => MaterialButton(
+            onPressed: () {
+              BlocProvider.of<NoteCubit>(context).color = colors[index];
+            },
+            shape: const CircleBorder(),
+            color: Color(colors[index]),
+            child: const SizedBox(width: 16, height: 16),
+          ),
         ),
-        child: const SizedBox(),
       ),
     );
   }
