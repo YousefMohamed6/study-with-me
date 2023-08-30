@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/helper/helper_widgets/custom_appbar.dart';
-import 'package:noteapp/ui/todo/widgets/todo_list_view.dart';
-
+import 'package:noteapp/screens/todo/widgets/todo_list_view.dart';
 
 class ToDoView extends StatelessWidget {
   const ToDoView({super.key});
