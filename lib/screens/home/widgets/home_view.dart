@@ -32,18 +32,17 @@ class HomeView extends StatelessWidget {
               onPressed: () {
                 if (state is Note) {
                   BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                  context:  context,
+                    context: context,
                     builder: AddNoteView(
                       titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
                       contentCtrl:
                           BlocProvider.of<NoteCubit>(context).contentCtrl,
                       formkey: GlobalKey<FormState>(),
-                      color: BlocProvider.of<NoteCubit>(context).color,
                     ),
                   );
                 } else if (state is ToDo) {
                   BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                 context:    context,
+                    context: context,
                     builder: AddTaskView(
                       taskCtrl: BlocProvider.of<ToDoCubit>(context).taskCtrl,
                       formKey: GlobalKey<FormState>(),

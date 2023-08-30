@@ -15,18 +15,22 @@ class AddNoteView extends StatelessWidget {
       required this.titleCtrl,
       required this.contentCtrl,
       required this.formkey,
-      required this.color});
+      });
   final TextEditingController titleCtrl;
   final TextEditingController contentCtrl;
   final GlobalKey<FormState> formkey;
-  final int color;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NoteCubit, NoteState>(
       listener: (context, state) {
+        if (state is NoteInitial) {
+          formkey.currentState!.save();
+        }
         if (state is AddNoteSuccess) {
           ShowMessage.show(context, msg: 'Success');
           Navigator.pop(context);
+          titleCtrl.text = '';
+          contentCtrl.clear();
         } else if (state is AddNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);
           Navigator.pop(context);
@@ -61,9 +65,8 @@ class AddNoteView extends StatelessWidget {
             CustomButton(
               onPressed: () {
                 if (formkey.currentState!.validate()) {
-                  formkey.currentState!.save();
                   NoteModel note = NoteModel(
-                    color: color,
+                    color:  BlocProvider.of<NoteCubit>(context).color,
                     title: titleCtrl.text,
                     content: contentCtrl.text,
                     date: DateTime.now().toString().substring(0, 16),

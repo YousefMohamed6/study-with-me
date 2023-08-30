@@ -4,6 +4,8 @@ abstract class ToDoState {}
 
 class TodoInitial extends ToDoState {}
 
+class AddTaskLoading extends ToDoState {}
+
 class AddTaskSuccess extends ToDoState {}
 
 class AddTaskFailed extends ToDoState {

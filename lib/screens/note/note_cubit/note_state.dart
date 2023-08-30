@@ -4,7 +4,7 @@ abstract class NoteState {}
 
 class NoteInitial extends NoteState {}
 
-class AddColor extends NoteState {}
+class AddNoteLoading extends NoteState {}
 
 class AddNoteSuccess extends NoteState {}
 

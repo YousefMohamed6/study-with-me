@@ -8,7 +8,6 @@ import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
 import 'package:noteapp/screens/todo/todo_model/todo_model.dart';
 
-
 class AddTaskView extends StatelessWidget {
   const AddTaskView({super.key, required this.taskCtrl, required this.formKey});
   final TextEditingController taskCtrl;
@@ -17,7 +16,11 @@ class AddTaskView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ToDoCubit, ToDoState>(
       listener: (context, state) {
+        if (state is TodoInitial) {
+          formKey.currentState!.save();
+        }
         if (state is AddTaskSuccess) {
+          taskCtrl.clear();
           ShowMessage.show(context, msg: 'Success');
           Navigator.pop(context);
         }
@@ -44,7 +47,6 @@ class AddTaskView extends StatelessWidget {
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
                   BlocProvider.of<ToDoCubit>(context).addTask(
                     TaskModel(
                       isComplete: false,

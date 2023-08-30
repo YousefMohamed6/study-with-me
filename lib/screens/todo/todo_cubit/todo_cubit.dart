@@ -19,6 +19,7 @@ class ToDoCubit extends Cubit<ToDoState> {
   }
 
   void addTask(TaskModel task) async {
+    emit(AddTaskLoading());
     try {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
       await taskBox.add(task);

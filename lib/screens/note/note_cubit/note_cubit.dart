@@ -13,10 +13,6 @@ class NoteCubit extends Cubit<NoteState> {
   var titleCtrl = TextEditingController();
   var contentCtrl = TextEditingController();
 
-  void addColor() {
-    emit(AddColor());
-  }
-
   void editNote(NoteModel note) {
     note.content = contentCtrl.text;
     note.title = titleCtrl.text;
@@ -26,6 +22,7 @@ class NoteCubit extends Cubit<NoteState> {
   }
 
   void addNote(NoteModel note) async {
+    emit(AddNoteLoading());
     try {
       var noteBox = Hive.box<NoteModel>(kNoteBox);
       await noteBox.add(note);
