@@ -29,8 +29,14 @@ class ToDoCubit extends Cubit<ToDoState> {
     }
   }
 
-  void editTask({required TaskModel task}) {
+  void editTaskName({required TaskModel task}) {
     task.taskNames = taskCtrl.text;
+    task.save();
+    fetchTasks();
+  }
+
+  void editTaskState({required TaskModel task}) {
+    task.isComplete = !task.isComplete;
     task.save();
     fetchTasks();
   }

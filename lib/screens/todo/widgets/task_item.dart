@@ -40,9 +40,7 @@ class TaskItem extends StatelessWidget {
               task.isComplete ? Icons.check_box : Icons.check_box_outline_blank,
             ),
             onPressed: () {
-              task.isComplete = !task.isComplete;
-              task.save();
-              BlocProvider.of<ToDoCubit>(context).fetchTasks();
+              BlocProvider.of<ToDoCubit>(context).editTaskState(task: task);
             },
           ),
           title: CustomText(

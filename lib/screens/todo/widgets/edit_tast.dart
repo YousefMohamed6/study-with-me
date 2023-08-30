@@ -49,7 +49,7 @@ class EditTask extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  BlocProvider.of<ToDoCubit>(context).editTask(task: task);
+                  BlocProvider.of<ToDoCubit>(context).editTaskName(task: task);
                 }
               },
               color: Colors.white,
