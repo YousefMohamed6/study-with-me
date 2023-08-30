@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/screens/note/widgets/edit_note.dart';
@@ -19,7 +20,7 @@ class NoteItem extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            BlocProvider.of<NoteCubit>(context).showBottomSheet(
+            BlocProvider.of<HomeCubit>(context).showBottomSheet(
               context,
               builder: EditNote(
                 note: noteModel,
@@ -60,8 +61,13 @@ class NoteItem extends StatelessWidget {
                   trailing: CustomIconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
-                      BlocProvider.of<NoteCubit>(context)
-                          .showAlertDialog(context, noteModel);
+                      BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                        context: context,
+                        ok: () {
+                          noteModel.delete();
+                          BlocProvider.of<NoteCubit>(context).fetshNotes();
+                        },
+                      );
                     },
                   ),
                 ),

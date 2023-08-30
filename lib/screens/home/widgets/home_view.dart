@@ -23,9 +23,9 @@ class HomeView extends StatelessWidget {
         } else {
           return Scaffold(
             floatingActionButton: state is AddColors
-                ? BlocProvider.of<NoteCubit>(context).listColor(
+                ? BlocProvider.of<HomeCubit>(context).colorPicker(
                     onPressed: () {
-                      BlocProvider.of<NoteCubit>(context).showBottomSheet(
+                      BlocProvider.of<HomeCubit>(context).showBottomSheet(
                         context,
                         builder: AddNoteSheet(
                           titleCtrl:
@@ -52,7 +52,7 @@ class HomeView extends StatelessWidget {
                         BlocProvider.of<NoteCubit>(context).addColor();
                         BlocProvider.of<HomeCubit>(context).refresh();
                       } else if (state is ToDo) {
-                        BlocProvider.of<ToDoCubit>(context).showBottomSheet(
+                        BlocProvider.of<HomeCubit>(context).showBottomSheet(
                             context,
                             builder: AddTaskView(
                                 taskCtrl: BlocProvider.of<ToDoCubit>(context)

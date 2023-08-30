@@ -4,9 +4,9 @@ part 'todo_model.g.dart';
 @HiveType(typeId: 1)
 class TaskModel extends HiveObject {
   @HiveField(0)
-  final bool isComplete;
+  bool isComplete;
   @HiveField(1)
-  final String taskNames;
+  String taskNames;
 
   TaskModel({
     required this.isComplete,
