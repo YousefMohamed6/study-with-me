@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/ui/home/cubit/home_cubit.dart';
-import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+
 
 class CustombottomBar extends StatelessWidget {
   const CustombottomBar({super.key, required this.currentIndex});

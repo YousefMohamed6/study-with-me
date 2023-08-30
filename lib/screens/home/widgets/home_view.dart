@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/ui/home/cubit/home_cubit.dart';
-import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
-import 'package:noteapp/ui/note/widgets/note_sheet.dart';
-import 'package:noteapp/ui/todo/widgets/add_task.dart';
-import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
-import 'package:noteapp/ui/books/widgets/books_view.dart';
-import 'package:noteapp/ui/files/widgets/file_view.dart';
-import 'package:noteapp/ui/note/widgets/note_view.dart';
-import 'package:noteapp/ui/todo/widgets/todo_view.dart';
-import 'package:noteapp/ui/youtube/webview.dart';
-import 'package:noteapp/ui/home/widgets/navigationbar.dart';
+import 'package:noteapp/screens/books/widgets/books_view.dart';
+import 'package:noteapp/screens/files/widgets/file_view.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/home/widgets/navigationbar.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/screens/note/widgets/note_sheet.dart';
+import 'package:noteapp/screens/note/widgets/note_view.dart';
+import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
+import 'package:noteapp/screens/todo/widgets/add_task.dart';
+import 'package:noteapp/screens/todo/widgets/todo_view.dart';
+import 'package:noteapp/screens/youtube/webview.dart';
+
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

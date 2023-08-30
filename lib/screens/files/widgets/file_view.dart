@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:noteapp/helper/helper_widgets/custom_appbar.dart';
-import 'package:noteapp/helper/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
 
-class BookView extends StatelessWidget {
-  const BookView({super.key});
-  static String id = 'Books';
+
+class FileView extends StatelessWidget {
+  const FileView({super.key});
+  static String id = 'Files';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +13,7 @@ class BookView extends StatelessWidget {
         children: [
           const VerticalSizedBox(16),
           CustomAppBar(
-            title: 'Books',
+            title: 'Files',
             icon: const Icon(Icons.search),
             onPressed: () {},
           ),

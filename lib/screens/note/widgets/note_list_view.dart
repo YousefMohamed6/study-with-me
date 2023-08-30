@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
-import 'package:noteapp/ui/note/model/note_model.dart';
-import 'package:noteapp/ui/note/widgets/note_item.dart';
+import 'package:noteapp/screens/note/model/note_model.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/screens/note/widgets/note_item.dart';
 
 class ListViewNotes extends StatelessWidget {
   const ListViewNotes({super.key, required this.notes});

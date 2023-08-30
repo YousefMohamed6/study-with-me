@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/ui/note/widgets/edit_note.dart';
-import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
-import 'package:noteapp/ui/note/model/note_model.dart';
-import 'package:noteapp/helper/helper_widgets/custom_icon_button.dart';
-import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper_widgets/custom_icon_button.dart';
+import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/note/model/note_model.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/screens/note/widgets/edit_note.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({

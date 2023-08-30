@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
-import 'package:noteapp/ui/home/cubit/home_cubit.dart';
-import 'package:noteapp/ui/note/model/note_model.dart';
-import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 part 'note_state.dart';
 

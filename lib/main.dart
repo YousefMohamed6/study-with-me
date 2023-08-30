@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/home/widgets/home_view.dart';
+import 'package:noteapp/screens/note/model/note_model.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
+import 'package:noteapp/screens/todo/todo_model/todo_model.dart';
 import 'package:noteapp/ui/books/cubit/book_cubit.dart';
 import 'package:noteapp/ui/files/cubit/file_cubit.dart';
-import 'package:noteapp/ui/home/cubit/home_cubit.dart';
-import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
-import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
-import 'package:noteapp/ui/note/model/note_model.dart';
-import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
 import 'package:noteapp/simple_observer.dart';
-import 'package:noteapp/ui/books/widgets/books_view.dart';
-import 'package:noteapp/ui/home/widgets/home_view.dart';
-import 'package:noteapp/ui/note/widgets/note_view.dart';
-import 'package:noteapp/ui/files/widgets/file_view.dart';
-import 'package:noteapp/ui/todo/widgets/todo_view.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -23,9 +19,6 @@ void main() async {
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<TaskModel>(kToDoBox);
   Bloc.observer = SimpleObserver();
-  // await Hive.openBox(kFileBox);
-  // await Hive.openBox(kNoteBox);
-
   runApp(const MyApp());
 }
 
@@ -56,12 +49,6 @@ class MyApp extends StatelessWidget {
         title: 'NoteApp',
         theme: ThemeData.dark(),
         home: const HomeView(),
-        routes: {
-          NoteView.id: (context) => const NoteView(),
-          FileView.id: (context) => const FileView(),
-          ToDoView.id: (context) => const ToDoView(),
-          BookView.id: (context) => const BookView(),
-        },
       ),
     );
   }

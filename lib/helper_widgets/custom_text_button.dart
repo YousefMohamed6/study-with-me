@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 
 
-
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,

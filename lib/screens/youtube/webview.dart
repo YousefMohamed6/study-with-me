@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/ui/home/cubit/home_cubit.dart';
-import 'package:noteapp/helper/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewApp extends StatefulWidget {
