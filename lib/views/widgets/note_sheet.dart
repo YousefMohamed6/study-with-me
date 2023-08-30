@@ -8,9 +8,9 @@ import 'package:noteapp/views/widgets/custom_form_field.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
-class NoteSheet extends StatelessWidget {
+class AddNoteSheet extends StatelessWidget {
   static String id = 'NoteSheet';
-  const NoteSheet(
+  const AddNoteSheet(
       {super.key,
       required this.titleCtrl,
       required this.contentCtrl,

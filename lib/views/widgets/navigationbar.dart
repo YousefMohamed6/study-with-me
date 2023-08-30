@@ -9,12 +9,13 @@ class CustombottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.shifting,
       iconSize: 24,
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey.shade50,
       currentIndex: currentIndex,
       onTap: (select) {
-        BlocProvider.of<NavigationBarCubit>(context).chengeIndex(select);
+        BlocProvider.of<NavigationBarCubit>(context).changeIndex(select);
       },
       items: const [
         BottomNavigationBarItem(
@@ -40,20 +41,20 @@ class CustombottomBar extends StatelessWidget {
           ),
           label: '',
           icon: Icon(
-            Icons.file_open,
+            Icons.description,
           ),
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Note',
+              text: 'Notes',
               color: Colors.white,
             ),
           ),
           label: '',
           icon: Icon(
-            Icons.note_add,
+            Icons.note_alt,
           ),
         ),
         BottomNavigationBarItem(
@@ -66,7 +67,20 @@ class CustombottomBar extends StatelessWidget {
           ),
           label: '',
           icon: Icon(
-            Icons.import_export,
+            Icons.checklist,
+          ),
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Padding(
+            padding: EdgeInsets.only(top: 8.0),
+            child: CustomText(
+              text: 'Youtube',
+              color: Colors.white,
+            ),
+          ),
+          label: '',
+          icon: Icon(
+            Icons.video_collection_outlined,
           ),
         ),
       ],

@@ -5,6 +5,7 @@ import 'package:noteapp/const/text.dart';
 import 'package:noteapp/model/note_model.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/custom_text_button.dart';
+import 'package:noteapp/views/widgets/edit_note.dart';
 import 'package:noteapp/views/widgets/note_sheet.dart';
 part 'note_state.dart';
 
@@ -13,19 +14,51 @@ class NoteCubit extends Cubit<NoteState> {
   List<NoteModel> notes = [];
   var contentCtrl = TextEditingController();
   var titleCtrl = TextEditingController();
-  void showBottomSheet(context) {
+  void showAddNoteSheet(context) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       isScrollControlled: true,
       context: context,
-      builder: (context) => NoteSheet(
+      builder: (context) => AddNoteSheet(
         titleCtrl: titleCtrl,
         contentCtrl: contentCtrl,
         formkey: GlobalKey<FormState>(),
       ),
     );
+  }
+
+  void showEditNoteSheet(context,
+      {required NoteModel note,
+      required TextEditingController title,
+      required TextEditingController content}) {
+    try {
+      showModalBottomSheet(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          isScrollControlled: true,
+          context: context,
+          builder: (context) => EditNote(
+              note: note,
+              formKey: GlobalKey<FormState>(),
+              titleCtrl: title,
+              contentCtrl: content,),);
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void editNote(NoteModel note) {
+    addNote(
+      NoteModel(
+          color: note.color,
+          content: contentCtrl.text,
+          date: note.date,
+          title: titleCtrl.text),
+    );
+    deleteNote(note);
   }
 
   void addNote(NoteModel note) async {
@@ -64,7 +97,7 @@ class NoteCubit extends Cubit<NoteState> {
       text: "Ok",
       onPressed: () {
         deleteNote(note);
-         Navigator.pop(context);
+        Navigator.pop(context);
       },
     );
     AlertDialog alert = AlertDialog(
@@ -82,5 +115,4 @@ class NoteCubit extends Cubit<NoteState> {
       },
     );
   }
-
 }

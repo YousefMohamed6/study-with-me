@@ -4,20 +4,16 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField({
     super.key,
     this.textInputType,
-    this.suffixIcon,
-    this.prefixIcon,
     this.lablelText,
     this.hintText,
     this.controller,
     this.onFieldSubmitted,
     this.onChanged,
     this.autovalidateMode,
-    this.contentPadding,
     this.maxLine,
     this.onSaved,
+    this.initialValue,
   });
-  final Widget? suffixIcon;
-  final Widget? prefixIcon;
   final TextInputType? textInputType;
   final String? lablelText;
   final String? hintText;
@@ -25,9 +21,9 @@ class CustomFormField extends StatelessWidget {
   final void Function(String)? onFieldSubmitted;
   final void Function(String)? onChanged;
   final AutovalidateMode? autovalidateMode;
-  final EdgeInsetsGeometry? contentPadding;
   final int? maxLine;
   final void Function(String?)? onSaved;
+  final String? initialValue;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,15 +52,10 @@ class CustomFormField extends StatelessWidget {
               Radius.circular(8),
             ),
           ),
-          contentPadding: contentPadding,
           labelText: lablelText,
           labelStyle: const TextStyle(fontSize: 16, color: Colors.white),
           hintText: hintText,
           hintStyle: const TextStyle(fontSize: 16, color: Colors.white),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          prefixIconColor: Colors.white,
-          suffixIconColor: Colors.white,
         ),
         enabled: true,
         keyboardType: textInputType,
@@ -79,6 +70,7 @@ class CustomFormField extends StatelessWidget {
         controller: controller,
         style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
+        initialValue: initialValue,
       ),
     );
   }

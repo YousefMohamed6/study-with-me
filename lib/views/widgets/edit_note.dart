@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/cubits/note/note_cubit.dart';
+import 'package:noteapp/model/note_model.dart';
 import 'package:noteapp/views/widgets/custom_button.dart';
 import 'package:noteapp/views/widgets/custom_form_field.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
@@ -7,12 +10,14 @@ import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 class EditNote extends StatelessWidget {
   const EditNote({
     super.key,
-    required this.title,
-    required this.contant,
     required this.formKey,
+    required this.titleCtrl,
+    required this.contentCtrl,
+    required this.note,
   });
-  final String title;
-  final String contant;
+  final TextEditingController titleCtrl;
+  final TextEditingController contentCtrl;
+  final NoteModel note;
   final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
@@ -22,12 +27,12 @@ class EditNote extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomFormField(
-            controller: TextEditingController(text: title),
-            lablelText: 'Title',
+            controller: titleCtrl,
+            initialValue: note.title,
           ),
           CustomFormField(
-            controller: TextEditingController(text: contant),
-            lablelText: 'content',
+            controller: contentCtrl,
+            initialValue: note.content,
             maxLine: 5,
           ),
           const VerticalSizedBox(24),
@@ -35,6 +40,7 @@ class EditNote extends StatelessWidget {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                BlocProvider.of<NoteCubit>(context).editNote(note);
               }
             },
             child: const CustomText(text: 'Save'),
