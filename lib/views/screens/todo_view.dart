@@ -13,7 +13,7 @@ class ToDoView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const VerticalSizedBox(24),
+          const VerticalSizedBox(16),
           CustomAppBar(
             title: 'ToDo',
             icon: const Icon(Icons.search),

@@ -25,13 +25,14 @@ class NoteCubit extends Cubit<NoteState> {
     emit(AddColor());
   }
 
-  Widget colorPicker({required VoidCallback onPressed}) {
+  Widget colorPicker({required onPressed}) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: colors.length,
       itemBuilder: (context, index) => ElevatedButton(
         onPressed: () {
           color = colors[index];
+          onPressed();
         },
         style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
