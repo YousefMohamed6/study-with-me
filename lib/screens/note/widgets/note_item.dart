@@ -19,18 +19,23 @@ class NoteItem extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            BlocProvider.of<NoteCubit>(context).showEditNoteSheet(
-              context ,EditNote(
-              note: noteModel,
-              titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
-              contentCtrl: BlocProvider.of<NoteCubit>(context).contentCtrl,
-              formKey: GlobalKey<FormState>(),
-
-            ));
+            BlocProvider.of<NoteCubit>(context).showBottomSheet(
+              context,
+              builder: EditNote(
+                note: noteModel,
+                titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
+                contentCtrl: BlocProvider.of<NoteCubit>(context).contentCtrl,
+                formKey: GlobalKey<FormState>(),
+              ),
+            );
           },
           child: Container(
             padding: const EdgeInsets.only(
-                top: 24.0, bottom: 24.0, left: 24.0, right: 16),
+              top: 24.0,
+              bottom: 24.0,
+              left: 24.0,
+              right: 16,
+            ),
             margin: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),

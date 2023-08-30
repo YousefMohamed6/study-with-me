@@ -6,7 +6,6 @@ import 'package:noteapp/screens/note/widgets/note_list_view.dart';
 import 'package:noteapp/helper/helper_widgets/custom_appbar.dart';
 
 class NoteView extends StatelessWidget {
-  static String id = 'NoteView';
   const NoteView({super.key});
   @override
   Widget build(BuildContext context) {

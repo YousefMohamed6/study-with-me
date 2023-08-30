@@ -5,13 +5,12 @@ import 'package:noteapp/screens/files/widgets/file_view.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/navigationbar.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
-import 'package:noteapp/screens/note/widgets/note_sheet.dart';
+import 'package:noteapp/screens/note/widgets/add_note.dart';
 import 'package:noteapp/screens/note/widgets/note_view.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/screens/todo/widgets/add_task.dart';
 import 'package:noteapp/screens/todo/widgets/todo_view.dart';
 import 'package:noteapp/screens/youtube/webview.dart';
-
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -24,9 +23,9 @@ class HomeView extends StatelessWidget {
         } else {
           return Scaffold(
             floatingActionButton: state is AddColors
-                ? BlocProvider.of<NoteCubit>(context).colorPicker(
+                ? BlocProvider.of<NoteCubit>(context).listColor(
                     onPressed: () {
-                      BlocProvider.of<NoteCubit>(context).showAddNoteSheet(
+                      BlocProvider.of<NoteCubit>(context).showBottomSheet(
                         context,
                         builder: AddNoteSheet(
                           titleCtrl:

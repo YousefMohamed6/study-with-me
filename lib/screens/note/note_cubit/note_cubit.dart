@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
-import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 part 'note_state.dart';
@@ -18,14 +17,14 @@ class NoteCubit extends Cubit<NoteState> {
     Colors.lightBlue.value,
     Colors.orange.shade300.value,
   ];
-  var contentCtrl = TextEditingController();
   var titleCtrl = TextEditingController();
+  var contentCtrl = TextEditingController();
 
   void addColor() {
     emit(AddColor());
   }
 
-  Widget colorPicker({required onPressed}) {
+  Widget listColor({required onPressed}) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: colors.length,
@@ -44,18 +43,8 @@ class NoteCubit extends Cubit<NoteState> {
     );
   }
 
-  void showAddNoteSheet(context, {required Widget builder}) {
-    showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        isScrollControlled: true,
-        context: context,
-        builder: (context) => builder);
-  }
-
-  void showEditNoteSheet(context, Widget builder) {
-    showModalBottomSheet(
+  void showBottomSheet(context, {required Widget builder}) async {
+    await showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -65,15 +54,11 @@ class NoteCubit extends Cubit<NoteState> {
   }
 
   void editNote(NoteModel note) {
-    addNote(
-      NoteModel(
-          color: note.color,
-          content: contentCtrl.text,
-          date: note.date,
-          title: titleCtrl.text),
-    );
+    note.content = contentCtrl.text;
+    note.title = titleCtrl.text;
+    note.save();
     emit(EditNoteSuccess());
-    deleteNote(note);
+    fetshNotes();
   }
 
   void addNote(NoteModel note) async {

@@ -1,12 +1,8 @@
 part of 'note_cubit.dart';
 
-abstract class NoteState extends HomeState {}
+abstract class NoteState {}
 
 class NoteInitial extends NoteState {}
-
-class Add extends NoteState {}
-
-class Remove extends NoteState {}
 
 class AddColor extends NoteState {}
 

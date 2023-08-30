@@ -14,6 +14,7 @@ class ListViewNotes extends StatelessWidget {
     return BlocConsumer<NoteCubit, NoteState>(
       listener: (context, state) {
         if (state is EditNoteSuccess) {
+          ShowMessage.show(context, msg: 'Success');
           Navigator.pop(context);
         }
         if (state is EditNoteFailure) {

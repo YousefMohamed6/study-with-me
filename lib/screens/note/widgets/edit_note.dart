@@ -32,16 +32,17 @@ class EditNote extends StatelessWidget {
           children: [
             CustomFormField(
               controller: titleCtrl..text = note.title,
+              lablelText: 'Title',
             ),
             CustomFormField(
               controller: contentCtrl..text = note.content,
+              lablelText: 'Content',
               maxLine: 5,
             ),
             const VerticalSizedBox(24),
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
                   BlocProvider.of<NoteCubit>(context).editNote(note);
                 }
               },
@@ -51,7 +52,7 @@ class EditNote extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            const VerticalSizedBox(16),
+            const VerticalSizedBox(8),
           ],
         ),
       ),

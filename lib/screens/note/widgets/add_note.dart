@@ -14,7 +14,8 @@ class AddNoteSheet extends StatelessWidget {
       {super.key,
       required this.titleCtrl,
       required this.contentCtrl,
-      required this.formkey, required this.color});
+      required this.formkey,
+      required this.color});
   final TextEditingController titleCtrl;
   final TextEditingController contentCtrl;
   final GlobalKey<FormState> formkey;
@@ -68,7 +69,7 @@ class AddNoteSheet extends StatelessWidget {
               color: Colors.white,
               child: const CustomText(text: 'Add', color: Colors.black),
             ),
-            const VerticalSizedBox(16),
+            const VerticalSizedBox(8),
           ],
         ),
       ),
