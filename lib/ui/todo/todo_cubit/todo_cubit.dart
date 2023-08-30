@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
-import 'package:noteapp/model/todo_model.dart';
+import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/custom_text_button.dart';
-import 'package:noteapp/views/widgets/todo_sheet.dart';
+import 'package:noteapp/ui/todo/add_task.dart';
 
 part 'todo_state.dart';
 
@@ -21,7 +21,7 @@ class ToDoCubit extends Cubit<ToDoState> {
       ),
       context: context,
       builder: (context) =>
-          ToDoSheet(taskCtrl: taskCtrl, formKey: GlobalKey<FormState>()),
+          AddTaskView(taskCtrl: taskCtrl, formKey: GlobalKey<FormState>()),
     );
   }
 
@@ -35,7 +35,6 @@ class ToDoCubit extends Cubit<ToDoState> {
   void addTask(TaskModel task) async {
     try {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
-
       await taskBox.add(task);
       emit(AddTaskSuccess());
       fetchTasks();

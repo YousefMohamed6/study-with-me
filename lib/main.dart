@@ -5,10 +5,11 @@ import 'package:noteapp/const/text.dart';
 import 'package:noteapp/cubits/book/book_cubit.dart';
 import 'package:noteapp/cubits/file/file_cubit.dart';
 import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
-import 'package:noteapp/cubits/note/note_cubit.dart';
-import 'package:noteapp/cubits/todo/todo_cubit.dart';
-import 'package:noteapp/model/note_model.dart';
-import 'package:noteapp/model/todo_model.dart';
+import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
+import 'package:noteapp/ui/note/model/note_model.dart';
+import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
+import 'package:noteapp/simple_observer.dart';
 import 'package:noteapp/views/screens/books_view.dart';
 import 'package:noteapp/views/screens/home_view.dart';
 import 'package:noteapp/views/screens/note_view.dart';
@@ -21,7 +22,7 @@ void main() async {
   await Hive.openBox<NoteModel>(kNoteBox);
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<TaskModel>(kToDoBox);
-
+  Bloc.observer = SimpleObserver();
   // await Hive.openBox(kFileBox);
   // await Hive.openBox(kNoteBox);
 

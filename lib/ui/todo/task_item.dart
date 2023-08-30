@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/todo/todo_cubit.dart';
-import 'package:noteapp/model/todo_model.dart';
+import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
+import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
 import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 

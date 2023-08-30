@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/cubits/navigatorbar/navigatore_cubit.dart';
-import 'package:noteapp/cubits/note/note_cubit.dart';
-import 'package:noteapp/cubits/todo/todo_cubit.dart';
+import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/ui/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/views/screens/books_view.dart';
 import 'package:noteapp/views/screens/file_view.dart';
 import 'package:noteapp/views/screens/note_view.dart';

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/note/note_cubit.dart';
-import 'package:noteapp/model/note_model.dart';
-import 'package:noteapp/views/widgets/note_item.dart';
+import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/helper/show_message.dart';
+import 'package:noteapp/ui/note/model/note_model.dart';
+import 'package:noteapp/ui/note/note_item.dart';
 
 class ListViewNotes extends StatelessWidget {
   const ListViewNotes({super.key, required this.notes});
@@ -10,7 +11,16 @@ class ListViewNotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NoteCubit, NoteState>(
+    return BlocConsumer<NoteCubit, NoteState>(
+      listener: (context, state) {
+        if (state is EditNoteSuccess) {
+          Navigator.pop(context);
+        }
+        if (state is EditNoteFailure) {
+          ShowMessage.show(context, msg: state.errMessage);
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) => Expanded(
         child: ListView.builder(
           padding: EdgeInsets.zero,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/note/note_cubit.dart';
+import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/views/widgets/custom_appbar.dart';
-import 'package:noteapp/views/widgets/note_list_view.dart';
+import 'package:noteapp/ui/note/note_list_view.dart';
 import 'package:noteapp/views/widgets/vertical_sizebox.dart';
 
 class NoteView extends StatelessWidget {

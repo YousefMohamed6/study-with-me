@@ -14,3 +14,9 @@ class AddNoteFailure extends NoteState {
   final String errMessage;
   AddNoteFailure(this.errMessage);
 }
+class EditNoteSuccess extends NoteState {}
+
+class EditNoteFailure extends NoteState {
+  final String errMessage;
+ EditNoteFailure(this.errMessage);
+}

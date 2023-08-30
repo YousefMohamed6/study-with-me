@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
-import 'package:noteapp/model/note_model.dart';
+import 'package:noteapp/ui/note/model/note_model.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/custom_text_button.dart';
-import 'package:noteapp/views/widgets/edit_note.dart';
-import 'package:noteapp/views/widgets/note_sheet.dart';
+import 'package:noteapp/ui/note/note_sheet.dart';
 part 'note_state.dart';
 
 class NoteCubit extends Cubit<NoteState> {
@@ -29,25 +28,14 @@ class NoteCubit extends Cubit<NoteState> {
     );
   }
 
-  void showEditNoteSheet(context,
-      {required NoteModel note,
-      required TextEditingController title,
-      required TextEditingController content}) {
-    try {
-      showModalBottomSheet(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          isScrollControlled: true,
-          context: context,
-          builder: (context) => EditNote(
-              note: note,
-              formKey: GlobalKey<FormState>(),
-              titleCtrl: title,
-              contentCtrl: content,),);
-    } on Exception catch (e) {
-      debugPrint(e.toString());
-    }
+  void showEditNoteSheet(context, Widget builder) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => builder);
   }
 
   void editNote(NoteModel note) {
@@ -58,6 +46,7 @@ class NoteCubit extends Cubit<NoteState> {
           date: note.date,
           title: titleCtrl.text),
     );
+    emit(EditNoteSuccess());
     deleteNote(note);
   }
 

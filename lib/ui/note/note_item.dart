@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/note/note_cubit.dart';
-import 'package:noteapp/model/note_model.dart';
+import 'package:noteapp/ui/note/edit_note.dart';
+import 'package:noteapp/ui/note/note_cubit/note_cubit.dart';
+import 'package:noteapp/ui/note/model/note_model.dart';
 import 'package:noteapp/views/widgets/custom_icon_button.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 
@@ -19,11 +20,13 @@ class NoteItem extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             BlocProvider.of<NoteCubit>(context).showEditNoteSheet(
-              context,
+              context ,EditNote(
               note: noteModel,
-              title: BlocProvider.of<NoteCubit>(context).titleCtrl,
-              content: BlocProvider.of<NoteCubit>(context).contentCtrl,
-            );
+              titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
+              contentCtrl: BlocProvider.of<NoteCubit>(context).contentCtrl,
+              formKey: GlobalKey<FormState>(),
+
+            ));
           },
           child: Container(
             padding: const EdgeInsets.only(
