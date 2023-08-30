@@ -22,52 +22,43 @@ class HomeView extends StatelessWidget {
           return const WebViewApp(url: 'https://www.youtube.com/');
         } else {
           return Scaffold(
-            floatingActionButton: state is AddColors
-                ? BlocProvider.of<HomeCubit>(context).colorPicker(
-                    onPressed: () {
-                      BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                        context,
-                        builder: AddNoteSheet(
-                          titleCtrl:
-                              BlocProvider.of<NoteCubit>(context).titleCtrl,
-                          contentCtrl:
-                              BlocProvider.of<NoteCubit>(context).contentCtrl,
-                          formkey: GlobalKey<FormState>(),
-                          color: BlocProvider.of<NoteCubit>(context).color,
-                        ),
-                      );
-                    },
-                  )
-                : FloatingActionButton(
-                    backgroundColor: Colors.white.withOpacity(0.25),
-                    child: const Icon(
-                      Icons.add,
-                      size: 24,
-                      color: Colors.white,
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.white.withOpacity(0.25),
+              child: const Icon(
+                Icons.add,
+                size: 24,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                if (state is Note) {
+                  BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                  context:  context,
+                    builder: AddNoteView(
+                      titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
+                      contentCtrl:
+                          BlocProvider.of<NoteCubit>(context).contentCtrl,
+                      formkey: GlobalKey<FormState>(),
+                      color: BlocProvider.of<NoteCubit>(context).color,
                     ),
-                    onPressed: () {
-                      if (state is File) {
-                      } else if (state is Note) {
-                        BlocProvider.of<NoteCubit>(context).fetshNotes();
-                        BlocProvider.of<NoteCubit>(context).addColor();
-                        BlocProvider.of<HomeCubit>(context).refresh();
-                      } else if (state is ToDo) {
-                        BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                            context,
-                            builder: AddTaskView(
-                                taskCtrl: BlocProvider.of<ToDoCubit>(context)
-                                    .taskCtrl,
-                                formKey: GlobalKey<FormState>()));
-                      } else {}
-                    },
-                  ),
+                  );
+                } else if (state is ToDo) {
+                  BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                 context:    context,
+                    builder: AddTaskView(
+                      taskCtrl: BlocProvider.of<ToDoCubit>(context).taskCtrl,
+                      formKey: GlobalKey<FormState>(),
+                    ),
+                  );
+                }
+              },
+            ),
             bottomNavigationBar: CustombottomBar(
               currentIndex: BlocProvider.of<HomeCubit>(context).currentIndex,
             ),
             body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
-                if (state is File) {
-                  return const FileView();
+                if (state is Book) {
+                  return const BookView();
                 } else if (state is Note) {
                   BlocProvider.of<NoteCubit>(context).fetshNotes();
                   return const NoteView();
@@ -75,7 +66,7 @@ class HomeView extends StatelessWidget {
                   BlocProvider.of<ToDoCubit>(context).fetchTasks();
                   return const ToDoView();
                 } else {
-                  return const BookView();
+                  return const FileView();
                 }
               },
             ),

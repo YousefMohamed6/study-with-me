@@ -39,7 +39,7 @@ class EditTask extends StatelessWidget {
             Form(
               key: formKey,
               child: CustomFormField(
-                controller: taskCtrl,
+                controller: taskCtrl..text = task.taskNames,
                 hintText: 'Enter your Task',
                 maxLine: 1,
               ),

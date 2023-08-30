@@ -21,7 +21,7 @@ class NoteItem extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             BlocProvider.of<HomeCubit>(context).showBottomSheet(
-              context,
+              context: context,
               builder: EditNote(
                 note: noteModel,
                 titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,

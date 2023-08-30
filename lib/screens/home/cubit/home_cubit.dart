@@ -61,7 +61,7 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
-  void showBottomSheet(context, {required Widget builder}) async {
+  void showBottomSheet( {required Widget builder,required context}) async {
     await showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -71,7 +71,7 @@ class HomeCubit extends Cubit<HomeState> {
         builder: (context) => builder);
   }
 
-  Widget colorPicker({required onPressed}) {
+  Widget colorPicker() {
     List<int> colors = [
       Colors.blue.value,
       Colors.lightGreen.value,
@@ -84,7 +84,6 @@ class HomeCubit extends Cubit<HomeState> {
       itemBuilder: (context, index) => ElevatedButton(
         onPressed: () {
           BlocProvider.of<NoteCubit>(context).color = colors[index];
-          onPressed();
         },
         style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),

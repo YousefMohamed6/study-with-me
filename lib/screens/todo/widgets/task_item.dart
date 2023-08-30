@@ -16,7 +16,7 @@ class TaskItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(
-          context,
+          context: context,
           builder: EditTask(
             taskCtrl: BlocProvider.of<ToDoCubit>(context).taskCtrl,
             formKey: GlobalKey<FormState>(),

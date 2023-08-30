@@ -4,13 +4,13 @@ import 'package:noteapp/helper_widgets/custom_button.dart';
 import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/helper/show_message.dart';
 
-class AddNoteSheet extends StatelessWidget {
-  static String id = 'NoteSheet';
-  const AddNoteSheet(
+class AddNoteView extends StatelessWidget {
+  const AddNoteView(
       {super.key,
       required this.titleCtrl,
       required this.contentCtrl,
@@ -41,7 +41,7 @@ class AddNoteSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomFormField(
-              controller: titleCtrl,
+              controller: titleCtrl..text = ' ',
               lablelText: 'Title',
             ),
             Form(
@@ -52,7 +52,12 @@ class AddNoteSheet extends StatelessWidget {
                 maxLine: 5,
               ),
             ),
-            const VerticalSizedBox(24),
+            const VerticalSizedBox(8),
+            SizedBox(
+              height: 40,
+              child: BlocProvider.of<HomeCubit>(context).colorPicker(),
+            ),
+            const VerticalSizedBox(16),
             CustomButton(
               onPressed: () {
                 if (formkey.currentState!.validate()) {
