@@ -5,7 +5,6 @@ import 'package:noteapp/const/text.dart';
 import 'package:noteapp/ui/todo/todo_model/todo_model.dart';
 import 'package:noteapp/views/widgets/custom_text.dart';
 import 'package:noteapp/views/widgets/custom_text_button.dart';
-import 'package:noteapp/ui/todo/add_task.dart';
 
 part 'todo_state.dart';
 
@@ -13,16 +12,14 @@ class ToDoCubit extends Cubit<ToDoState> {
   ToDoCubit() : super(TodoInitial());
   var taskCtrl = TextEditingController();
   List<TaskModel> tasks = [];
-  void showBottomSheet(context) {
+  void showBottomSheet(context, {required Widget builder}) {
     showModalBottomSheet(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      context: context,
-      builder: (context) =>
-          AddTaskView(taskCtrl: taskCtrl, formKey: GlobalKey<FormState>()),
-    );
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        context: context,
+        builder: (context) => builder);
   }
 
   void fetchTasks() {
