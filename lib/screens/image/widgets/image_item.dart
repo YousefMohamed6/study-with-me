@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/image/model/image_model.dart';
+import 'package:noteapp/screens/image/widgets/edit_image_view.dart';
 
 class ImageItem extends StatelessWidget {
   const ImageItem({
@@ -12,7 +18,15 @@ class ImageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {},
+      onDoubleTap: () {
+        BlocProvider.of<HomeCubit>(context).showBottomSheet(
+          builder: EditImageView(
+              controller: BlocProvider.of<ImageCubit>(context).imageCtrl,
+              formkey: GlobalKey<FormState>(),
+              image: image),
+          context: context,
+        );
+      },
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: (MediaQuery.of(context).size.height) / 2,
@@ -29,8 +43,8 @@ class ImageItem extends StatelessWidget {
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                Image.asset(
-                  'assets/images/avater.png',
+                Image.file(
+                  File(image.path),
                   fit: BoxFit.cover,
                 ),
                 Positioned(
@@ -48,7 +62,7 @@ class ImageItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 2),
                   child: CustomTextButton(
-                    text: 'Avater',
+                    text: image.name,
                     onPressed: () {},
                   ),
                 ),

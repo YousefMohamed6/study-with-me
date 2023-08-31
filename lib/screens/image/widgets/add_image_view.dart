@@ -85,8 +85,8 @@ class _AddImageViewState extends State<AddImageView> {
                 if (widget.formkey.currentState!.validate()) {
                   BlocProvider.of<ImageCubit>(context).addImage(
                     ImageModel(
-                      imagePath: imagePath!,
-                      imageName: widget.controller.text,
+                      path: imagePath!,
+                      name: widget.controller.text,
                     ),
                   );
                 }

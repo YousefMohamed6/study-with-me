@@ -60,8 +60,8 @@ class ImageCubit extends Cubit<ImageState> {
       required String imageName,
       required ImageModel image}) {
     try {
-      image.imageName = imageName;
-      image.imagePath = imagePath;
+      image.name = imageName;
+      image.path = imagePath;
       image.save();
       emit(EditImageSuccess());
       fetchImages();

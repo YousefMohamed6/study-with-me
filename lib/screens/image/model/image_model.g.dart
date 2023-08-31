@@ -17,8 +17,8 @@ class ImageModelAdapter extends TypeAdapter<ImageModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ImageModel(
-      imagePath: fields[0] as String,
-      imageName: fields[1] as String,
+      path: fields[0] as String,
+      name: fields[1] as String,
     );
   }
 
@@ -27,9 +27,9 @@ class ImageModelAdapter extends TypeAdapter<ImageModel> {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.imagePath)
+      ..write(obj.path)
       ..writeByte(1)
-      ..write(obj.imageName);
+      ..write(obj.name);
   }
 
   @override

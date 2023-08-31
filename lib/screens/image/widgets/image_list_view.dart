@@ -18,7 +18,7 @@ class ImageListView extends StatelessWidget {
       padding: EdgeInsets.zero,
       itemCount: 5,
       itemBuilder: (context, index) => ImageItem(
-        image: ImageModel(imageName: '', imagePath: ''),
+        image: ImageModel(name: '', path: ''),
       ),
     );
   }
