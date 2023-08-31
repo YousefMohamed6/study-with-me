@@ -4,11 +4,13 @@ import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/screens/image/model/image_model.dart';
 
 class EditImage extends StatelessWidget {
-  const EditImage({super.key, required this.controller, required this.formkey});
+  const EditImage({super.key, required this.controller, required this.formkey, required this.image});
   final TextEditingController controller;
   final GlobalKey<FormState> formkey;
+  final ImageModel image;
   @override
   Widget build(BuildContext context) {
     return Padding(

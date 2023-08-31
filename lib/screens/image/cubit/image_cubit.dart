@@ -10,25 +10,27 @@ part 'image_state.dart';
 class ImageCubit extends Cubit<ImageState> {
   ImageCubit() : super(ImageInitial());
   final imageCtrl = TextEditingController();
-  String? imagePath;
+
   List<ImageModel> images = [];
-  void pickerCamera() async {
+  Future<String?> pickerCamera() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.camera);
-      imagePath = image!.path;
-      emit(PickSuccess());
-    } catch (e) {
-      emit(PickFailure());
+      emit(PickImageSuccess());
+      return image!.path;
+    } on Exception {
+      emit(PickImageFailure());
+      return null;
     }
   }
 
-  void pickerGallery() async {
+  Future<String?> pickerGallery() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      imagePath = image!.path;
-      emit(PickSuccess());
+      emit(PickImageSuccess());
+      return image!.path;
     } catch (e) {
-      emit(PickFailure());
+      emit(PickImageFailure());
+      return null;
     }
   }
 
@@ -53,10 +55,13 @@ class ImageCubit extends Cubit<ImageState> {
     }
   }
 
-  void editImage(ImageModel image) {
+  void editImage(
+      {required String imagePath,
+      required String imageName,
+      required ImageModel image}) {
     try {
-      image.imageName = imageCtrl.text;
-      image.imagePath = imagePath!;
+      image.imageName = imageName;
+      image.imagePath = imagePath;
       image.save();
       emit(EditImageSuccess());
       fetchImages();

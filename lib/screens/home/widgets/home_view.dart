@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/screens/books/widgets/books_view.dart';
+import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/image/widgets/add_image_view.dart';
 import 'package:noteapp/screens/image/widgets/image_view.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
@@ -35,7 +36,8 @@ class HomeView extends StatelessWidget {
                   BlocProvider.of<HomeCubit>(context).showBottomSheet(
                     context: context,
                     builder: AddImageView(
-                      controller: TextEditingController(text: ' '),
+                      controller:
+                          BlocProvider.of<ImageCubit>(context).imageCtrl,
                       formkey: GlobalKey<FormState>(),
                     ),
                   );

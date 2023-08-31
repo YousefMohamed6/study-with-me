@@ -16,8 +16,8 @@ class EditImageSuccess extends ImageState {}
 
 class EditImageFailure extends ImageState {}
 
-class PickSuccess extends ImageState {}
+class PickImageSuccess extends ImageState {}
 
-class PickFailure extends ImageState {}
+class PickImageFailure extends ImageState {}
 
 class ShowImage extends ImageState {}
