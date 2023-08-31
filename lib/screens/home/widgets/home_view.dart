@@ -6,6 +6,7 @@ import 'package:noteapp/screens/image/widgets/add_image_view.dart';
 import 'package:noteapp/screens/image/widgets/image_view.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/navigationbar.dart';
+import 'package:noteapp/screens/image/widgets/show_image_view.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/screens/note/widgets/add_note.dart';
 import 'package:noteapp/screens/note/widgets/note_view.dart';
@@ -20,7 +21,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        if (state is Youtube) {
+        if (state is ShowImage) {
+          return ShowImageView(image: state.image);
+        } else if (state is Youtube) {
           return const WebViewApp(url: 'https://www.youtube.com/');
         } else {
           return Scaffold(
@@ -76,6 +79,7 @@ class HomeView extends StatelessWidget {
                   BlocProvider.of<ToDoCubit>(context).fetchTasks();
                   return const ToDoView();
                 } else {
+                  BlocProvider.of<ImageCubit>(context).fetchImages();
                   return const ImagesView();
                 }
               },

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/image/model/image_model.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 part 'home_state.dart';
 
@@ -55,6 +56,10 @@ class HomeCubit extends Cubit<HomeState> {
         return alert;
       },
     );
+  }
+
+  void showImage(ImageModel image) {
+    emit(ShowImage(image: image));
   }
 
   void showBottomSheet({required Widget builder, required context}) async {

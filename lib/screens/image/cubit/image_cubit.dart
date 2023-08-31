@@ -12,6 +12,7 @@ class ImageCubit extends Cubit<ImageState> {
   final imageCtrl = TextEditingController();
 
   List<ImageModel> images = [];
+
   Future<String?> pickerCamera() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -39,7 +40,6 @@ class ImageCubit extends Cubit<ImageState> {
       var imageBox = Hive.box<ImageModel>(kImageBox);
       imageBox.add(image);
       fetchImages();
-      emit(AddImageSuccess());
     } on Exception {
       emit(AddImageFailure());
     }
@@ -60,6 +60,19 @@ class ImageCubit extends Cubit<ImageState> {
       image.save();
       emit(EditImageSuccess());
       fetchImages();
+      emit(ImageInitial());
+    } on Exception {
+      emit(EditImageFailure());
+    }
+  }
+
+  void editImageName({required ImageModel image}) {
+    try {
+      image.name = imageCtrl.text;
+      image.save();
+      emit(EditImageSuccess());
+      fetchImages();
+      emit(ImageInitial());
     } on Exception {
       emit(EditImageFailure());
     }

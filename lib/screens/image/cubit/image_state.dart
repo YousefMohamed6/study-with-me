@@ -20,4 +20,4 @@ class PickImageSuccess extends ImageState {}
 
 class PickImageFailure extends ImageState {}
 
-class ShowImage extends ImageState {}
+

@@ -27,75 +27,64 @@ class _EditImageViewState extends State<EditImageView> {
   String? imagePath;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ImageCubit, ImageState>(
-      listener: (context, state) {
-        if (state is PickImageSuccess) {
-          ShowMessage.show(context, msg: 'Pick image Success');
-        } else if (state is PickImageFailure) {
-          ShowMessage.show(context, msg: 'Pick image faild');
-          Navigator.pop(context);
-        } else if (state is EditImageSuccess) {
-          ShowMessage.show(context, msg: 'Edit image Success');
-          Navigator.pop(context);
-        } else if (state is EditImageFailure) {
-          ShowMessage.show(context, msg: 'faild ,try again');
-          Navigator.pop(context);
-        }
-      },
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Form(
-              key: widget.formkey,
-              child: CustomFormField(
-                controller: widget.controller..text = widget.image.name,
-                lablelText: 'Image Name',
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Form(
+            key: widget.formkey,
+            child: CustomFormField(
+              controller: widget.controller..text = widget.image.name,
+              lablelText: 'Image Name',
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(width: 32),
+              CustomIconButton(
+                onPressed: () async {
+                  imagePath = await BlocProvider.of<ImageCubit>(context)
+                      .pickerGallery();
+                },
+                icon: const Icon(Icons.image, size: 40),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(width: 32),
-                CustomIconButton(
-                  onPressed: () async {
-                    imagePath = await BlocProvider.of<ImageCubit>(context)
-                        .pickerGallery();
-                  },
-                  icon: const Icon(Icons.image, size: 40),
-                ),
-                SizedBox(width: (MediaQuery.of(context).size.width) / 2),
-                CustomIconButton(
-                  onPressed: () async {
-                    imagePath = await BlocProvider.of<ImageCubit>(context)
-                        .pickerCamera();
-                  },
-                  icon: const Icon(Icons.camera_alt_outlined, size: 40),
-                ),
-                const SizedBox(width: 32),
-              ],
-            ),
-            const VerticalSizedBox(16),
-            CustomButton(
-              onPressed: () {
-                if (widget.formkey.currentState!.validate()) {
+              SizedBox(width: (MediaQuery.of(context).size.width) / 2),
+              CustomIconButton(
+                onPressed: () async {
+                  imagePath =
+                      await BlocProvider.of<ImageCubit>(context).pickerCamera();
+                },
+                icon: const Icon(Icons.camera_alt_outlined, size: 40),
+              ),
+              const SizedBox(width: 32),
+            ],
+          ),
+          const VerticalSizedBox(16),
+          CustomButton(
+            onPressed: () {
+              if (widget.formkey.currentState!.validate()) {
+                if (imagePath != null) {
                   BlocProvider.of<ImageCubit>(context).editImage(
                       imagePath: imagePath!,
                       imageName: widget.controller.text,
                       image: widget.image);
+                  Navigator.pop(context);
+                } else {
+                  ShowMessage.show(context, msg: 'Please Select image');
                 }
-              },
-              color: Colors.white,
-              child: const CustomText(
-                text: 'Save',
-                color: Colors.black,
-              ),
+              }
+            },
+            color: Colors.white,
+            child: const CustomText(
+              text: 'Save',
+              color: Colors.black,
             ),
-            const VerticalSizedBox(8),
-          ],
-        ),
+          ),
+          const VerticalSizedBox(8),
+        ],
       ),
     );
   }

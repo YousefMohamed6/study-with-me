@@ -11,3 +11,8 @@ class Note extends HomeState {}
 class ToDo extends HomeState {}
 
 class Youtube extends HomeState {}
+
+class ShowImage extends HomeState {
+  final ImageModel image;
+  ShowImage({required this.image});
+}

@@ -23,83 +23,72 @@ class _AddImageViewState extends State<AddImageView> {
   String? imagePath;
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
-      listener: (context, state) {
-        if (state is PickImageSuccess) {
-          ShowMessage.show(context, msg: 'Pick image Success');
-        } else if (state is PickImageFailure) {
-          ShowMessage.show(context, msg: 'Pick image faild');
-          Navigator.pop(context);
-        } else if (state is AddImageSuccess) {
-          ShowMessage.show(context, msg: 'Add image Success');
-          Navigator.pop(context);
-        } else if (state is AddImageFailure) {
-          ShowMessage.show(context, msg: 'faild ,try again');
-          Navigator.pop(context);
-        }
-      },
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Form(
-              key: widget.formkey,
-              child: CustomFormField(
-                controller: widget.controller,
-                lablelText: 'Image Name',
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Form(
+            key: widget.formkey,
+            child: CustomFormField(
+              controller: widget.controller,
+              lablelText: 'Image Name',
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(width: 32),
+              CustomIconButton(
+                onPressed: () async {
+                  imagePath = await BlocProvider.of<ImageCubit>(context)
+                      .pickerGallery();
+                },
+                icon: const Icon(
+                  Icons.image,
+                  size: 40,
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(width: 32),
-                CustomIconButton(
-                  onPressed: () async {
-                    imagePath = await BlocProvider.of<ImageCubit>(context)
-                        .pickerGallery();
-                  },
-                  icon: const Icon(
-                    Icons.image,
-                    size: 40,
-                  ),
+              SizedBox(width: (MediaQuery.of(context).size.width) / 2),
+              CustomIconButton(
+                onPressed: () async {
+                  imagePath =
+                      await BlocProvider.of<ImageCubit>(context).pickerCamera();
+                },
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  size: 40,
                 ),
-                SizedBox(width: (MediaQuery.of(context).size.width) / 2),
-                CustomIconButton(
-                  onPressed: () async {
-                    imagePath = await BlocProvider.of<ImageCubit>(context)
-                        .pickerCamera();
-                  },
-                  icon: const Icon(
-                    Icons.camera_alt_outlined,
-                    size: 40,
-                  ),
-                ),
-                const SizedBox(width: 32),
-              ],
-            ),
-            const VerticalSizedBox(16),
-            CustomButton(
-              onPressed: () {
-                if (widget.formkey.currentState!.validate()) {
+              ),
+              const SizedBox(width: 32),
+            ],
+          ),
+          const VerticalSizedBox(16),
+          CustomButton(
+            onPressed: () {
+              if (widget.formkey.currentState!.validate()) {
+                if (imagePath != null) {
                   BlocProvider.of<ImageCubit>(context).addImage(
                     ImageModel(
                       path: imagePath!,
                       name: widget.controller.text,
                     ),
                   );
+                  Navigator.pop(context);
+                } else {
+                  ShowMessage.show(context, msg: 'Please Select image');
                 }
-              },
-              color: Colors.white,
-              child: const CustomText(
-                text: 'Add',
-                color: Colors.black,
-              ),
+              }
+            },
+            color: Colors.white,
+            child: const CustomText(
+              text: 'Add',
+              color: Colors.black,
             ),
-            const VerticalSizedBox(8),
-          ],
-        ),
+          ),
+          const VerticalSizedBox(8),
+        ],
       ),
     );
   }
