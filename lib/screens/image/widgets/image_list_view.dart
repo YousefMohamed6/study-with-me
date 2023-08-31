@@ -8,16 +8,18 @@ class ImageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      clipBehavior: Clip.none,
+      clipBehavior: Clip.hardEdge,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.6,
-        crossAxisSpacing: 0,
-        mainAxisSpacing: 0,
+        childAspectRatio: 1,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 1,
       ),
       padding: EdgeInsets.zero,
       itemCount: 5,
-      itemBuilder: (context, index) => const ImageItem(),
+      itemBuilder: (context, index) => ImageItem(
+        image: ImageModel(imageName: '', imagePath: ''),
+      ),
     );
   }
 }

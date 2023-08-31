@@ -1,27 +1,58 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:noteapp/helper_widgets/custom_icon_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/image/model/image_model.dart';
 
 class ImageItem extends StatelessWidget {
   const ImageItem({
     super.key,
+    required this.image,
   });
-
+  final ImageModel image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/avater.png',
-            width: 200,
-            height: 100,
-            fit: BoxFit.contain,
-          ),
-          const CustomText(text: 'Avater'),
-        ],
+    return GestureDetector(
+      onDoubleTap: () {},
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: (MediaQuery.of(context).size.height) / 2,
+        padding: const EdgeInsets.all(16),
+        alignment: Alignment.center,
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white.withOpacity(0.05),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.asset(
+                  'assets/images/avater.png',
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  right: 1,
+                  top: 1,
+                  child: CustomIconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.delete,
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 2),
+                  child: CustomText(text: 'Avater'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
