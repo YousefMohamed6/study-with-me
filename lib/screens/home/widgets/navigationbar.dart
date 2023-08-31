@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 
-
 class CustombottomBar extends StatelessWidget {
   const CustombottomBar({super.key, required this.currentIndex});
   final int currentIndex;
@@ -36,13 +35,13 @@ class CustombottomBar extends StatelessWidget {
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Files',
+              text: 'Image',
               color: Colors.white,
             ),
           ),
           label: '',
           icon: Icon(
-            Icons.description,
+            Icons.image,
           ),
         ),
         BottomNavigationBarItem(

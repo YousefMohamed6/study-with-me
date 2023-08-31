@@ -1,11 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/widgets.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 
 class ImageItem extends StatelessWidget {
-  const ImageItem({super.key, required this.file});
-  final File file;
+  const ImageItem({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,13 +14,13 @@ class ImageItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.file(
-            file,
+          Image.asset(
+            'assets/images/avater.png',
             width: 200,
             height: 100,
             fit: BoxFit.contain,
           ),
-          CustomText(text: file.path),
+          const CustomText(text: 'Avater'),
         ],
       ),
     );
