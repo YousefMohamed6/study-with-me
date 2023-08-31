@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper_widgets/custom_button.dart';
 import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 
 class AddImageView extends StatelessWidget {
   const AddImageView(
@@ -30,13 +32,23 @@ class AddImageView extends StatelessWidget {
             children: [
               const SizedBox(width: 32),
               CustomIconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.image, size: 40),
+                onPressed: () {
+                  BlocProvider.of<ImageCubit>(context).pickerGallery();
+                },
+                icon: const Icon(
+                  Icons.image,
+                  size: 40,
+                ),
               ),
               SizedBox(width: (MediaQuery.of(context).size.width) / 2),
               CustomIconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.camera_alt_outlined, size: 40),
+                onPressed: () {
+                  BlocProvider.of<ImageCubit>(context).pickerCamera();
+                },
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  size: 40,
+                ),
               ),
               const SizedBox(width: 32),
             ],

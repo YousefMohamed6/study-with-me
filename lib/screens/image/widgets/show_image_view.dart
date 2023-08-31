@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/helper_widgets/background.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/screens/image/model/image_model.dart';
 
@@ -13,8 +12,11 @@ class ShowImageView extends StatelessWidget {
         centerTitle: true,
         title: const CustomText(text: 'image test'),
       ),
-      body: Background(
-        child: Image.asset('assets/images/avater.png'),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Image.asset('assets/images/avater.png'),
+        ),
       ),
     );
   }
