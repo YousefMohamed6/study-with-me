@@ -51,7 +51,15 @@ class ImageItem extends StatelessWidget {
                   right: 1,
                   top: 1,
                   child: CustomIconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                        context: context,
+                        ok: () {
+                          BlocProvider.of<ImageCubit>(context)
+                              .deleteImage(image);
+                        },
+                      );
+                    },
                     icon: const Icon(
                       Icons.delete,
                       size: 24,

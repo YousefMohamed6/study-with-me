@@ -46,13 +46,8 @@ class ImageCubit extends Cubit<ImageState> {
   }
 
   void deleteImage(ImageModel image) {
-    try {
-      image.delete();
-      fetchImages();
-      emit(DeleteImageSuccess());
-    } on Exception {
-      emit(DeleteImageFailure());
-    }
+    image.delete();
+    fetchImages();
   }
 
   void editImage(
