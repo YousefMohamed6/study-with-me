@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/helper/helper_widgets/custom_text_button.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
-import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/screens/image/model/image_model.dart';
 
 class ImageItem extends StatelessWidget {
@@ -45,9 +45,12 @@ class ImageItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 2),
-                  child: CustomText(text: 'Avater'),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: CustomTextButton(
+                    text: 'Avater',
+                    onPressed: () {},
+                  ),
                 ),
               ],
             ),
