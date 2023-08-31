@@ -6,6 +6,7 @@ import 'package:noteapp/screens/books/cubit/book_cubit.dart';
 import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/home_view.dart';
+import 'package:noteapp/screens/image/model/image_model.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
@@ -18,6 +19,8 @@ void main() async {
   await Hive.openBox<NoteModel>(kNoteBox);
   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox<TaskModel>(kToDoBox);
+  Hive.registerAdapter(ImageModelAdapter());
+  await Hive.openBox<ImageModel>(kImageBox);
   Bloc.observer = SimpleObserver();
   runApp(const MyApp());
 }

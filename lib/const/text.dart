@@ -1,4 +1,4 @@
 const kNoteBox = 'note box';
 const kToDoBox = 'todo box';
-const kFileBox = 'file box';
+const kImageBox = 'image box';
 const kBookBox = 'books box';

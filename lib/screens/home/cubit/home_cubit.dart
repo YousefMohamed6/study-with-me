@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
     if (select == 0) {
       emit(Book());
     } else if (select == 1) {
-      emit(File());
+      emit(Images());
     } else if (select == 2) {
       emit(Note());
     } else if (select == 3) {
