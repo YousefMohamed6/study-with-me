@@ -59,6 +59,7 @@ class NoteItem extends StatelessWidget {
                     ),
                   ),
                   trailing: CustomIconButton(
+                    iconSize: 32,
                     icon: const Icon(Icons.delete),
                     onPressed: () {
                       BlocProvider.of<HomeCubit>(context).showAlertDialog(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/screens/books/widgets/books_view.dart';
-import 'package:noteapp/screens/files/widgets/file_view.dart';
+import 'package:noteapp/screens/image/widgets/image_view.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/navigationbar.dart';
 import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
@@ -65,7 +65,7 @@ class HomeView extends StatelessWidget {
                   BlocProvider.of<ToDoCubit>(context).fetchTasks();
                   return const ToDoView();
                 } else {
-                  return const FileView();
+                  return const ImagesView();
                 }
               },
             ),

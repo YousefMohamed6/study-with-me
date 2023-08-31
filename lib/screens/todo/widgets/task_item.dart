@@ -27,7 +27,7 @@ class TaskItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(
             top: 24.0, bottom: 24.0, left: 24.0, right: 16),
-        margin: const EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Color(task.color),
@@ -49,6 +49,7 @@ class TaskItem extends StatelessWidget {
             decoration: task.isComplete ? TextDecoration.lineThrough : null,
           ),
           trailing: CustomIconButton(
+            iconSize: 32,
             icon: const Icon(Icons.delete),
             onPressed: () {
               BlocProvider.of<HomeCubit>(context).showAlertDialog(

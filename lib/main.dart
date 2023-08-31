@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/screens/books/cubit/book_cubit.dart';
-import 'package:noteapp/screens/files/cubit/file_cubit.dart';
+import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/home_view.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           create: (context) => BookCubit(),
         ),
         RepositoryProvider(
-          create: (context) => FileCubit(),
+          create: (context) => ImageCubit(),
         ),
         RepositoryProvider(
           create: (context) => NoteCubit(),
