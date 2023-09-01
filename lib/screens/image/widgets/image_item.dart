@@ -46,22 +46,6 @@ class ImageItem extends StatelessWidget {
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                Image.file(
-                  File(image.path),
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  right: 1,
-                  top: 1,
-                  child: CustomIconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.delete,
-                      size: 24,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 2),
                   child: CustomIconButton(
@@ -78,6 +62,29 @@ class ImageItem extends StatelessWidget {
                     },
                     icon: CustomText(
                       text: image.name,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Image.file(
+                  File(image.path),
+                  fit: BoxFit.contain,
+                ),
+                Positioned(
+                  right: 1,
+                  top: 1,
+                  child: CustomIconButton(
+                    onPressed: () {
+                      BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                          context: context,
+                          ok: () {
+                            BlocProvider.of<ImageCubit>(context)
+                                .deleteImage(image);
+                          });
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      size: 24,
                       color: Colors.white,
                     ),
                   ),

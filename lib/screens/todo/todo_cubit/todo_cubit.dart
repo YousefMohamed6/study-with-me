@@ -30,8 +30,9 @@ class ToDoCubit extends Cubit<ToDoState> {
     }
   }
 
-  void editTaskName({required TaskModel task}) {
+  void editTaskName({required TaskModel task, required int color}) {
     task.taskNames = taskCtrl.text;
+    task.color = color;
     task.save();
     fetchTasks();
   }

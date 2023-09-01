@@ -16,6 +16,7 @@ class NoteCubit extends Cubit<NoteState> {
   void editNote(NoteModel note) {
     note.content = contentCtrl.text;
     note.title = titleCtrl.text;
+    note.color = color;
     note.save();
     emit(EditNoteSuccess());
     fetshNotes();

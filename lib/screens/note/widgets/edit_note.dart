@@ -40,8 +40,9 @@ class EditNote extends StatelessWidget {
               lablelText: 'Content',
               maxLine: 5,
             ),
-            const VerticalSizedBox(24),
+            const VerticalSizedBox(8),
             BlocProvider.of<HomeCubit>(context).colorPicker(),
+            const VerticalSizedBox(16),
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {

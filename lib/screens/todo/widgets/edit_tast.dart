@@ -6,6 +6,7 @@ import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:noteapp/screens/note/note_cubit/note_cubit.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/screens/todo/todo_model/todo_model.dart';
 
@@ -52,7 +53,9 @@ class EditTask extends StatelessWidget {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
-                  BlocProvider.of<ToDoCubit>(context).editTaskName(task: task);
+                  BlocProvider.of<ToDoCubit>(context).editTaskName(
+                      task: task,
+                      color: BlocProvider.of<NoteCubit>(context).color);
                   Navigator.pop(context);
                   ShowMessage.show(context, msg: 'Edit Success');
                 }
