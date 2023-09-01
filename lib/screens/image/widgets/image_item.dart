@@ -32,57 +32,60 @@ class ImageItem extends StatelessWidget {
           context: context,
         );
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: (MediaQuery.of(context).size.width) / 2,
-            height: (MediaQuery.of(context).size.height) / 2,
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.topRight,
-            margin: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: FileImage(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        alignment: Alignment.center,
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white.withOpacity(0.05),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.file(
                   File(image.path),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.contain,
-              ),
-            ),
-            child: CustomIconButton(
-              onPressed: () {
-                BlocProvider.of<HomeCubit>(context).showAlertDialog(
-                  context: context,
-                  ok: () {
-                    BlocProvider.of<ImageCubit>(context).deleteImage(image);
-                  },
-                );
-              },
-              icon: const Icon(
-                Icons.delete,
-                size: 24,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          CustomIconButton(
-            onPressed: () {
-              BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                context: context,
-                builder: EditImageName(
-                  image: image,
-                  controller: BlocProvider.of<ImageCubit>(context).imageCtrl,
-                  formKey: GlobalKey<FormState>(),
+                Positioned(
+                  right: 1,
+                  top: 1,
+                  child: CustomIconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.delete,
+                      size: 24,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              );
-            },
-            icon: CustomText(
-              text: image.name,
-              color: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: CustomIconButton(
+                    onPressed: () {
+                      BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                        context: context,
+                        builder: EditImageName(
+                          image: image,
+                          controller:
+                              BlocProvider.of<ImageCubit>(context).imageCtrl,
+                          formKey: GlobalKey<FormState>(),
+                        ),
+                      );
+                    },
+                    icon: CustomText(
+                      text: image.name,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
