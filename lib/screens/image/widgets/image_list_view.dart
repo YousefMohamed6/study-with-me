@@ -8,10 +8,10 @@ class ImageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: Clip.antiAlias,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1,
+        childAspectRatio: 2.6,
         crossAxisSpacing: 1,
         mainAxisSpacing: 1,
       ),

@@ -34,39 +34,37 @@ class ImageItem extends StatelessWidget {
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                alignment: Alignment.center,
-                margin: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Colors.white.withOpacity(0.05),
-                ),
-                child: Image.file(
+          Container(
+            width: (MediaQuery.of(context).size.width) / 2,
+            height: (MediaQuery.of(context).size.height) / 2,
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.topRight,
+            margin: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: FileImage(
                   File(image.path),
-                  width: 100,
-                  height: 200,
                 ),
+                fit: BoxFit.contain,
               ),
-              CustomIconButton(
-                onPressed: () {
-                  BlocProvider.of<HomeCubit>(context).showAlertDialog(
-                    context: context,
-                    ok: () {
-                      BlocProvider.of<ImageCubit>(context).deleteImage(image);
-                    },
-                  );
-                },
-                icon: const Icon(
-                  Icons.delete,
-                  size: 24,
-                  color: Colors.white,
-                ),
+            ),
+            child: CustomIconButton(
+              onPressed: () {
+                BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                  context: context,
+                  ok: () {
+                    BlocProvider.of<ImageCubit>(context).deleteImage(image);
+                  },
+                );
+              },
+              icon: const Icon(
+                Icons.delete,
+                size: 24,
+                color: Colors.white,
               ),
-            ],
+            ),
           ),
           CustomIconButton(
             onPressed: () {
@@ -79,7 +77,10 @@ class ImageItem extends StatelessWidget {
                 ),
               );
             },
-            icon: CustomText(text: image.name),
+            icon: CustomText(
+              text: image.name,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
