@@ -48,7 +48,7 @@ class CustombottomBar extends StatelessWidget {
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Notes',
+              text: 'Note',
               color: Colors.white,
             ),
           ),
@@ -81,6 +81,18 @@ class CustombottomBar extends StatelessWidget {
           label: '',
           icon: Icon(
             Icons.video_collection_outlined,
+          ),
+        ),  BottomNavigationBarItem(
+          activeIcon: Padding(
+            padding: EdgeInsets.only(top: 8.0),
+            child: CustomText(
+              text: 'Contact Us',
+              color: Colors.white,
+            ),
+          ),
+          label: '',
+          icon: Icon(
+            Icons.support_agent_outlined ,
           ),
         ),
       ],

@@ -20,8 +20,10 @@ class HomeCubit extends Cubit<HomeState> {
       emit(Note());
     } else if (select == 3) {
       emit(ToDo());
-    } else {
+    } else if (select == 4) {
       emit(Youtube());
+    } else {
+      emit(ContactUs());
     }
   }
 
