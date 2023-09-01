@@ -11,7 +11,7 @@ class ImageListView extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 1.5,
+        childAspectRatio: 1,
         crossAxisSpacing: 1,
         mainAxisSpacing: 1,
       ),

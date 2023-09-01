@@ -33,63 +33,57 @@ class ImageItem extends StatelessWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.all(16),
-        alignment: Alignment.center,
+        padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.white.withOpacity(0.05),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: CustomIconButton(
-                    onPressed: () {
-                      BlocProvider.of<HomeCubit>(context).showBottomSheet(
+            Image.file(
+              File(image.path),
+              fit: BoxFit.contain,
+            ),
+            Positioned(
+              right: 1,
+              top: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: CustomIconButton(
+                  onPressed: () {
+                    BlocProvider.of<HomeCubit>(context).showAlertDialog(
                         context: context,
-                        builder: EditImageName(
-                          image: image,
-                          controller:
-                              BlocProvider.of<ImageCubit>(context).imageCtrl,
-                          formKey: GlobalKey<FormState>(),
-                        ),
-                      );
-                    },
-                    icon: CustomText(
-                      text: image.name,
-                      color: Colors.white,
-                    ),
+                        ok: () {
+                          BlocProvider.of<ImageCubit>(context)
+                              .deleteImage(image);
+                        });
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 24,
+                    color: Colors.white,
                   ),
                 ),
-                Image.file(
-                  File(image.path),
-                  fit: BoxFit.contain,
-                ),
-                Positioned(
-                  right: 1,
-                  top: 1,
-                  child: CustomIconButton(
-                    onPressed: () {
-                      BlocProvider.of<HomeCubit>(context).showAlertDialog(
-                          context: context,
-                          ok: () {
-                            BlocProvider.of<ImageCubit>(context)
-                                .deleteImage(image);
-                          });
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      size: 24,
-                      color: Colors.white,
-                    ),
+              ),
+            ),
+            CustomIconButton(
+              onPressed: () {
+                BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                  context: context,
+                  builder: EditImageName(
+                    image: image,
+                    controller: BlocProvider.of<ImageCubit>(context).imageCtrl,
+                    formKey: GlobalKey<FormState>(),
                   ),
-                ),
-              ],
+                );
+              },
+              icon: CustomText(
+                text: image.name,
+                color: Colors.white,
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),
