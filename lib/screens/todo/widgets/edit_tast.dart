@@ -5,6 +5,7 @@ import 'package:noteapp/helper_widgets/custom_button.dart';
 import 'package:noteapp/helper_widgets/custom_form_field.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/screens/todo/todo_model/todo_model.dart';
 
@@ -44,7 +45,9 @@ class EditTask extends StatelessWidget {
                 maxLine: 1,
               ),
             ),
-            const VerticalSizedBox(16),
+            const VerticalSizedBox(8),
+            BlocProvider.of<HomeCubit>(context).colorPicker(),
+            const VerticalSizedBox(8),
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {

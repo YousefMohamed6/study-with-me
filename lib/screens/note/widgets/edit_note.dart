@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/note/model/note_model.dart';
 import 'package:noteapp/helper_widgets/custom_button.dart';
 import 'package:noteapp/helper_widgets/custom_form_field.dart';
@@ -40,6 +41,7 @@ class EditNote extends StatelessWidget {
               maxLine: 5,
             ),
             const VerticalSizedBox(24),
+            BlocProvider.of<HomeCubit>(context).colorPicker(),
             CustomButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
