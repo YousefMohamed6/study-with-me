@@ -56,7 +56,6 @@ class _AddBookViewState extends State<AddBookView> {
                       name: widget.controller.text,
                     ),
                   );
-                  Navigator.pop(context);
                 } else {
                   ShowMessage.show(context, msg: 'Please Select PDF');
                 }

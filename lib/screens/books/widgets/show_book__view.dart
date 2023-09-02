@@ -51,9 +51,9 @@ class ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
         children: [
           PDFView(
             filePath: widget.book.path,
-            enableSwipe: false,
-            swipeHorizontal: true,
-            autoSpacing: false,
+            enableSwipe: true,
+            swipeHorizontal: false,
+            autoSpacing: true,
             pageFling: true,
             pageSnap: true,
             defaultPage: currentPage!,

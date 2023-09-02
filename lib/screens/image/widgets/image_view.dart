@@ -26,8 +26,10 @@ class ImagesView extends StatelessWidget {
           Navigator.pop(context);
         } else if (state is EditImageSuccess) {
           ShowMessage.show(context, msg: 'Edit image Success');
+           Navigator.pop(context);
         } else if (state is EditImageFailure) {
           ShowMessage.show(context, msg: 'faild ,try again');
+           Navigator.pop(context);
         }
       },
       builder: (context, state) => Scaffold(
