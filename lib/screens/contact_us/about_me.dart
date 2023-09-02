@@ -6,9 +6,9 @@ import 'package:noteapp/helper_widgets/asset_image.dart';
 import 'package:noteapp/helper_widgets/avatar.dart';
 import 'package:noteapp/helper_widgets/background.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
-import 'package:noteapp/helper_widgets/custom_row.dart';
+import 'package:noteapp/screens/contact_us/custom_row.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
-import 'package:noteapp/helper_widgets/url_lancher.dart';
+import 'package:noteapp/screens/contact_us/url_lancher.dart';
 import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
 
 class AboutMeView extends StatelessWidget {

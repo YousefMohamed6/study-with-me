@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/screens/about_me/about_me.dart';
-import 'package:noteapp/screens/books/widgets/books_view.dart';
+import 'package:noteapp/screens/books/cubit/book_cubit.dart';
+import 'package:noteapp/screens/books/widgets/add_book_view.dart';
+import 'package:noteapp/screens/books/widgets/book_view.dart';
+import 'package:noteapp/screens/books/widgets/show_book__view.dart';
+import 'package:noteapp/screens/contact_us/about_me.dart';
 import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/image/widgets/add_image_view.dart';
 import 'package:noteapp/screens/image/widgets/image_view.dart';
@@ -22,7 +25,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        if (state is ShowImage) {
+        if (state is ShowPDF) {
+          return ShowPDFView(path: state.book.path);
+        } else if (state is ShowImage) {
           return ShowImageView(image: state.image);
         } else if (state is Google) {
           return const WebViewApp(url: 'https://www.google.com/');
@@ -38,7 +43,16 @@ class HomeView extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      if (state is Images) {
+                      if (state is Book) {
+                        BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                          context: context,
+                          builder: AddBookView(
+                            controller:
+                                BlocProvider.of<BookCubit>(context).bookCtrl,
+                            formkey: GlobalKey<FormState>(),
+                          ),
+                        );
+                      } else if (state is Images) {
                         BlocProvider.of<HomeCubit>(context).showBottomSheet(
                           context: context,
                           builder: AddImageView(

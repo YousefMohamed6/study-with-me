@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:noteapp/const/text.dart';
 import 'package:noteapp/screens/books/cubit/book_cubit.dart';
+import 'package:noteapp/screens/books/model/book_model.dart';
 import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/home/widgets/home_view.dart';
@@ -15,12 +16,14 @@ import 'package:noteapp/simple_observer.dart';
 
 void main() async {
   await Hive.initFlutter();
+  Hive.registerAdapter(BookModelAdapter());
+  await Hive.openBox<BookModel>(kBookBox);
+  Hive.registerAdapter(ImageModelAdapter());
+  await Hive.openBox<ImageModel>(kImageBox);
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNoteBox);
   Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox<TaskModel>(kToDoBox);
-  Hive.registerAdapter(ImageModelAdapter());
-  await Hive.openBox<ImageModel>(kImageBox);
   Bloc.observer = SimpleObserver();
   runApp(const MyApp());
 }
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'NoteApp',
-        theme: ThemeData.dark(),
+        theme: ThemeData.dark(useMaterial3: true),
         home: const HomeView(),
       ),
     );
