@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
-import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/helper_widgets/custom_text_button.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 import 'package:noteapp/screens/image/cubit/image_cubit.dart';
 import 'package:noteapp/screens/image/model/image_model.dart';
@@ -68,7 +68,7 @@ class ImageItem extends StatelessWidget {
                 ),
               ),
             ),
-            CustomIconButton(
+            CustomTextButton(
               onPressed: () {
                 BlocProvider.of<HomeCubit>(context).showBottomSheet(
                   context: context,
@@ -79,11 +79,8 @@ class ImageItem extends StatelessWidget {
                   ),
                 );
               },
-              icon: CustomText(
-                text: image.name,
-                color: Colors.white,
-                textAlign: TextAlign.center,
-              ),
+              text: image.name,
+              color: Colors.white,
             ),
           ],
         ),
