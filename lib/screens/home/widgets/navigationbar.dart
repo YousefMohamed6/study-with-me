@@ -74,13 +74,13 @@ class CustombottomBar extends StatelessWidget {
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Youtube',
+              text: 'google',
               color: Colors.white,
             ),
           ),
           label: '',
           icon: Icon(
-            Icons.video_collection_outlined,
+            Icons.search_outlined,
           ),
         ),
         BottomNavigationBarItem(

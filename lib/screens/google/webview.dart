@@ -24,7 +24,7 @@ class _WebViewAppState extends State<WebViewApp> {
           },
         ),
         centerTitle: true,
-        title: const CustomText(text: 'Youtube'),
+        title: const CustomText(text: 'Google'),
       ),
       body: WebViewWidget(
         controller: WebViewController()

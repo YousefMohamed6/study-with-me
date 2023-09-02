@@ -14,7 +14,7 @@ import 'package:noteapp/screens/note/widgets/note_view.dart';
 import 'package:noteapp/screens/todo/todo_cubit/todo_cubit.dart';
 import 'package:noteapp/screens/todo/widgets/add_task.dart';
 import 'package:noteapp/screens/todo/widgets/todo_view.dart';
-import 'package:noteapp/screens/youtube/webview.dart';
+import 'package:noteapp/screens/google/webview.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -24,8 +24,8 @@ class HomeView extends StatelessWidget {
       builder: (context, state) {
         if (state is ShowImage) {
           return ShowImageView(image: state.image);
-        } else if (state is Youtube) {
-          return const WebViewApp(url: 'https://www.youtube.com/');
+        } else if (state is Google) {
+          return const WebViewApp(url: 'https://www.google.com/');
         } else {
           return Scaffold(
             floatingActionButton: state is ContactUs

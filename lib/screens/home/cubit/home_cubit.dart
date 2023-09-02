@@ -21,7 +21,7 @@ class HomeCubit extends Cubit<HomeState> {
     } else if (select == 3) {
       emit(ToDo());
     } else if (select == 4) {
-      emit(Youtube());
+      emit(Google());
     } else {
       emit(ContactUs());
     }
