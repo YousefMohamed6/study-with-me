@@ -9,27 +9,21 @@ class NoteView extends StatelessWidget {
   const NoteView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NoteCubit, NoteState>(
-      builder: (context, state) {
-        return Scaffold(
-          body: Column(
-            children: [
-              const VerticalSizedBox(16),
-              CustomAppBar(
-                title: 'Notes',
-                icon: const Icon(Icons.search),
-                onPressed: () {},
-              ),
-              const VerticalSizedBox(16),
-              Expanded(
-                child: ListViewNotes(
-                  notes: BlocProvider.of<NoteCubit>(context).notes,
-                ),
-              ),
-            ],
+    return Column(
+      children: [
+        const VerticalSizedBox(16),
+        CustomAppBar(
+          title: 'Note',
+          icon: const Icon(Icons.search),
+          onPressed: () {},
+        ),
+        const VerticalSizedBox(16),
+        Expanded(
+          child: ListViewNotes(
+            notes: BlocProvider.of<NoteCubit>(context).notes,
           ),
-        );
-      },
+        ),
+      ],
     );
   }
 }

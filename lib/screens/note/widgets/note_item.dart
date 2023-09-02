@@ -16,70 +16,66 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NoteCubit, NoteState>(
-      builder: (context, state) {
-        return GestureDetector(
-          onTap: () {
-            BlocProvider.of<HomeCubit>(context).showBottomSheet(
-              context: context,
-              builder: EditNote(
-                note: noteModel,
-                titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
-                contentCtrl: BlocProvider.of<NoteCubit>(context).contentCtrl,
-                formKey: GlobalKey<FormState>(),
-              ),
-            );
-          },
-          child: Container(
-            padding: const EdgeInsets.only(
-              top: 24.0,
-              bottom: 24.0,
-              left: 24.0,
-              right: 16,
-            ),
-            margin: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Color(noteModel.color),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                ListTile(
-                  title: CustomText(
-                    text: noteModel.title,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: CustomText(
-                      text: noteModel.content,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  trailing: CustomIconButton(
-                    iconSize: 32,
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      BlocProvider.of<HomeCubit>(context).showAlertDialog(
-                        context: context,
-                        ok: () {
-                          noteModel.delete();
-                          BlocProvider.of<NoteCubit>(context).fetshNotes();
-                        },
-                      );
-                    },
-                  ),
-                ),
-                CustomText(
-                  text: noteModel.date,
-                ),
-              ],
-            ),
+    return GestureDetector(
+      onTap: () {
+        BlocProvider.of<HomeCubit>(context).showBottomSheet(
+          context: context,
+          builder: EditNote(
+            note: noteModel,
+            titleCtrl: BlocProvider.of<NoteCubit>(context).titleCtrl,
+            contentCtrl: BlocProvider.of<NoteCubit>(context).contentCtrl,
+            formKey: GlobalKey<FormState>(),
           ),
         );
       },
+      child: Container(
+        padding: const EdgeInsets.only(
+          top: 24.0,
+          bottom: 24.0,
+          left: 24.0,
+          right: 16,
+        ),
+        margin: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Color(noteModel.color),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ListTile(
+              title: CustomText(
+                text: noteModel.title,
+                fontWeight: FontWeight.bold,
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: CustomText(
+                  text: noteModel.content,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              trailing: CustomIconButton(
+                iconSize: 32,
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                    context: context,
+                    ok: () {
+                      noteModel.delete();
+                      BlocProvider.of<NoteCubit>(context).fetshNotes();
+                    },
+                  );
+                },
+              ),
+            ),
+            CustomText(
+              text: noteModel.date,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

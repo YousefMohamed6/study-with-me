@@ -35,7 +35,7 @@ class ImagesView extends StatelessWidget {
           children: [
             const VerticalSizedBox(16),
             CustomAppBar(
-              title: 'Images',
+              title: 'Picture',
               icon: const Icon(Icons.search),
               onPressed: () {},
             ),

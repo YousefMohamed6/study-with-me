@@ -35,7 +35,7 @@ class CustombottomBar extends StatelessWidget {
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Image',
+              text: 'Picture',
               color: Colors.white,
             ),
           ),
@@ -82,7 +82,8 @@ class CustombottomBar extends StatelessWidget {
           icon: Icon(
             Icons.video_collection_outlined,
           ),
-        ),  BottomNavigationBarItem(
+        ),
+        BottomNavigationBarItem(
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
@@ -92,7 +93,7 @@ class CustombottomBar extends StatelessWidget {
           ),
           label: '',
           icon: Icon(
-            Icons.support_agent_outlined ,
+            Icons.support_agent_outlined,
           ),
         ),
       ],

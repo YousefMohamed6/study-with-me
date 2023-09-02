@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:noteapp/helper_widgets/custom_icon_button.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 
-
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
       {super.key,
@@ -21,6 +20,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.only(top: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.white.withOpacity(.05),

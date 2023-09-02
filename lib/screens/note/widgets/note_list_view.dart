@@ -13,11 +13,17 @@ class ListViewNotes extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<NoteCubit, NoteState>(
       listener: (context, state) {
-        if (state is EditNoteSuccess) {
+        if (state is NoteInitial) {
+        } else if (state is AddNoteSuccess) {
           ShowMessage.show(context, msg: 'Success');
           Navigator.pop(context);
-        }
-        if (state is EditNoteFailure) {
+        } else if (state is AddNoteFailure) {
+          ShowMessage.show(context, msg: state.errMessage);
+          Navigator.pop(context);
+        } else if (state is EditNoteSuccess) {
+          ShowMessage.show(context, msg: 'Success');
+          Navigator.pop(context);
+        } else if (state is EditNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);
           Navigator.pop(context);
         }

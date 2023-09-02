@@ -12,7 +12,7 @@ class BookView extends StatelessWidget {
         children: [
           const VerticalSizedBox(16),
           CustomAppBar(
-            title: 'Books',
+            title: 'Book',
             icon: const Icon(Icons.search),
             onPressed: () {},
           ),

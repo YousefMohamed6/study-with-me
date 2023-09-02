@@ -23,13 +23,11 @@ class NoteCubit extends Cubit<NoteState> {
   }
 
   void addNote(NoteModel note) async {
-    emit(AddNoteLoading());
     try {
       var noteBox = Hive.box<NoteModel>(kNoteBox);
       await noteBox.add(note);
-      fetshNotes();
       emit(AddNoteSuccess());
-      emit(NoteInitial());
+      fetshNotes();
     } on Exception {
       emit(AddNoteFailure('Failed'));
       emit(NoteInitial());
