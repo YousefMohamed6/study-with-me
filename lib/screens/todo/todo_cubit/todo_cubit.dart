@@ -19,7 +19,6 @@ class ToDoCubit extends Cubit<ToDoState> {
   }
 
   void addTask(TaskModel task) async {
-    emit(AddTaskLoading());
     try {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
       await taskBox.add(task);
@@ -31,10 +30,16 @@ class ToDoCubit extends Cubit<ToDoState> {
   }
 
   void editTaskName({required TaskModel task, required int color}) {
-    task.taskNames = taskCtrl.text;
-    task.color = color;
-    task.save();
-    fetchTasks();
+    try {
+      task.taskNames = taskCtrl.text;
+      task.color = color;
+      task.save();
+      emit(EditTaskSuccess());
+      fetchTasks();
+    } on Exception {
+      emit(EditTaskFailed('Failed edit'));
+      fetchTasks();
+    }
   }
 
   void editTaskState({required TaskModel task}) {

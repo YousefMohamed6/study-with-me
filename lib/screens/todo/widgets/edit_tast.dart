@@ -21,54 +21,42 @@ class EditTask extends StatelessWidget {
   final TaskModel task;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ToDoCubit, ToDoState>(
-      listener: (context, state) {
-        if (state is AddTaskSuccess) {
-          ShowMessage.show(context, msg: 'Success');
-          Navigator.pop(context);
-        }
-        if (state is AddTaskFailed) {
-          ShowMessage.show(context, msg: state.errMessage);
-          Navigator.pop(context);
-        }
-      },
-      child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Form(
-              key: formKey,
-              child: CustomFormField(
-                controller: taskCtrl..text = task.taskNames,
-                hintText: 'Enter your Task',
-                maxLine: 1,
-              ),
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Form(
+            key: formKey,
+            child: CustomFormField(
+              controller: taskCtrl..text = task.taskNames,
+              hintText: 'Enter your Task',
+              maxLine: 1,
             ),
-            const VerticalSizedBox(8),
-            BlocProvider.of<HomeCubit>(context).colorPicker(),
-            const VerticalSizedBox(8),
-            CustomButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  BlocProvider.of<ToDoCubit>(context).editTaskName(
-                      task: task,
-                      color: BlocProvider.of<NoteCubit>(context).color);
-                  Navigator.pop(context);
-                  ShowMessage.show(context, msg: 'Edit Success');
-                }
-              },
-              color: Colors.white,
-              child: const CustomText(
-                text: 'Save',
-                color: Colors.black,
-              ),
+          ),
+          const VerticalSizedBox(8),
+          BlocProvider.of<HomeCubit>(context).colorPicker(),
+          const VerticalSizedBox(8),
+          CustomButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+                BlocProvider.of<ToDoCubit>(context).editTaskName(
+                    task: task,
+                    color: BlocProvider.of<NoteCubit>(context).color);
+                Navigator.pop(context);
+                ShowMessage.show(context, msg: 'Edit Success');
+              }
+            },
+            color: Colors.white,
+            child: const CustomText(
+              text: 'Save',
+              color: Colors.black,
             ),
-            const VerticalSizedBox(16),
-          ],
-        ),
+          ),
+          const VerticalSizedBox(16),
+        ],
       ),
     );
   }
