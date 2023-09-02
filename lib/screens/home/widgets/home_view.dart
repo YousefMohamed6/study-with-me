@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state is ShowPDF) {
-          return ShowPDFView(path: state.book.path);
+          return ShowPDFView(book: state.book);
         } else if (state is ShowImage) {
           return ShowImageView(image: state.image);
         } else if (state is Google) {

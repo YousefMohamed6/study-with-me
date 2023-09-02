@@ -7,8 +7,8 @@ import 'package:noteapp/helper_widgets/vertical_sizebox.dart';
 import 'package:noteapp/screens/books/cubit/book_cubit.dart';
 import 'package:noteapp/screens/books/model/book_model.dart';
 
-class EditImageName extends StatelessWidget {
-  const EditImageName(
+class EditBookName extends StatelessWidget {
+  const EditBookName(
       {super.key,
       required this.book,
       required this.formKey,

@@ -6,6 +6,7 @@ import 'package:noteapp/helper_widgets/custom_text_button.dart';
 import 'package:noteapp/screens/books/cubit/book_cubit.dart';
 import 'package:noteapp/screens/books/model/book_model.dart';
 import 'package:noteapp/screens/books/widgets/edit_book__view.dart';
+import 'package:noteapp/screens/books/widgets/edit_book_name.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 
 class BookItem extends StatelessWidget {
@@ -48,7 +49,11 @@ class BookItem extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 16.0),
                 child: CustomIconButton(
                   onPressed: () {
-                    BlocProvider.of<BookCubit>(context).deleteBook(book);
+                    BlocProvider.of<HomeCubit>(context).showAlertDialog(
+                        context: context,
+                        ok: () {
+                          BlocProvider.of<BookCubit>(context).deleteBook(book);
+                        });
                   },
                   icon: const Icon(
                     Icons.delete,
@@ -60,7 +65,13 @@ class BookItem extends StatelessWidget {
             ),
             CustomTextButton(
               onPressed: () {
-                BlocProvider.of<BookCubit>(context).editBookName(book: book);
+                BlocProvider.of<HomeCubit>(context).showBottomSheet(
+                    builder: EditBookName(
+                        controller:
+                            BlocProvider.of<BookCubit>(context).bookCtrl,
+                        formKey: GlobalKey<FormState>(),
+                        book: book),
+                    context: context);
               },
               text: book.name,
               color: Colors.white,

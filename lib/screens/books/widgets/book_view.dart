@@ -21,6 +21,7 @@ class BookView extends StatelessWidget {
           Navigator.pop(context);
         } else if (state is EditBookSuccess) {
           ShowMessage.show(context, msg: 'Edit Pdf Success');
+          Navigator.pop(context);
         } else if (state is EditBookFailure) {
           ShowMessage.show(context, msg: 'Faild ,try again');
         }

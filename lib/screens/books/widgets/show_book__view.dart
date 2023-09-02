@@ -1,12 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:noteapp/helper_widgets/custom_text.dart';
+import 'package:noteapp/screens/books/model/book_model.dart';
+import 'package:noteapp/screens/home/cubit/home_cubit.dart';
 
 class ShowPDFView extends StatefulWidget {
-  final String? path;
+  final BookModel book;
 
-  const ShowPDFView({Key? key, this.path}) : super(key: key);
+  const ShowPDFView({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
 
   @override
   _ShowPDFViewState createState() => _ShowPDFViewState();
@@ -24,7 +31,13 @@ class _ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Document"),
+        leading: BackButton(
+          color: Colors.white,
+          onPressed: () {
+            BlocProvider.of<HomeCubit>(context).changeIndex(0);
+          },
+        ),
+        title: CustomText(text: widget.book.name),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.share),
@@ -32,11 +45,11 @@ class _ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
           ),
         ],
       ),
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           PDFView(
-            filePath: widget.path,
+            filePath: widget.book.path,
             enableSwipe: false,
             swipeHorizontal: true,
             autoSpacing: false,
