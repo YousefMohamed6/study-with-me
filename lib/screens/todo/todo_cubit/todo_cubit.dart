@@ -23,6 +23,7 @@ class ToDoCubit extends Cubit<ToDoState> {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
       await taskBox.add(task);
       emit(AddTaskSuccess());
+      taskCtrl.clear();
       fetchTasks();
     } on Exception {
       emit(AddTaskFailed('Faild'));
@@ -34,6 +35,7 @@ class ToDoCubit extends Cubit<ToDoState> {
       task.taskNames = taskCtrl.text;
       task.color = color;
       task.save();
+      taskCtrl.clear();
       emit(EditTaskSuccess());
       fetchTasks();
     } on Exception {

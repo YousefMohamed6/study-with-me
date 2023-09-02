@@ -17,7 +17,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onDoubleTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(
           context: context,
           builder: EditNote(
@@ -64,7 +64,7 @@ class NoteItem extends StatelessWidget {
                     context: context,
                     ok: () {
                       noteModel.delete();
-                      BlocProvider.of<NoteCubit>(context).fetshNotes();
+                      BlocProvider.of<NoteCubit>(context).fetchNotes();
                     },
                   );
                 },

@@ -18,8 +18,10 @@ class NoteCubit extends Cubit<NoteState> {
     note.title = titleCtrl.text;
     note.color = color;
     note.save();
+    titleCtrl.clear();
+    contentCtrl.clear();
     emit(EditNoteSuccess());
-    fetshNotes();
+    fetchNotes();
   }
 
   void addNote(NoteModel note) async {
@@ -27,14 +29,15 @@ class NoteCubit extends Cubit<NoteState> {
       var noteBox = Hive.box<NoteModel>(kNoteBox);
       await noteBox.add(note);
       emit(AddNoteSuccess());
-      fetshNotes();
+      titleCtrl.clear();
+      fetchNotes();
     } on Exception {
       emit(AddNoteFailure('Failed'));
       emit(NoteInitial());
     }
   }
 
-  void fetshNotes() async {
+  void fetchNotes() async {
     notes.clear();
     var noteBox = Hive.box<NoteModel>(kNoteBox);
     notes.addAll(noteBox.values.toList());

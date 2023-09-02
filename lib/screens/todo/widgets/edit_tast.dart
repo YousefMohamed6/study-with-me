@@ -45,7 +45,6 @@ class EditTask extends StatelessWidget {
                 BlocProvider.of<ToDoCubit>(context).editTaskName(
                     task: task,
                     color: BlocProvider.of<NoteCubit>(context).color);
-                Navigator.pop(context);
                 ShowMessage.show(context, msg: 'Edit Success');
               }
             },

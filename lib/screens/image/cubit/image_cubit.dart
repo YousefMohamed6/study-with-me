@@ -39,6 +39,7 @@ class ImageCubit extends Cubit<ImageState> {
     try {
       var imageBox = Hive.box<ImageModel>(kImageBox);
       imageBox.add(image);
+      imageCtrl.clear();
       fetchImages();
     } on Exception {
       emit(AddImageFailure());
@@ -58,6 +59,7 @@ class ImageCubit extends Cubit<ImageState> {
       image.name = imageName;
       image.path = imagePath;
       image.save();
+      imageCtrl.clear();
       emit(EditImageSuccess());
       fetchImages();
       emit(ImageInitial());
@@ -70,6 +72,7 @@ class ImageCubit extends Cubit<ImageState> {
     try {
       image.name = imageCtrl.text;
       image.save();
+      imageCtrl.clear();
       emit(EditImageSuccess());
       fetchImages();
       emit(ImageInitial());

@@ -28,6 +28,8 @@ class BookCubit extends Cubit<BookState> {
     try {
       var bookBox = Hive.box<BookModel>(kBookBox);
       bookBox.add(book);
+      bookCtrl.clear();
+      emit(AddBookSuccess());
       fetchBooks();
     } on Exception {
       emit(AddBookFailure());
@@ -47,9 +49,9 @@ class BookCubit extends Cubit<BookState> {
       book.name = bookName;
       book.path = bookPath;
       book.save();
+      bookCtrl.clear();
       emit(EditBookSuccess());
       fetchBooks();
-      emit(BookInitial());
     } on Exception {
       emit(EditBookFailure());
     }
@@ -59,9 +61,9 @@ class BookCubit extends Cubit<BookState> {
     try {
       book.name = bookCtrl.text;
       book.save();
+      bookCtrl.clear();
       emit(EditBookSuccess());
       fetchBooks();
-      emit(BookInitial());
     } on Exception {
       emit(EditBookFailure());
     }

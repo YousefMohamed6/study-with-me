@@ -14,7 +14,7 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onDoubleTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(
           context: context,
           builder: EditTask(

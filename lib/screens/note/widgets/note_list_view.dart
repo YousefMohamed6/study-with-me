@@ -15,13 +15,13 @@ class ListViewNotes extends StatelessWidget {
       listener: (context, state) {
         if (state is NoteInitial) {
         } else if (state is AddNoteSuccess) {
-          ShowMessage.show(context, msg: 'Success');
+          ShowMessage.show(context, msg: 'Add Success');
           Navigator.pop(context);
         } else if (state is AddNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);
           Navigator.pop(context);
         } else if (state is EditNoteSuccess) {
-          ShowMessage.show(context, msg: 'Success');
+          ShowMessage.show(context, msg: 'Edit Success');
           Navigator.pop(context);
         } else if (state is EditNoteFailure) {
           ShowMessage.show(context, msg: state.errMessage);

@@ -90,9 +90,10 @@ class HomeView extends StatelessWidget {
             body: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 if (state is Book) {
+                  BlocProvider.of<BookCubit>(context).fetchBooks();
                   return const BookView();
                 } else if (state is Note) {
-                  BlocProvider.of<NoteCubit>(context).fetshNotes();
+                  BlocProvider.of<NoteCubit>(context).fetchNotes();
                   return const NoteView();
                 } else if (state is ToDo) {
                   BlocProvider.of<ToDoCubit>(context).fetchTasks();
