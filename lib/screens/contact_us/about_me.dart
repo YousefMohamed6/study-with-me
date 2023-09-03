@@ -57,7 +57,6 @@ class AboutMeView extends StatelessWidget {
           const VerticalSizedBox(32),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            mainAxisSize: MainAxisSize.min,
             children: [
               CustomIconButton(
                 icon: const CustomAssetImage(imagePath: kFacebookLogo),

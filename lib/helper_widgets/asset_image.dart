@@ -10,8 +10,8 @@ class CustomAssetImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       imagePath,
-      width: width,
-      height: height,
+      width: width ?? 50,
+      height: height ?? 50,
     );
   }
 }
