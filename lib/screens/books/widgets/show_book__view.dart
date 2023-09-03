@@ -7,6 +7,7 @@ import 'package:noteapp/helper/show_message.dart';
 import 'package:noteapp/helper_widgets/custom_text.dart';
 import 'package:noteapp/screens/books/model/book_model.dart';
 import 'package:noteapp/screens/home/cubit/home_cubit.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ShowPDFView extends StatefulWidget {
   final BookModel book;
@@ -39,10 +40,16 @@ class ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
           },
         ),
         title: CustomText(text: widget.book.name),
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: const Icon(Icons.share),
-            onPressed: () {},
+            onPressed: () async {
+              await Share.shareXFiles([
+                XFile(
+                  widget.book.path,
+                )
+              ]);
+            },
           ),
         ],
       ),

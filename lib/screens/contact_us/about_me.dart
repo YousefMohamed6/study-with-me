@@ -58,13 +58,16 @@ class AboutMeView extends StatelessWidget {
           children: [
             CustomIconButton(
               icon: const CustomAssetImage(imagePath: kFacebookLogo),
-              iconSize: 60,
+              iconSize: 50,
               onPressed: () async {
                 await urlLauncher(url: kFaceBookUrl);
               },
             ),
             CustomIconButton(
-              icon: const CustomAssetImage(imagePath: kYoutubeLogo),
+              icon: const CustomAssetImage(
+                imagePath: kYoutubeLogo,
+                height: 60,
+              ),
               iconSize: 60,
               onPressed: () async {
                 await urlLauncher(url: kYoutubeUrl);

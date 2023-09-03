@@ -10,23 +10,21 @@ class ToDoView extends StatelessWidget {
   static String id = 'ToDoView';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const VerticalSizedBox(16),
-          CustomAppBar(
-            title: 'ToDo',
-            icon: const Icon(Icons.search),
-            onPressed: () {},
+    return Column(
+      children: [
+        const VerticalSizedBox(16),
+        CustomAppBar(
+          title: 'ToDo',
+          icon: const Icon(Icons.search),
+          onPressed: () {},
+        ),
+        const VerticalSizedBox(16),
+        Expanded(
+          child: ListViewTasks(
+            tasks: BlocProvider.of<ToDoCubit>(context).tasks,
           ),
-          const VerticalSizedBox(16),
-          Expanded(
-            child: ListViewTasks(
-              tasks: BlocProvider.of<ToDoCubit>(context).tasks,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
