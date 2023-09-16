@@ -19,7 +19,7 @@ class ShowImage extends HomeState {
   ShowImage({required this.image});
 }
 
-class ShowPDF extends HomeState {
+class ShowBook extends HomeState {
   final BookModel book;
-  ShowPDF({required this.book});
+  ShowBook({required this.book});
 }

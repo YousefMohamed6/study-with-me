@@ -4,7 +4,6 @@ import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/core/helper_widgets/custom_text_button.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/image/data/model/image_model.dart';
-import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -30,7 +29,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   showAlertDialog({
     required BuildContext context,
-    required Function() ok,
+    required Function() onPressOk,
   }) {
     Widget cancelButton = CustomTextButton(
       text: 'Cancel',
@@ -41,13 +40,13 @@ class HomeCubit extends Cubit<HomeState> {
     Widget continueButton = CustomTextButton(
       text: "Ok",
       onPressed: () {
-        ok();
+        onPressOk();
         Navigator.pop(context);
       },
     );
     AlertDialog alert = AlertDialog(
       title: const CustomText(text: "Alert"),
-      content: const CustomText(text: "Would you like to delete it"),
+      content: const CustomText(text: "Do you like to delete it"),
       actions: [
         cancelButton,
         continueButton,
@@ -66,7 +65,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void showPdf(BookModel book) {
-    emit(ShowPDF(book: book));
+    emit(ShowBook(book: book));
   }
 
   void showBottomSheet({required Widget builder, required context}) async {
@@ -79,7 +78,8 @@ class HomeCubit extends Cubit<HomeState> {
         builder: (context) => builder);
   }
 
-  Widget colorPicker() {
+  int color = Colors.blue.value;
+  Widget colorPickerView() {
     List<int> colors = [
       Colors.lightGreen.value,
       Colors.lightBlue.value,
@@ -97,7 +97,7 @@ class HomeCubit extends Cubit<HomeState> {
           itemCount: colors.length,
           itemBuilder: (context, index) => MaterialButton(
             onPressed: () {
-              BlocProvider.of<NoteCubit>(context).color = colors[index];
+              color = colors[index];
             },
             shape: const CircleBorder(),
             color: Color(colors[index]),

@@ -6,9 +6,9 @@ import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
 import 'package:studytome/features/note/presentation/views/widgets/note_item.dart';
 
 class NoteListView extends StatelessWidget {
-  const NoteListView({super.key, required this.notes});
+  const NoteListView({super.key, required this.notesList});
 
-  final List<NoteModel> notes;
+  final List<NoteModel> notesList;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,9 @@ class NoteListView extends StatelessWidget {
       builder: (context, state) => Expanded(
         child: ListView.builder(
           padding: EdgeInsets.zero,
-          itemCount: notes.length,
+          itemCount: notesList.length,
           itemBuilder: (context, index) => NoteItem(
-            noteModel: notes[index],
+            noteModel: notesList[index],
           ),
         ),
       ),

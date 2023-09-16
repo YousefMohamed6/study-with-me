@@ -18,7 +18,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
     };
     return TaskModel(
       isComplete: fields[0] as bool,
-      taskNames: fields[1] as String,
+      taskName: fields[1] as String,
       color: fields[2] as int,
     );
   }
@@ -30,7 +30,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
       ..writeByte(0)
       ..write(obj.isComplete)
       ..writeByte(1)
-      ..write(obj.taskNames)
+      ..write(obj.taskName)
       ..writeByte(2)
       ..write(obj.color);
   }

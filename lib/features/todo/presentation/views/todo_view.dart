@@ -19,8 +19,8 @@ class ToDoView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Expanded(
-          child: TaskListView(
-            tasks: BlocProvider.of<ToDoCubit>(context).tasks,
+          child: ToDoListView(
+            taskList: BlocProvider.of<ToDoCubit>(context).taskList,
           ),
         ),
       ],

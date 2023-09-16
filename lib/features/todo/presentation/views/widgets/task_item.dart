@@ -5,7 +5,7 @@ import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/data/todo_model/todo_model.dart';
-import 'package:studytome/features/todo/presentation/views/widgets/edit_tast.dart';
+import 'package:studytome/features/todo/presentation/views/widgets/edit_tast_view.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key, required this.task});
@@ -14,7 +14,7 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {
+      onTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(
           context: context,
           builder: EditTaskView(
@@ -44,7 +44,7 @@ class TaskItem extends StatelessWidget {
             },
           ),
           title: CustomText(
-            text: task.taskNames,
+            text: task.taskName,
             fontWeight: FontWeight.bold,
             decoration: task.isComplete ? TextDecoration.lineThrough : null,
           ),
@@ -54,7 +54,7 @@ class TaskItem extends StatelessWidget {
             onPressed: () {
               BlocProvider.of<HomeCubit>(context).showAlertDialog(
                 context: context,
-                ok: () {
+                onPressOk: () {
                   BlocProvider.of<ToDoCubit>(context).deleteTask(task: task);
                 },
               );

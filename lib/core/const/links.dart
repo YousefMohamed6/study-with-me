@@ -4,3 +4,4 @@ const String kYoutubeUrl =
 const String kLinkedinUrl =
     'https://www.linkedin.com/in/yousef-mohamed-25b772240';
 const String kGithubUrl = 'https://github.com/yo7sef-mohamed';
+const String kWebViewUrl = 'https://www.google.com';

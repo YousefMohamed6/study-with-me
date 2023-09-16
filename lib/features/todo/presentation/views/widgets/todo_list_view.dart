@@ -5,12 +5,12 @@ import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/data/todo_model/todo_model.dart';
 import 'package:studytome/features/todo/presentation/views/widgets/task_item.dart';
 
-class TaskListView extends StatelessWidget {
-  const TaskListView({
+class ToDoListView extends StatelessWidget {
+  const ToDoListView({
     super.key,
-    required this.tasks,
+    required this.taskList,
   });
-  final List<TaskModel> tasks;
+  final List<TaskModel> taskList;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,9 @@ class TaskListView extends StatelessWidget {
         return Expanded(
           child: ListView.builder(
             padding: EdgeInsets.zero,
-            itemCount: tasks.length,
+            itemCount: taskList.length,
             itemBuilder: (context, index) => TaskItem(
-              task: tasks[index],
+              task: taskList[index],
             ),
           ),
         );

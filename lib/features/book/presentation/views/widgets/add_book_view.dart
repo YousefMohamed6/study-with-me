@@ -4,22 +4,13 @@ import 'package:studytome/core/helper_widgets/custom_button.dart';
 import 'package:studytome/core/helper_widgets/custom_form_field.dart';
 import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
-import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
-import 'package:studytome/features/book/data/model/book_model.dart';
 
-class AddBookView extends StatefulWidget {
+class AddBookView extends StatelessWidget {
   const AddBookView(
-      {super.key, required this.controller, required this.formkey});
+      {super.key, required this.controller, required this.formKey});
   final TextEditingController controller;
-  final GlobalKey<FormState> formkey;
-
-  @override
-  State<AddBookView> createState() => _AddBookViewState();
-}
-
-class _AddBookViewState extends State<AddBookView> {
-  String? imagePath;
+  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,46 +19,69 @@ class _AddBookViewState extends State<AddBookView> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Form(
-            key: widget.formkey,
-            child: CustomFormField(
-              controller: widget.controller,
-              lablelText: 'Book Name',
-            ),
+          AddPdfTextFeild(
+            controller: controller,
+            formKey: formKey,
           ),
-          CustomIconButton(
-            onPressed: () async {
-              imagePath = await BlocProvider.of<BookCubit>(context).pdfPicker();
-            },
-            icon: const Icon(
-              Icons.file_open_rounded,
-              size: 40,
-            ),
-          ),
+          const PDFPickerButton(),
           const SizedBox(height: 16),
-          CustomButton(
-            onPressed: () {
-              if (widget.formkey.currentState!.validate()) {
-                if (imagePath != null) {
-                  BlocProvider.of<BookCubit>(context).addBook(
-                    BookModel(
-                      path: imagePath!,
-                      name: widget.controller.text,
-                    ),
-                  );
-                } else {
-                  ShowMessage.show(context, msg: 'Please Select PDF');
-                }
-              }
-            },
-            color: Colors.white,
-            child: const CustomText(
-              text: 'Add',
-              color: Colors.black,
-            ),
-          ),
+          AddPDFButton(formKey: formKey),
           const SizedBox(height: 8),
         ],
+      ),
+    );
+  }
+}
+
+class AddPdfTextFeild extends StatelessWidget {
+  const AddPdfTextFeild(
+      {super.key, required this.controller, required this.formKey});
+  final TextEditingController controller;
+  final GlobalKey<FormState> formKey;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      child: CustomFormField(
+        controller: controller,
+        lablelText: 'Book Name',
+      ),
+    );
+  }
+}
+
+class PDFPickerButton extends StatelessWidget {
+  const PDFPickerButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomIconButton(
+      onPressed: () async {
+        await BlocProvider.of<BookCubit>(context).pdfPicker();
+      },
+      icon: const Icon(
+        Icons.file_open_rounded,
+        size: 40,
+      ),
+    );
+  }
+}
+
+class AddPDFButton extends StatelessWidget {
+  const AddPDFButton({super.key, required this.formKey});
+  final GlobalKey<FormState> formKey;
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(
+      onPressed: () {
+        if (formKey.currentState!.validate()) {
+          BlocProvider.of<BookCubit>(context).addBook();
+        }
+      },
+      color: Colors.white,
+      child: const CustomText(
+        text: 'Add',
+        color: Colors.black,
       ),
     );
   }

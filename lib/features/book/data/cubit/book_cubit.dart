@@ -9,24 +9,26 @@ part 'book_state.dart';
 
 class BookCubit extends Cubit<BookState> {
   BookCubit() : super(BookInitial());
-  List<BookModel> books = [];
+  List<BookModel> booksList = [];
   final bookCtrl = TextEditingController();
-
-  Future<String?> pdfPicker() async {
+  String bookPath = '';
+  Future<void> pdfPicker() async {
     try {
       final pdf = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['pdf'],
       );
-      return pdf!.paths.first;
-    } on Exception {
-      return null;
+      bookPath = pdf!.paths.first!;
+      emit(PickBookSuccess());
+    } on Exception catch (_) {
+      emit(PickBookFailure());
     }
   }
 
-  void addBook(BookModel book) {
+  void addBook() {
     try {
       var bookBox = Hive.box<BookModel>(kBookBox);
+      var book = BookModel(name: bookCtrl.text, path: bookPath);
       bookBox.add(book);
       bookCtrl.clear();
       emit(AddBookSuccess());
@@ -41,12 +43,9 @@ class BookCubit extends Cubit<BookState> {
     fetchBooks();
   }
 
-  void editBook(
-      {required String bookPath,
-      required String bookName,
-      required BookModel book}) {
+  void editBook({required BookModel book}) {
     try {
-      book.name = bookName;
+      book.name = bookCtrl.text;
       book.path = bookPath;
       book.save();
       bookCtrl.clear();
@@ -70,9 +69,9 @@ class BookCubit extends Cubit<BookState> {
   }
 
   void fetchBooks() {
-    books.clear();
+    booksList.clear();
     var bookBox = Hive.box<BookModel>(kBookBox);
-    books.addAll(bookBox.values.toList());
+    booksList.addAll(bookBox.values.toList());
     emit(BookInitial());
   }
 }

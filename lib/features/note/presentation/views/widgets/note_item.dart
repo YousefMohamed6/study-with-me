@@ -5,7 +5,7 @@ import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/note/data/model/note_model.dart';
 import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
-import 'package:studytome/features/note/presentation/views/widgets/edit_note.dart';
+import 'package:studytome/features/note/presentation/views/widgets/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
@@ -62,7 +62,7 @@ class NoteItem extends StatelessWidget {
                 onPressed: () {
                   BlocProvider.of<HomeCubit>(context).showAlertDialog(
                     context: context,
-                    ok: () {
+                    onPressOk: () {
                       noteModel.delete();
                       BlocProvider.of<NoteCubit>(context).fetchNotes();
                     },

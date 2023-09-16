@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 
-class CustombottomBar extends StatelessWidget {
-  const CustombottomBar({super.key, required this.currentIndex});
+class CustomNavigationBar extends StatelessWidget {
+  const CustomNavigationBar({super.key, required this.currentIndex});
   final int currentIndex;
   @override
   Widget build(BuildContext context) {

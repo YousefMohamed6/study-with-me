@@ -4,24 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 
-class ShowPDFView extends StatefulWidget {
+class ShowBookView extends StatefulWidget {
   final BookModel book;
 
-  const ShowPDFView({
+  const ShowBookView({
     Key? key,
     required this.book,
   }) : super(key: key);
 
   @override
-  ShowPDFViewState createState() => ShowPDFViewState();
+  ShowBookViewState createState() => ShowBookViewState();
 }
 
-class ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
+class ShowBookViewState extends State<ShowBookView>
+    with WidgetsBindingObserver {
   final Completer<PDFViewController> _controller =
       Completer<PDFViewController>();
   int? pages = 0;
@@ -33,24 +35,10 @@ class ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          color: Colors.white,
-          onPressed: () {
-            BlocProvider.of<HomeCubit>(context).changeIndex(0);
-          },
-        ),
+        leading: const BackButtonToBookView(),
         title: CustomText(text: widget.book.name),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.share),
-            onPressed: () async {
-              await Share.shareXFiles([
-                XFile(
-                  widget.book.path,
-                )
-              ]);
-            },
-          ),
+          ShareFileButton(filePath: widget.book.path),
         ],
       ),
       backgroundColor: Colors.white,
@@ -100,10 +88,42 @@ class ShowPDFViewState extends State<ShowPDFView> with WidgetsBindingObserver {
                     )
                   : Container()
               : Center(
-                  child: CustomText(text: errorMessage),
+                  child: CustomText(
+                    text: errorMessage,
+                  ),
                 ),
         ],
       ),
+    );
+  }
+}
+
+class ShareFileButton extends StatelessWidget {
+  const ShareFileButton({super.key, required this.filePath});
+  final String filePath;
+  @override
+  Widget build(BuildContext context) {
+    return CustomIconButton(
+      icon: const Icon(Icons.share),
+      onPressed: () async {
+        await Share.shareXFiles(
+          [XFile(filePath)],
+        );
+      },
+    );
+  }
+}
+
+class BackButtonToBookView extends StatelessWidget {
+  const BackButtonToBookView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BackButton(
+      color: Colors.white,
+      onPressed: () {
+        BlocProvider.of<HomeCubit>(context).changeIndex(0);
+      },
     );
   }
 }

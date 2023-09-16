@@ -8,13 +8,12 @@ part 'note_state.dart';
 
 class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
-  List<NoteModel> notes = [];
-  int color = Colors.blue.value;
+  List<NoteModel> notesList = [];
 
   var titleCtrl = TextEditingController();
   var contentCtrl = TextEditingController();
 
-  void editNote(NoteModel note) {
+  void editNote({required NoteModel note, required int color}) {
     note.content = contentCtrl.text;
     note.title = titleCtrl.text;
     note.color = color;
@@ -39,9 +38,9 @@ class NoteCubit extends Cubit<NoteState> {
   }
 
   void fetchNotes() async {
-    notes.clear();
+    notesList.clear();
     var noteBox = Hive.box<NoteModel>(kNoteBox);
-    notes.addAll(noteBox.values.toList());
+    notesList.addAll(noteBox.values.toList());
     emit(NoteInitial());
   }
 }

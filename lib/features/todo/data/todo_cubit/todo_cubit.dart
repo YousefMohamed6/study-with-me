@@ -9,21 +9,26 @@ part 'todo_state.dart';
 class ToDoCubit extends Cubit<ToDoState> {
   ToDoCubit() : super(TodoInitial());
   var taskCtrl = TextEditingController();
-  List<TaskModel> tasks = [];
+  List<TaskModel> taskList = [];
 
   void fetchTasks() {
-    tasks.clear();
+    taskList.clear();
     var taskBox = Hive.box<TaskModel>(kToDoBox);
-    tasks.addAll(taskBox.values.toList());
+    taskList.addAll(taskBox.values.toList());
     emit(TodoInitial());
   }
 
-  void addTask(TaskModel task) async {
+  void addTask({required int color}) async {
+    var task = TaskModel(
+      isComplete: false,
+      taskName: taskCtrl.text,
+      color: color,
+    );
     try {
       var taskBox = Hive.box<TaskModel>(kToDoBox);
       await taskBox.add(task);
-      emit(AddTaskSuccess());
       taskCtrl.clear();
+      emit(AddTaskSuccess());
       fetchTasks();
     } on Exception {
       emit(AddTaskFailed('Faild'));
@@ -32,7 +37,7 @@ class ToDoCubit extends Cubit<ToDoState> {
 
   void editTaskName({required TaskModel task, required int color}) {
     try {
-      task.taskNames = taskCtrl.text;
+      task.taskName = taskCtrl.text;
       task.color = color;
       task.save();
       taskCtrl.clear();

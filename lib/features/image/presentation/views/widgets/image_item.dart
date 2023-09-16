@@ -55,7 +55,7 @@ class ImageItem extends StatelessWidget {
                   onPressed: () {
                     BlocProvider.of<HomeCubit>(context).showAlertDialog(
                         context: context,
-                        ok: () {
+                        onPressOk: () {
                           BlocProvider.of<ImageCubit>(context)
                               .deleteImage(image);
                         });
