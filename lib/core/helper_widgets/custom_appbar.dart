@@ -3,18 +3,13 @@ import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar(
-      {super.key,
-      required this.title,
-      required this.icon,
-      required this.onPressed});
+  const CustomAppBar({super.key, required this.title, required this.onPressed});
   final String title;
-  final Widget icon;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8, right: 24, left: 24),
+      padding: const EdgeInsets.only(right: 24, left: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,7 +33,7 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.white.withOpacity(.05),
             ),
             child: CustomIconButton(
-              icon: icon,
+              icon: const Icon(Icons.search),
               iconSize: 32,
               onPressed: onPressed,
             ),

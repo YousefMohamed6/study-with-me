@@ -4,8 +4,8 @@ part 'image_model.g.dart';
 @HiveType(typeId: 2)
 class ImageModel extends HiveObject {
   @HiveField(0)
-  String path;
+  String imagePath;
   @HiveField(1)
-  String name;
-  ImageModel({required this.path, required this.name});
+  String imageName;
+  ImageModel({required this.imagePath, required this.imageName});
 }

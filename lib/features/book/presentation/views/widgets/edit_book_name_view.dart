@@ -6,8 +6,8 @@ import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/book/presentation/views/widgets/add_book_view.dart';
 
-class EditBookName extends StatelessWidget {
-  const EditBookName(
+class EditBookNameView extends StatelessWidget {
+  const EditBookNameView(
       {super.key,
       required this.book,
       required this.formKey,
@@ -23,7 +23,7 @@ class EditBookName extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AddPdfTextFeild(
+          AddBookTextFeild(
             controller: controller..text = book.name,
             formKey: formKey,
           ),

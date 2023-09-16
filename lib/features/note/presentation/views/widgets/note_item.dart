@@ -17,7 +17,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {
+      onTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(
           context: context,
           builder: EditNoteView(

@@ -19,13 +19,13 @@ class AddBookView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AddPdfTextFeild(
+          AddBookTextFeild(
             controller: controller,
             formKey: formKey,
           ),
-          const PDFPickerButton(),
+          const BookPickerButton(),
           const SizedBox(height: 16),
-          AddPDFButton(formKey: formKey),
+          AddBookButton(formKey: formKey),
           const SizedBox(height: 8),
         ],
       ),
@@ -33,8 +33,8 @@ class AddBookView extends StatelessWidget {
   }
 }
 
-class AddPdfTextFeild extends StatelessWidget {
-  const AddPdfTextFeild(
+class AddBookTextFeild extends StatelessWidget {
+  const AddBookTextFeild(
       {super.key, required this.controller, required this.formKey});
   final TextEditingController controller;
   final GlobalKey<FormState> formKey;
@@ -50,8 +50,8 @@ class AddPdfTextFeild extends StatelessWidget {
   }
 }
 
-class PDFPickerButton extends StatelessWidget {
-  const PDFPickerButton({super.key});
+class BookPickerButton extends StatelessWidget {
+  const BookPickerButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +67,8 @@ class PDFPickerButton extends StatelessWidget {
   }
 }
 
-class AddPDFButton extends StatelessWidget {
-  const AddPDFButton({super.key, required this.formKey});
+class AddBookButton extends StatelessWidget {
+  const AddBookButton({super.key, required this.formKey});
   final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {

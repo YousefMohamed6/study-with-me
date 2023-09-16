@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:studytome/core/helper_widgets/custom_button.dart';
-import 'package:studytome/core/helper_widgets/custom_form_field.dart';
-import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/image/data/cubit/image_cubit.dart';
 import 'package:studytome/features/image/data/model/image_model.dart';
+import 'package:studytome/features/image/presentation/views/widgets/action_image_button.dart';
+import 'package:studytome/features/image/presentation/views/widgets/image_form_feild.dart';
 
 class EditImageNameView extends StatelessWidget {
   const EditImageNameView(
@@ -18,32 +17,25 @@ class EditImageNameView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Form(
-            key: formKey,
-            child: CustomFormField(
-              controller: controller..text = image.name,
-              lablelText: 'Image Name',
-            ),
+          ImageFormFeild(
+            formKey: formKey,
+            controller: controller..text = image.imageName,
           ),
           const SizedBox(height: 16),
-          CustomButton(
+          ActionImageButton(
+            actionName: 'Save',
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 BlocProvider.of<ImageCubit>(context)
                     .editImageName(image: image);
-                Navigator.pop(context);
               }
             },
-            color: Colors.white,
-            child: const CustomText(
-              text: 'Save',
-              color: Colors.black,
-            ),
           ),
           const SizedBox(height: 8),
         ],

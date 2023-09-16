@@ -14,13 +14,10 @@ class BookViewBody extends StatelessWidget {
         const SizedBox(height: 16),
         CustomAppBar(
           title: 'Book',
-          icon: const Icon(Icons.search),
           onPressed: () {},
         ),
-        Expanded(
-          child: BookListView(
-            books: BlocProvider.of<BookCubit>(context).booksList,
-          ),
+        BookListView(
+          booksList: BlocProvider.of<BookCubit>(context).booksList,
         ),
       ],
     );

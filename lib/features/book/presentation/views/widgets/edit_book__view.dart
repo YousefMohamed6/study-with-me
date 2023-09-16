@@ -64,7 +64,7 @@ class SaveBookPathButton extends StatelessWidget {
     return CustomButton(
       onPressed: () {
         if (formKey.currentState!.validate()) {
-          BlocProvider.of<BookCubit>(context).editBook(book: book);
+          BlocProvider.of<BookCubit>(context).editBookPath(book: book);
         }
       },
       color: Colors.white,

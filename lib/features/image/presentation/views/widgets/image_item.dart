@@ -1,14 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
-import 'package:studytome/core/helper_widgets/custom_text_button.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/image/data/cubit/image_cubit.dart';
 import 'package:studytome/features/image/data/model/image_model.dart';
-import 'package:studytome/features/image/presentation/views/widgets/edit_image_name.dart';
-import 'package:studytome/features/image/presentation/views/widgets/edit_image_view.dart';
+import 'package:studytome/features/image/presentation/views/edit_image_view.dart';
+import 'package:studytome/features/image/presentation/views/widgets/delete_image_button.dart';
+import 'package:studytome/features/image/presentation/views/widgets/picture.dart';
+import 'package:studytome/features/image/presentation/views/widgets/image_name_text_button.dart';
 
 class ImageItem extends StatelessWidget {
   const ImageItem({
@@ -32,56 +30,13 @@ class ImageItem extends StatelessWidget {
           context: context,
         );
       },
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        margin: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white.withOpacity(0.05),
-        ),
+      child: Picture(
+        imagePath: image.imagePath,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Image.file(
-              File(image.path),
-              fit: BoxFit.contain,
-            ),
-            Positioned(
-              right: 1,
-              top: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: CustomIconButton(
-                  onPressed: () {
-                    BlocProvider.of<HomeCubit>(context).showAlertDialog(
-                        context: context,
-                        onPressOk: () {
-                          BlocProvider.of<ImageCubit>(context)
-                              .deleteImage(image);
-                        });
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 24,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            CustomTextButton(
-              onPressed: () {
-                BlocProvider.of<HomeCubit>(context).showBottomSheet(
-                  context: context,
-                  builder: EditImageNameView(
-                    image: image,
-                    controller: BlocProvider.of<ImageCubit>(context).imageCtrl,
-                    formKey: GlobalKey<FormState>(),
-                  ),
-                );
-              },
-              text: image.name,
-              color: Colors.white,
-            ),
+            DeleteImageButton(image: image),
+            ImageNameTextButton(image: image),
           ],
         ),
       ),

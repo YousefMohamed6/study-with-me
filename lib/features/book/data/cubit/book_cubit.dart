@@ -9,9 +9,10 @@ part 'book_state.dart';
 
 class BookCubit extends Cubit<BookState> {
   BookCubit() : super(BookInitial());
+  String? bookPath;
   List<BookModel> booksList = [];
   final bookCtrl = TextEditingController();
-  String bookPath = '';
+
   Future<void> pdfPicker() async {
     try {
       final pdf = await FilePicker.platform.pickFiles(
@@ -27,15 +28,20 @@ class BookCubit extends Cubit<BookState> {
 
   void addBook() {
     try {
-      var bookBox = Hive.box<BookModel>(kBookBox);
-      var book = BookModel(name: bookCtrl.text, path: bookPath);
-      bookBox.add(book);
-      bookCtrl.clear();
-      emit(AddBookSuccess());
-      fetchBooks();
+      if (bookPath != null) {
+        var bookBox = Hive.box<BookModel>(kBookBox);
+        var book = BookModel(name: bookCtrl.text, path: bookPath!);
+        bookBox.add(book);
+        fetchBooks();
+        emit(AddBookSuccess());
+      } else {
+        emit(AddBookPathFailure());
+      }
     } on Exception {
       emit(AddBookFailure());
     }
+    bookPath = null;
+    bookCtrl.clear();
   }
 
   void deleteBook(BookModel book) {
@@ -43,29 +49,34 @@ class BookCubit extends Cubit<BookState> {
     fetchBooks();
   }
 
-  void editBook({required BookModel book}) {
+  void editBookPath({required BookModel book}) {
     try {
-      book.name = bookCtrl.text;
-      book.path = bookPath;
-      book.save();
-      bookCtrl.clear();
-      emit(EditBookSuccess());
-      fetchBooks();
+      if (bookPath != null) {
+        book.name = bookCtrl.text;
+        book.path = bookPath!;
+        book.save();
+        fetchBooks();
+        emit(EditBookSuccess());
+      } else {
+        emit(AddBookPathFailure());
+      }
     } on Exception {
       emit(EditBookFailure());
     }
+    bookPath = null;
+    bookCtrl.clear();
   }
 
   void editBookName({required BookModel book}) {
     try {
       book.name = bookCtrl.text;
       book.save();
-      bookCtrl.clear();
       emit(EditBookSuccess());
       fetchBooks();
     } on Exception {
       emit(EditBookFailure());
     }
+    bookCtrl.clear();
   }
 
   void fetchBooks() {

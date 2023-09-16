@@ -32,27 +32,26 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider(
+        BlocProvider(
           create: (context) => HomeCubit(),
         ),
-        RepositoryProvider(
+        BlocProvider(
           create: (context) => BookCubit(),
         ),
-        RepositoryProvider(
+        BlocProvider(
           create: (context) => ImageCubit(),
         ),
-        RepositoryProvider(
+        BlocProvider(
           create: (context) => NoteCubit(),
         ),
-        RepositoryProvider(
+        BlocProvider(
           create: (context) => ToDoCubit(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'NoteApp',
         theme: ThemeData.dark(useMaterial3: true),
         home: const HomeView(),
       ),

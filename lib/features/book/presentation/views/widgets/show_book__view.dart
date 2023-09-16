@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
+import 'package:studytome/core/helper_widgets/share_button.dart';
 import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
@@ -35,10 +34,10 @@ class ShowBookViewState extends State<ShowBookView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButtonToBookView(),
+        leading: const BackToBookView(),
         title: CustomText(text: widget.book.name),
         actions: [
-          ShareFileButton(filePath: widget.book.path),
+          ShareButton(filePath: widget.book.path),
         ],
       ),
       backgroundColor: Colors.white,
@@ -98,24 +97,8 @@ class ShowBookViewState extends State<ShowBookView>
   }
 }
 
-class ShareFileButton extends StatelessWidget {
-  const ShareFileButton({super.key, required this.filePath});
-  final String filePath;
-  @override
-  Widget build(BuildContext context) {
-    return CustomIconButton(
-      icon: const Icon(Icons.share),
-      onPressed: () async {
-        await Share.shareXFiles(
-          [XFile(filePath)],
-        );
-      },
-    );
-  }
-}
-
-class BackButtonToBookView extends StatelessWidget {
-  const BackButtonToBookView({super.key});
+class BackToBookView extends StatelessWidget {
+  const BackToBookView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:studytome/features/book/presentation/views/widgets/show_book__vi
 import 'package:studytome/features/google/views/webview.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/home/presentation/views/widgets/navigation_view.dart';
-import 'package:studytome/features/image/presentation/views/widgets/show_image_view.dart';
+import 'package:studytome/features/image/presentation/views/show_image_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

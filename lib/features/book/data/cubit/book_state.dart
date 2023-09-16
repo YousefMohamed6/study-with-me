@@ -8,6 +8,8 @@ class AddBookSuccess extends BookState {}
 
 class AddBookFailure extends BookState {}
 
+class AddBookPathFailure extends BookState {}
+
 class DeleteBookSuccess extends BookState {}
 
 class DeleteBookFailure extends BookState {}

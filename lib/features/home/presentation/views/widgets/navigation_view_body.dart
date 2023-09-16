@@ -28,7 +28,7 @@ class NavigationViewBody extends StatelessWidget {
           BlocProvider.of<ToDoCubit>(context).fetchTasks();
           return const ToDoView();
         } else if (state is Images) {
-          BlocProvider.of<ImageCubit>(context).fetchImages();
+          BlocProvider.of<ImageCubit>(context).fetchImagesFromMemory();
           return const ImagesView();
         } else {
           return const ContactUsView();

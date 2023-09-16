@@ -10,81 +10,88 @@ part 'image_state.dart';
 class ImageCubit extends Cubit<ImageState> {
   ImageCubit() : super(ImageInitial());
   final imageCtrl = TextEditingController();
+  String? imagePath;
+  List<ImageModel> imagesList = [];
 
-  List<ImageModel> images = [];
-
-  Future<String?> pickerCamera() async {
+  Future<void> pickFromCamera() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.camera);
+      imagePath = image!.path;
       emit(PickImageSuccess());
-      return image!.path;
-    } on Exception {
+    } catch (_) {
       emit(PickImageFailure());
-      return null;
     }
   }
 
-  Future<String?> pickerGallery() async {
+  Future<void> pickFromGallery() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      imagePath = image!.path;
       emit(PickImageSuccess());
-      return image!.path;
-    } catch (e) {
+    } catch (_) {
       emit(PickImageFailure());
-      return null;
     }
   }
 
-  void addImage(ImageModel image) {
-    try {
-      var imageBox = Hive.box<ImageModel>(kImageBox);
-      imageBox.add(image);
-      imageCtrl.clear();
-      fetchImages();
-    } on Exception {
-      emit(AddImageFailure());
+  void addImageToMemory() async {
+    if (imagePath != null) {
+      try {
+        var imageBox = Hive.box<ImageModel>(kImageBox);
+        var image = ImageModel(
+          imagePath: imagePath!,
+          imageName: imageCtrl.text,
+        );
+        await imageBox.add(image);
+        fetchImagesFromMemory();
+        emit(AddImageSuccess());
+        imageCtrl.clear();
+      } catch (_) {
+        emit(AddImageFailure());
+      }
+    } else {
+      emit(UnSelectedImage());
     }
   }
 
-  void deleteImage(ImageModel image) {
+  void deleteImageFromMemory({required ImageModel image}) {
     image.delete();
-    fetchImages();
+    fetchImagesFromMemory();
   }
 
-  void editImage(
-      {required String imagePath,
-      required String imageName,
-      required ImageModel image}) {
-    try {
-      image.name = imageName;
-      image.path = imagePath;
-      image.save();
-      imageCtrl.clear();
-      emit(EditImageSuccess());
-      fetchImages();
-      emit(ImageInitial());
-    } on Exception {
-      emit(EditImageFailure());
+  void editImagePath({required ImageModel image}) {
+    if (imagePath != null) {
+      try {
+        image.imageName = imageCtrl.text;
+        image.imagePath = imagePath!;
+        image.save();
+        fetchImagesFromMemory();
+        emit(EditImageSuccess());
+        imageCtrl.clear();
+        imagePath = null;
+      } catch (_) {
+        emit(EditImageFailure());
+      }
+    } else {
+      emit(UnSelectedImage());
     }
   }
 
   void editImageName({required ImageModel image}) {
     try {
-      image.name = imageCtrl.text;
+      image.imageName = imageCtrl.text;
       image.save();
-      imageCtrl.clear();
+      fetchImagesFromMemory();
       emit(EditImageSuccess());
-      fetchImages();
-      emit(ImageInitial());
-    } on Exception {
+      imageCtrl.clear();
+    } catch (_) {
       emit(EditImageFailure());
     }
   }
 
-  void fetchImages() {
-    images.clear();
+  void fetchImagesFromMemory() {
+    imagesList.clear();
     var imageBox = Hive.box<ImageModel>(kImageBox);
-    images.addAll(imageBox.values.toList());
+    imagesList.addAll(imageBox.values.toList());
     emit(ImageInitial());
   }
 }
