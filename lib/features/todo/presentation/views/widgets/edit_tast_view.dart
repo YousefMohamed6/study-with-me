@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:studytome/core/helper_widgets/color_picker_view.dart';
 import 'package:studytome/core/helper_widgets/custom_button.dart';
 import 'package:studytome/core/helper_widgets/custom_form_field.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
@@ -30,7 +31,9 @@ class EditTaskView extends StatelessWidget {
             taskName: task.taskName,
           ),
           const SizedBox(height: 8),
-          BlocProvider.of<HomeCubit>(context).colorPickerView(),
+          ColorPickerView(
+            colors: BlocProvider.of<HomeCubit>(context).colors,
+          ),
           const SizedBox(height: 8),
           SaveEditTaskButton(formKey: formKey, task: task),
           const SizedBox(height: 8),

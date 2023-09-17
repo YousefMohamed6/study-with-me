@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
           return ShowBookView(book: state.book);
         } else if (state is ShowImage) {
           return ShowImageView(image: state.image);
-        } else if (state is Google) {
+        } else if (state is WebView) {
           return const WebViewApp(url: kWebViewUrl);
         } else {
           return NavigationView(state: state);

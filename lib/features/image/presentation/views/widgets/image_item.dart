@@ -18,7 +18,7 @@ class ImageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: () {
-        BlocProvider.of<HomeCubit>(context).showImage(image);
+        BlocProvider.of<HomeCubit>(context).showImageView(image: image);
       },
       onTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(

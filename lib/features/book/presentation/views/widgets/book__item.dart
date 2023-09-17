@@ -18,7 +18,7 @@ class BookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: () {
-        BlocProvider.of<HomeCubit>(context).showPdf(book);
+        BlocProvider.of<HomeCubit>(context).showBookView(book: book);
       },
       onTap: () {
         BlocProvider.of<HomeCubit>(context).showBottomSheet(

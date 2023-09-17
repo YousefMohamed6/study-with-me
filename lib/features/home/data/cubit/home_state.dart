@@ -10,7 +10,7 @@ class Note extends HomeState {}
 
 class ToDo extends HomeState {}
 
-class Google extends HomeState {}
+class WebView extends HomeState {}
 
 class ContactUs extends HomeState {}
 
@@ -22,4 +22,9 @@ class ShowImage extends HomeState {
 class ShowBook extends HomeState {
   final BookModel book;
   ShowBook({required this.book});
+}
+
+class ShowNote extends HomeState {
+  final NoteModel note;
+  ShowNote({required this.note});
 }

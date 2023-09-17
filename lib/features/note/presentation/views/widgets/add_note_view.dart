@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:studytome/core/helper_widgets/color_picker_view.dart';
 import 'package:studytome/core/helper_widgets/custom_button.dart';
 import 'package:studytome/core/helper_widgets/custom_form_field.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
@@ -34,7 +35,9 @@ class AddNoteView extends StatelessWidget {
             formkey: formkey,
           ),
           const SizedBox(height: 8),
-          BlocProvider.of<HomeCubit>(context).colorPickerView(),
+          ColorPickerView(
+            colors: BlocProvider.of<HomeCubit>(context).colors,
+          ),
           const SizedBox(height: 16),
           AddNoteButton(
             titleCtrl: titleCtrl,
