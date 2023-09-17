@@ -20,7 +20,8 @@ class DeleteBookButton extends StatelessWidget {
             BlocProvider.of<HomeCubit>(context).showAlertDialog(
                 context: context,
                 onPressOk: () {
-                  BlocProvider.of<BookCubit>(context).deleteBook(book);
+                  BlocProvider.of<BookCubit>(context)
+                      .deleteBookFromMemory(book: book);
                 });
           },
           icon: const Icon(

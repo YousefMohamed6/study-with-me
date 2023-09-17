@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/helper_widgets/custom_text_button.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
-import 'package:studytome/features/book/presentation/views/widgets/edit_book_name_view.dart';
+import 'package:studytome/features/book/presentation/views/edit_book_name_view.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 
-class ShowEditBookViewButton extends StatelessWidget {
-  const ShowEditBookViewButton({super.key, required this.book});
+class BookNameTextButton extends StatelessWidget {
+  const BookNameTextButton({super.key, required this.book});
   final BookModel book;
   @override
   Widget build(BuildContext context) {

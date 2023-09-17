@@ -9,11 +9,12 @@ part 'book_state.dart';
 
 class BookCubit extends Cubit<BookState> {
   BookCubit() : super(BookInitial());
+
   String? bookPath;
   List<BookModel> booksList = [];
   final bookCtrl = TextEditingController();
 
-  Future<void> pdfPicker() async {
+  Future<void> pdfPickerFromMemory() async {
     try {
       final pdf = await FilePicker.platform.pickFiles(
         type: FileType.custom,
@@ -21,7 +22,7 @@ class BookCubit extends Cubit<BookState> {
       );
       bookPath = pdf!.paths.first!;
       emit(PickBookSuccess());
-    } on Exception catch (_) {
+    } catch (_) {
       emit(PickBookFailure());
     }
   }
@@ -32,21 +33,21 @@ class BookCubit extends Cubit<BookState> {
         var bookBox = Hive.box<BookModel>(kBookBox);
         var book = BookModel(name: bookCtrl.text, path: bookPath!);
         bookBox.add(book);
-        fetchBooks();
+        fetchBooksFromMemory();
         emit(AddBookSuccess());
       } else {
-        emit(AddBookPathFailure());
+        emit(UnSelectedBook());
       }
-    } on Exception {
+    } catch (_) {
       emit(AddBookFailure());
     }
     bookPath = null;
     bookCtrl.clear();
   }
 
-  void deleteBook(BookModel book) {
+  void deleteBookFromMemory({required BookModel book}) {
     book.delete();
-    fetchBooks();
+    fetchBooksFromMemory();
   }
 
   void editBookPath({required BookModel book}) {
@@ -55,12 +56,12 @@ class BookCubit extends Cubit<BookState> {
         book.name = bookCtrl.text;
         book.path = bookPath!;
         book.save();
-        fetchBooks();
+        fetchBooksFromMemory();
         emit(EditBookSuccess());
       } else {
-        emit(AddBookPathFailure());
+        emit(UnSelectedBook());
       }
-    } on Exception {
+    } catch (_) {
       emit(EditBookFailure());
     }
     bookPath = null;
@@ -72,14 +73,14 @@ class BookCubit extends Cubit<BookState> {
       book.name = bookCtrl.text;
       book.save();
       emit(EditBookSuccess());
-      fetchBooks();
-    } on Exception {
+      fetchBooksFromMemory();
+    } catch (_) {
       emit(EditBookFailure());
     }
     bookCtrl.clear();
   }
 
-  void fetchBooks() {
+  void fetchBooksFromMemory() {
     booksList.clear();
     var bookBox = Hive.box<BookModel>(kBookBox);
     booksList.addAll(bookBox.values.toList());

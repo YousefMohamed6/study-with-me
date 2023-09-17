@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:studytome/core/helper_widgets/custom_button.dart';
-import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
-import 'package:studytome/features/book/presentation/views/widgets/add_book_view.dart';
+import 'package:studytome/features/book/presentation/views/widgets/book_action_button.dart';
+import 'package:studytome/features/book/presentation/views/widgets/book_text_feild.dart';
 
 class EditBookNameView extends StatelessWidget {
   const EditBookNameView(
@@ -23,39 +22,21 @@ class EditBookNameView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AddBookTextFeild(
+          BookTextFeild(
             controller: controller..text = book.name,
             formKey: formKey,
           ),
           const SizedBox(height: 16),
-          SaveBookNameButton(
-            book: book,
-            formKey: formKey,
+          BookActionButton(
+            actionName: 'Save',
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                BlocProvider.of<BookCubit>(context).editBookName(book: book);
+              }
+            },
           ),
           const SizedBox(height: 8),
         ],
-      ),
-    );
-  }
-}
-
-class SaveBookNameButton extends StatelessWidget {
-  const SaveBookNameButton(
-      {super.key, required this.formKey, required this.book});
-  final GlobalKey<FormState> formKey;
-  final BookModel book;
-  @override
-  Widget build(BuildContext context) {
-    return CustomButton(
-      onPressed: () {
-        if (formKey.currentState!.validate()) {
-          BlocProvider.of<BookCubit>(context).editBookName(book: book);
-        }
-      },
-      color: Colors.white,
-      child: const CustomText(
-        text: 'Save',
-        color: Colors.black,
       ),
     );
   }
