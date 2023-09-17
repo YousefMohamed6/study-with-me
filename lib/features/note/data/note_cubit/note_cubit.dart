@@ -8,36 +8,47 @@ part 'note_state.dart';
 
 class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
-  List<NoteModel> notesList = [];
 
+  List<NoteModel> notesList = [];
+  final formKey = GlobalKey<FormState>();
   var titleCtrl = TextEditingController();
   var contentCtrl = TextEditingController();
 
-  void editNote({required NoteModel note, required int color}) {
-    note.content = contentCtrl.text;
-    note.title = titleCtrl.text;
-    note.color = color;
-    note.save();
-    titleCtrl.clear();
-    contentCtrl.clear();
-    emit(EditNoteSuccess());
-    fetchNotes();
-  }
-
-  void addNote(NoteModel note) async {
+  void addNoteToMemory({required int color}) async {
     try {
       var noteBox = Hive.box<NoteModel>(kNoteBox);
+      var note = NoteModel(
+        color: color,
+        title: titleCtrl.text,
+        content: contentCtrl.text,
+        date: DateTime.now().toString().substring(0, 10),
+      );
       await noteBox.add(note);
       emit(AddNoteSuccess());
+      fetchNotesFromMemory();
       titleCtrl.clear();
-      fetchNotes();
-    } on Exception {
+    } catch (_) {
       emit(AddNoteFailure('Failed'));
-      emit(NoteInitial());
     }
   }
 
-  void fetchNotes() async {
+  void editNote({required NoteModel note, required int color}) async {
+    note.content = contentCtrl.text;
+    note.title = titleCtrl.text;
+    note.color = color;
+    await note.save();
+    titleCtrl.clear();
+    contentCtrl.clear();
+    fetchNotesFromMemory();
+    emit(EditNoteSuccess());
+  }
+
+  void deleteNote({required NoteModel note}) async {
+    await note.delete();
+    fetchNotesFromMemory();
+  }
+
+  void fetchNotesFromMemory() {
     notesList.clear();
     var noteBox = Hive.box<NoteModel>(kNoteBox);
     notesList.addAll(noteBox.values.toList());

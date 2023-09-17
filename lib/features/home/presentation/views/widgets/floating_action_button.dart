@@ -6,9 +6,9 @@ import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/image/data/cubit/image_cubit.dart';
 import 'package:studytome/features/image/presentation/views/add_image_view.dart';
 import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
-import 'package:studytome/features/note/presentation/views/widgets/add_note_view.dart';
+import 'package:studytome/features/note/presentation/views/add_note_view.dart';
 import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
-import 'package:studytome/features/todo/presentation/views/widgets/add_task_view.dart';
+import 'package:studytome/features/todo/presentation/views/add_task_view.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   const CustomFloatingActionButton({super.key, required this.state});

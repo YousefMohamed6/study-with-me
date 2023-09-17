@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
@@ -17,16 +16,12 @@ class CustomButton extends StatelessWidget {
   final double? height;
   @override
   Widget build(context) {
-    return Column(
-      children: [
-        MaterialButton(
-          onPressed: onPressed,
-          color: color ,
-          height: height ?? 50,
-          elevation: 0,
-          child: child,
-        ),
-      ],
+    return MaterialButton(
+      onPressed: onPressed,
+      color: color,
+      height: height ?? 50,
+      elevation: 0,
+      child: child,
     );
   }
 }

@@ -18,6 +18,7 @@ class OwnerAccounts extends StatelessWidget {
         AccountItem(
           accountUrl: kYoutubeUrl,
           accountLogo: kYoutubeLogo,
+          iconSize: 60,
         ),
         AccountItem(
           accountUrl: kLinkedinUrl,

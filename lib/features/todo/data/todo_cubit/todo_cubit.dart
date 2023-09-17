@@ -9,54 +9,55 @@ part 'todo_state.dart';
 class ToDoCubit extends Cubit<ToDoState> {
   ToDoCubit() : super(TodoInitial());
   var taskCtrl = TextEditingController();
-  List<TaskModel> taskList = [];
+  List<ToDoModel> taskList = [];
 
   void fetchTasks() {
     taskList.clear();
-    var taskBox = Hive.box<TaskModel>(kToDoBox);
+    var taskBox = Hive.box<ToDoModel>(kToDoBox);
     taskList.addAll(taskBox.values.toList());
     emit(TodoInitial());
   }
 
   void addTask({required int color}) async {
-    var task = TaskModel(
+    var task = ToDoModel(
       isComplete: false,
       taskName: taskCtrl.text,
       color: color,
     );
     try {
-      var taskBox = Hive.box<TaskModel>(kToDoBox);
+      var taskBox = Hive.box<ToDoModel>(kToDoBox);
       await taskBox.add(task);
-      taskCtrl.clear();
-      emit(AddTaskSuccess());
       fetchTasks();
-    } on Exception {
+      emit(AddTaskSuccess());
+      taskCtrl.clear();
+    } catch (_) {
       emit(AddTaskFailed('Faild'));
     }
   }
 
-  void editTaskName({required TaskModel task, required int color}) {
+  void editTaskName({required ToDoModel task, required int color}) async {
     try {
       task.taskName = taskCtrl.text;
       task.color = color;
-      task.save();
-      taskCtrl.clear();
-      emit(EditTaskSuccess());
+      await task.save();
       fetchTasks();
-    } on Exception {
+      emit(EditTaskSuccess());
+      taskCtrl.clear();
+    } catch (_) {
       emit(EditTaskFailed('Failed edit'));
       fetchTasks();
     }
   }
 
-  void editTaskState({required TaskModel task}) {
+  void editTaskState({required ToDoModel task}) async {
     task.isComplete = !task.isComplete;
-    task.save();
+    await task.save();
     fetchTasks();
+    taskCtrl.clear();
   }
 
-  void deleteTask({required TaskModel task}) {
-    task.delete();
+  void deleteTask({required ToDoModel task}) async {
+    await task.delete();
     fetchTasks();
   }
 }

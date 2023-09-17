@@ -12,6 +12,7 @@ class CustomAssetImage extends StatelessWidget {
       imagePath,
       width: width ?? 50,
       height: height ?? 50,
+      fit: BoxFit.fill,
     );
   }
 }

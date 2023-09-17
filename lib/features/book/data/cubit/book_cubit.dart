@@ -35,14 +35,14 @@ class BookCubit extends Cubit<BookState> {
         bookBox.add(book);
         fetchBooksFromMemory();
         emit(AddBookSuccess());
+        bookPath = null;
+        bookCtrl.clear();
       } else {
         emit(UnSelectedBook());
       }
     } catch (_) {
       emit(AddBookFailure());
     }
-    bookPath = null;
-    bookCtrl.clear();
   }
 
   void deleteBookFromMemory({required BookModel book}) {
@@ -58,14 +58,14 @@ class BookCubit extends Cubit<BookState> {
         book.save();
         fetchBooksFromMemory();
         emit(EditBookSuccess());
+        bookPath = null;
+        bookCtrl.clear();
       } else {
         emit(UnSelectedBook());
       }
     } catch (_) {
       emit(EditBookFailure());
     }
-    bookPath = null;
-    bookCtrl.clear();
   }
 
   void editBookName({required BookModel book}) {
@@ -74,10 +74,10 @@ class BookCubit extends Cubit<BookState> {
       book.save();
       emit(EditBookSuccess());
       fetchBooksFromMemory();
+      bookCtrl.clear();
     } catch (_) {
       emit(EditBookFailure());
     }
-    bookCtrl.clear();
   }
 
   void fetchBooksFromMemory() {

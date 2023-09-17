@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 
-class ColorPickerView extends StatelessWidget {
+class ColorPickerView extends StatefulWidget {
   const ColorPickerView({super.key, required this.colors});
   final List<int> colors;
+
+  @override
+  State<ColorPickerView> createState() => _ColorPickerViewState();
+}
+
+class _ColorPickerViewState extends State<ColorPickerView> {
+  bool isSelect = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,15 +20,24 @@ class ColorPickerView extends StatelessWidget {
         height: 40,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          physics: const ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          itemCount: colors.length,
-          itemBuilder: (context, index) => MaterialButton(
-            onPressed: () {
-              BlocProvider.of<HomeCubit>(context).color = colors[index];
+          itemCount: widget.colors.length,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {
+              BlocProvider.of<HomeCubit>(context).color = widget.colors[index];
+              setState(() {
+                isSelect = true;
+              });
             },
-            shape: const CircleBorder(),
-            color: Color(colors[index]),
-            child: const SizedBox(width: 16, height: 16),
+            child: CircleAvatar(
+              radius: 50,
+              foregroundColor: Color(
+                widget.colors[index],
+              ),
+              child: CircleAvatar(
+                foregroundColor: isSelect ? Colors.white : Colors.transparent,
+                radius: 55,
+              ),
+            ),
           ),
         ),
       ),

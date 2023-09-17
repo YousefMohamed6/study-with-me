@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/note/data/model/note_model.dart';
 import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
-import 'package:studytome/features/note/presentation/views/widgets/note_item.dart';
+import 'package:studytome/features/note/presentation/views/widgets/note_list_view_body.dart';
 
 class NoteListView extends StatelessWidget {
   const NoteListView({super.key, required this.notesList});
@@ -29,14 +29,8 @@ class NoteListView extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      builder: (context, state) => Expanded(
-        child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: notesList.length,
-          itemBuilder: (context, index) => NoteItem(
-            noteModel: notesList[index],
-          ),
-        ),
+      builder: (context, state) => NoteListViewBody(
+        notesList: notesList,
       ),
     );
   }

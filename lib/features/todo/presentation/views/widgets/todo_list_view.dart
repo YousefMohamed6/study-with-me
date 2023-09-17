@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/data/todo_model/todo_model.dart';
-import 'package:studytome/features/todo/presentation/views/widgets/task_item.dart';
+import 'package:studytome/features/todo/presentation/views/widgets/tasks_list_view_body.dart';
 
 class ToDoListView extends StatelessWidget {
   const ToDoListView({
     super.key,
-    required this.taskList,
+    required this.tasksList,
   });
-  final List<TaskModel> taskList;
+  final List<ToDoModel> tasksList;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,8 @@ class ToDoListView extends StatelessWidget {
         } else if (state is AddTaskFailed) {
           ShowMessage.show(context, msg: state.errMessage);
           Navigator.pop(context);
-        } else if (state is EditTaskSuccess) {
+        }
+        if (state is EditTaskSuccess) {
           ShowMessage.show(context, msg: 'Edit Success');
           Navigator.pop(context);
         } else if (state is EditTaskFailed) {
@@ -30,17 +31,9 @@ class ToDoListView extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      builder: (context, state) {
-        return Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: taskList.length,
-            itemBuilder: (context, index) => TaskItem(
-              task: taskList[index],
-            ),
-          ),
-        );
-      },
+      builder: (context, state) => ToDoListViewBody(
+        tasksList: tasksList,
+      ),
     );
   }
 }

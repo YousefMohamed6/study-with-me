@@ -11,7 +11,9 @@ class ShareButton extends StatelessWidget {
       icon: const Icon(Icons.share),
       onPressed: () async {
         await Share.shareXFiles(
-          [XFile(filePath)],
+          [
+            XFile(filePath),
+          ],
         );
       },
     );

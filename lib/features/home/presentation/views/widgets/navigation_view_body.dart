@@ -22,7 +22,7 @@ class NavigationViewBody extends StatelessWidget {
           BlocProvider.of<BookCubit>(context).fetchBooksFromMemory();
           return const BookView();
         } else if (state is Note) {
-          BlocProvider.of<NoteCubit>(context).fetchNotes();
+          BlocProvider.of<NoteCubit>(context).fetchNotesFromMemory();
           return const NoteView();
         } else if (state is ToDo) {
           BlocProvider.of<ToDoCubit>(context).fetchTasks();

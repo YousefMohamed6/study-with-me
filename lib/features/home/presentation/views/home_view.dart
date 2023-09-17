@@ -6,6 +6,7 @@ import 'package:studytome/features/google/views/webview.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/home/presentation/views/widgets/navigation_view.dart';
 import 'package:studytome/features/image/presentation/views/show_image_view.dart';
+import 'package:studytome/features/note/presentation/views/show_note_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,6 +18,8 @@ class HomeView extends StatelessWidget {
           return ShowBookView(book: state.book);
         } else if (state is ShowImage) {
           return ShowImageView(image: state.image);
+        } else if (state is ShowNote) {
+          return ShowNoteView(note: state.note);
         } else if (state is WebView) {
           return const WebViewApp(url: kWebViewUrl);
         } else {

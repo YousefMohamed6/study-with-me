@@ -22,8 +22,8 @@ void main() async {
   await Hive.openBox<ImageModel>(kImageBox);
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNoteBox);
-  Hive.registerAdapter(TaskModelAdapter());
-  await Hive.openBox<TaskModel>(kToDoBox);
+  Hive.registerAdapter(ToDoModelAdapter());
+  await Hive.openBox<ToDoModel>(kToDoBox);
   Bloc.observer = SimpleObserver();
   runApp(const MyApp());
 }
