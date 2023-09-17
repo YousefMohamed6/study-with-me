@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
-import 'package:studytome/features/book/presentation/views/widgets/add_book_view.dart';
+import 'package:studytome/features/book/presentation/views/add_book_view.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/image/data/cubit/image_cubit.dart';
 import 'package:studytome/features/image/presentation/views/add_image_view.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
-import 'package:studytome/features/book/presentation/views/widgets/book__item.dart';
+import 'package:studytome/features/book/presentation/views/widgets/book_listview_body.dart';
 
 class BookListView extends StatelessWidget {
   const BookListView({super.key, required this.booksList});
@@ -26,25 +26,12 @@ class BookListView extends StatelessWidget {
           Navigator.pop(context);
           ShowMessage.show(context, msg: 'Faild,try again');
         }
-        if (state is AddBookPathFailure) {
+        if (state is UnSelectedBook) {
           ShowMessage.show(context, msg: 'Please Select Book');
         }
       },
-      builder: (context, state) => Expanded(
-        child: GridView.builder(
-          clipBehavior: Clip.antiAlias,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1,
-            crossAxisSpacing: 1,
-            mainAxisSpacing: 1,
-          ),
-          padding: EdgeInsets.zero,
-          itemCount: booksList.length,
-          itemBuilder: (context, index) => BookItem(
-            book: booksList[index],
-          ),
-        ),
+      builder: (context, state) => BookListViewBody(
+        booksList: booksList,
       ),
     );
   }

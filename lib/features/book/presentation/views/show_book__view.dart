@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:studytome/core/helper_widgets/custom_back_button.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/core/helper_widgets/share_button.dart';
 import 'package:studytome/core/utils/show_message.dart';
@@ -12,10 +13,7 @@ import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 class ShowBookView extends StatefulWidget {
   final BookModel book;
 
-  const ShowBookView({
-    Key? key,
-    required this.book,
-  }) : super(key: key);
+  const ShowBookView({Key? key, required this.book}) : super(key: key);
 
   @override
   ShowBookViewState createState() => ShowBookViewState();
@@ -34,7 +32,12 @@ class ShowBookViewState extends State<ShowBookView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackToBookView(),
+        leading: CustomBackButton(
+          onPressed: () {
+            BlocProvider.of<HomeCubit>(context).changeIndex(0);
+          },
+        ),
+        centerTitle: true,
         title: CustomText(text: widget.book.name),
         actions: [
           ShareButton(filePath: widget.book.path),
@@ -80,12 +83,10 @@ class ShowBookViewState extends State<ShowBookView>
               });
             },
           ),
-          errorMessage.isEmpty
-              ? !isReady
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Container()
+          !isReady
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
               : Center(
                   child: CustomText(
                     text: errorMessage,
@@ -93,20 +94,6 @@ class ShowBookViewState extends State<ShowBookView>
                 ),
         ],
       ),
-    );
-  }
-}
-
-class BackToBookView extends StatelessWidget {
-  const BackToBookView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BackButton(
-      color: Colors.white,
-      onPressed: () {
-        BlocProvider.of<HomeCubit>(context).changeIndex(0);
-      },
     );
   }
 }
