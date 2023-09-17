@@ -9,18 +9,19 @@ class NoteViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        CustomAppBar(
-          title: 'Note',
-          onPressed: () {},
-        ),
-        const SizedBox(height: 16),
-        NoteListView(
-          notesList: BlocProvider.of<NoteCubit>(context).notesList,
-        ),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          CustomAppBar(
+            title: 'Note',
+            onPressed: () {},
+          ),
+          const SizedBox(height: 16),
+          NoteListView(
+            notesList: BlocProvider.of<NoteCubit>(context).notesList,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -9,18 +9,19 @@ class ToDoViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        CustomAppBar(
-          title: 'ToDo',
-          onPressed: () {},
-        ),
-        const SizedBox(height: 16),
-        ToDoListView(
-          tasksList: BlocProvider.of<ToDoCubit>(context).taskList,
-        ),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          CustomAppBar(
+            title: 'ToDo',
+            onPressed: () {},
+          ),
+          const SizedBox(height: 16),
+          ToDoListView(
+            tasksList: BlocProvider.of<ToDoCubit>(context).taskList,
+          ),
+        ],
+      ),
     );
   }
 }

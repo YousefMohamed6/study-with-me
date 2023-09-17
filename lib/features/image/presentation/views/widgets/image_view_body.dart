@@ -12,7 +12,6 @@ class ImageViewBody extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          const SizedBox(height: 16),
           CustomAppBar(
             title: 'Picture',
             onPressed: () {},

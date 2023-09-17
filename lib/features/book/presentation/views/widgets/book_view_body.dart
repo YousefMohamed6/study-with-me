@@ -9,17 +9,18 @@ class BookViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        CustomAppBar(
-          title: 'Book',
-          onPressed: () {},
-        ),
-        BookListView(
-          booksList: BlocProvider.of<BookCubit>(context).booksList,
-        ),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          CustomAppBar(
+            title: 'Book',
+            onPressed: () {},
+          ),
+          BookListView(
+            booksList: BlocProvider.of<BookCubit>(context).booksList,
+          ),
+        ],
+      ),
     );
   }
 }

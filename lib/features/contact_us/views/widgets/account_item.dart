@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:studytome/core/helper_widgets/asset_image.dart';
-import 'package:studytome/core/helper_widgets/custom_icon_button.dart';
 import 'package:studytome/features/contact_us/views/widgets/url_lancher.dart';
 
 class AccountItem extends StatelessWidget {
@@ -14,7 +13,7 @@ class AccountItem extends StatelessWidget {
   final double? iconSize;
   @override
   Widget build(BuildContext context) {
-    return CustomIconButton(
+    return IconButton(
       icon: CustomAssetImage(imagePath: accountLogo),
       iconSize: iconSize ?? 50,
       onPressed: () async {

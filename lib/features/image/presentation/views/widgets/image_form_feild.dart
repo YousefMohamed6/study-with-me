@@ -15,7 +15,7 @@ class ImageFormFeild extends StatelessWidget {
       key: formKey,
       child: CustomFormField(
         controller: controller,
-        lablelText: 'Image Name',
+        lablelText: 'Picture Name',
       ),
     );
   }
