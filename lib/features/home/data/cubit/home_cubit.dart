@@ -8,7 +8,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(Book());
-
+  bool isTapSearch = false;
   int _currentIndex = 0;
   get currentIndex => _currentIndex;
 
@@ -36,6 +36,17 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       emit(ContactUs());
     }
+  }
+
+  void showSearchView() {
+    isTapSearch = true;
+    changeIndex(_currentIndex);
+    debugPrint(isTapSearch.toString());
+  }
+
+  void showInitialAppBar() {
+    isTapSearch = false;
+    changeIndex(_currentIndex);
   }
 
   showAlertDialog({

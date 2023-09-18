@@ -11,8 +11,7 @@ class CustomFormField extends StatelessWidget {
     this.onChanged,
     this.autovalidateMode,
     this.maxLine,
-    this.onSaved,
-    this.initialValue,
+    this.suffixIcon,
   });
   final TextInputType? textInputType;
   final String? lablelText;
@@ -22,46 +21,30 @@ class CustomFormField extends StatelessWidget {
   final void Function(String)? onChanged;
   final AutovalidateMode? autovalidateMode;
   final int? maxLine;
-  final void Function(String?)? onSaved;
-  final String? initialValue;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: TextFormField(
         maxLines: maxLine,
-        onSaved: onSaved,
         autovalidateMode:
             autovalidateMode ?? AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
-            ),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
-            ),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
-            ),
-          ),
+          border: textFeildBorder(),
+          enabledBorder: textFeildBorder(),
+          focusedBorder: textFeildBorder(),
           labelText: lablelText,
           labelStyle: const TextStyle(fontSize: 16, color: Colors.white),
           hintText: hintText,
           hintStyle: const TextStyle(fontSize: 16, color: Colors.white),
+          suffixIcon: suffixIcon,
         ),
         enabled: true,
         keyboardType: textInputType,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "This Field is Requird";
+            return "Empaty";
           }
           return null;
         },
@@ -70,8 +53,16 @@ class CustomFormField extends StatelessWidget {
         controller: controller,
         style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
-        initialValue: initialValue,
       ),
     );
   }
+}
+
+OutlineInputBorder textFeildBorder() {
+  return const OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white),
+    borderRadius: BorderRadius.all(
+      Radius.circular(8),
+    ),
+  );
 }
