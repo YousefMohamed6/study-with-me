@@ -13,9 +13,13 @@ class ImageViewBody extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          CustomAppBar(
-            title: 'Picture',
-            isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+          BlocBuilder<ImageCubit, ImageState>(
+            builder: (context, state) {
+              return CustomAppBar(
+                title: 'Picture',
+                isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+              );
+            },
           ),
           const SizedBox(height: 16),
           ImageListView(

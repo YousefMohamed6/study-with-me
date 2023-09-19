@@ -44,7 +44,7 @@ class CustomFormField extends StatelessWidget {
         keyboardType: textInputType,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "Empaty";
+            return "Empty";
           }
           return null;
         },

@@ -13,9 +13,13 @@ class NoteViewBody extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          CustomAppBar(
-            title: 'Note',
-            isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+          BlocBuilder<NoteCubit, NoteState>(
+            builder: (context, state) {
+              return CustomAppBar(
+                title: 'Note',
+                isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+              );
+            },
           ),
           const SizedBox(height: 16),
           NoteListView(

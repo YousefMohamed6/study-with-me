@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:studytome/core/helper_widgets/custom_form_field.dart';
 
 class SearchFormField extends StatelessWidget {
   const SearchFormField({super.key, required this.onChanged});
@@ -7,10 +6,13 @@ class SearchFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: CustomFormField(
-        autovalidateMode: AutovalidateMode.disabled,
-        hintText: 'Search',
-        suffixIcon: const Icon(Icons.search),
+      child: TextFormField(
+        decoration: const InputDecoration(
+          hintText: 'Search',
+          hintStyle: TextStyle(fontSize: 16, color: Colors.white),
+          suffixIcon: Icon(Icons.search),
+        ),
+        style: const TextStyle(color: Colors.white),
         onChanged: onChanged,
       ),
     );

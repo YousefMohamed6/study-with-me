@@ -13,9 +13,13 @@ class ToDoViewBody extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          CustomAppBar(
-            title: 'ToDo',
-            isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+          BlocBuilder<ToDoCubit, ToDoState>(
+            builder: (context, state) {
+              return CustomAppBar(
+                title: 'ToDo',
+                isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
+              );
+            },
           ),
           const SizedBox(height: 16),
           ToDoListView(
