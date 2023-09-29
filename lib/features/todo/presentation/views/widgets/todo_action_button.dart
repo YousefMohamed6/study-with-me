@@ -12,10 +12,8 @@ class ToDoActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onPressed: onPressed,
-      color: Colors.white,
       child: const CustomText(
         text: 'Add',
-        color: Colors.black,
       ),
     );
   }

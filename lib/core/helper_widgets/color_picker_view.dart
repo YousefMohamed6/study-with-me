@@ -29,13 +29,9 @@ class _ColorPickerViewState extends State<ColorPickerView> {
               });
             },
             child: CircleAvatar(
-              radius: 50,
-              foregroundColor: Color(
+              radius: 55,
+              backgroundColor: Color(
                 widget.colors[index],
-              ),
-              child: CircleAvatar(
-                foregroundColor: isSelect ? Colors.white : Colors.transparent,
-                radius: 55,
               ),
             ),
           ),

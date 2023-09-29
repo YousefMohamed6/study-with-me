@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:studytome/core/const/text.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:studytome/features/note/data/model/note_model.dart';
 import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
 import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/data/todo_model/todo_model.dart';
+import 'package:studytome/generated/l10n.dart';
 import 'package:studytome/simple_observer.dart';
 
 void main() async {
@@ -51,8 +53,15 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(useMaterial3: true),
+        theme: ThemeData.dark(useMaterial3: true).copyWith(),
         home: const HomeView(),
       ),
     );

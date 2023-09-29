@@ -21,7 +21,6 @@ class CustomRow extends StatelessWidget {
       children: [
         CustomText(
           text: text,
-          color: Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),

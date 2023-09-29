@@ -5,21 +5,19 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.child,
-    this.color,
     this.minWidth,
     this.height,
   });
   final VoidCallback onPressed;
   final Widget child;
-  final Color? color;
   final double? minWidth;
   final double? height;
   @override
   Widget build(context) {
     return MaterialButton(
       onPressed: onPressed,
-      color: color,
       height: height ?? 50,
+      color: Colors.white.withOpacity(0.25),
       elevation: 0,
       child: child,
     );

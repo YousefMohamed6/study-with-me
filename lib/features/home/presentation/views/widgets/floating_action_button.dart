@@ -20,7 +20,6 @@ class CustomFloatingActionButton extends StatelessWidget {
       child: const Icon(
         Icons.add,
         size: 24,
-        color: Colors.white,
       ),
       onPressed: () {
         if (state is Book) {

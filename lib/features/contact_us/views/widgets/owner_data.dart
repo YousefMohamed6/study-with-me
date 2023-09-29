@@ -16,7 +16,6 @@ class OwnerData extends StatelessWidget {
           textAlign: TextAlign.center,
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
         ),
         const SizedBox(height: 16),
         const CustomText(
@@ -24,7 +23,6 @@ class OwnerData extends StatelessWidget {
           textAlign: TextAlign.center,
           fontSize: 22,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
         ),
         const SizedBox(height: 5),
         CustomRow(

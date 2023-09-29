@@ -1,0 +1,23 @@
+{
+        "book": "الكتب",
+        "picture": "الصور",
+        "note": "الملاحظات",
+        "todo": "المهام",
+        "contactUs": "تواصل معنا",
+        "bookName": "اسم الكتاب",
+        "pictureName": "اسم الصورة",
+        "taskName": "اسم المهمة",
+        "add": "اضافة",
+        "save": "حفظ",
+        "title": "العنوان",
+        "content": "المحتوي",
+        "search": "بحث",
+        "emptyName": "اسم فارغ",
+        "deleteMessage": "هل تريد ان تحذف هذا؟",
+        "selectimageSuccess": "تم اختيار الصورة",
+        "selectimageFailure": "فشل تحديد الصورة",
+        "selectbookSuccess": "تم اختيار الكتاب",
+        "selectiBookFailure": "فشل تحديد الكتاب",
+        "editSuccess": " تم التعديل بنجاح",
+        "addSuccess": "تمت الاضافة بنجاح"
+}

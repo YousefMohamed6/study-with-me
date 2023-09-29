@@ -24,7 +24,7 @@ class EditBookView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          BookTextFeild(
+          BookFormFeild(
             controller: controller..text = book.name,
             formKey: formKey,
           ),

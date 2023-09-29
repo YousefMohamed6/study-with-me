@@ -12,7 +12,7 @@ class CustomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.shifting,
       iconSize: 24,
       selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey.shade50,
+      unselectedItemColor: Colors.white,
       currentIndex: currentIndex,
       onTap: (select) {
         BlocProvider.of<HomeCubit>(context).changeIndex(select);
@@ -23,7 +23,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'Book',
-              color: Colors.white,
             ),
           ),
           label: '',
@@ -36,7 +35,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'Picture',
-              color: Colors.white,
             ),
           ),
           label: '',
@@ -49,7 +47,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'Note',
-              color: Colors.white,
             ),
           ),
           label: '',
@@ -62,7 +59,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'ToDo',
-              color: Colors.white,
             ),
           ),
           label: '',
@@ -75,7 +71,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'google',
-              color: Colors.white,
             ),
           ),
           label: '',
@@ -88,7 +83,6 @@ class CustomNavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
               text: 'Contact Us',
-              color: Colors.white,
             ),
           ),
           label: '',

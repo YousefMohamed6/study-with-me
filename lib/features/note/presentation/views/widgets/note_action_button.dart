@@ -11,10 +11,8 @@ class NoteActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       onPressed: onPressed,
-      color: Colors.white,
       child: CustomText(
         text: actionName,
-        color: Colors.black,
       ),
     );
   }

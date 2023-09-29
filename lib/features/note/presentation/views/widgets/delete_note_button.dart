@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:studytome/core/helper_widgets/delete_button.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/note/data/model/note_model.dart';
 import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
@@ -9,9 +10,7 @@ class DeleteNoteButton extends StatelessWidget {
   final NoteModel note;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      iconSize: 32,
-      icon: const Icon(Icons.delete),
+    return DeleteButton(
       onPressed: () {
         BlocProvider.of<HomeCubit>(context).showAlertDialog(
           context: context,

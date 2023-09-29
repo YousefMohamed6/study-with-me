@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField({
@@ -35,24 +36,25 @@ class CustomFormField extends StatelessWidget {
           enabledBorder: textFeildBorder(),
           focusedBorder: textFeildBorder(),
           labelText: lablelText,
-          labelStyle: const TextStyle(fontSize: 16, color: Colors.white),
+          labelStyle: const TextStyle(fontSize: 16),
           hintText: hintText,
-          hintStyle: const TextStyle(fontSize: 16, color: Colors.white),
+          hintStyle: const TextStyle(fontSize: 16),
           suffixIcon: suffixIcon,
         ),
         enabled: true,
         keyboardType: textInputType,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return "Empty";
+            return S.of(context).emptyName;
           }
           return null;
         },
         onFieldSubmitted: onFieldSubmitted,
         onChanged: onChanged,
         controller: controller,
-        style: const TextStyle(color: Colors.white),
-        cursorColor: Colors.white,
+        onTapOutside: ((event) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }),
       ),
     );
   }
@@ -60,7 +62,7 @@ class CustomFormField extends StatelessWidget {
 
 OutlineInputBorder textFeildBorder() {
   return const OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.white),
+    borderSide: BorderSide(color: Colors.grey),
     borderRadius: BorderRadius.all(
       Radius.circular(8),
     ),

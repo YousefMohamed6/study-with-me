@@ -1,9 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/helper_widgets/custom_alart_dialog.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/image/data/model/image_model.dart';
 import 'package:studytome/features/note/data/model/note_model.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -41,7 +42,6 @@ class HomeCubit extends Cubit<HomeState> {
   void showSearchView() {
     isTapSearch = true;
     changeIndex(_currentIndex);
-    debugPrint(isTapSearch.toString());
   }
 
   void showInitialAppBar() {

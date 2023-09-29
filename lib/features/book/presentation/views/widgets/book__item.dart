@@ -7,7 +7,6 @@ import 'package:studytome/features/book/presentation/views/widgets/delete_book_b
 import 'package:studytome/features/book/presentation/views/edit_book__view.dart';
 import 'package:studytome/features/book/presentation/views/widgets/book_name_text_button.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
-
 class BookItem extends StatelessWidget {
   const BookItem({
     super.key,
