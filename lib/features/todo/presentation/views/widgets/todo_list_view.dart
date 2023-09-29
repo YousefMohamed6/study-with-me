@@ -31,9 +31,15 @@ class ToDoListView extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      builder: (context, state) => ToDoListViewBody(
-        tasksList: tasksList,
-      ),
+      builder: (context, state) {
+        if (state is ToDoSearch) {
+          return ToDoListViewBody(tasksList: state.tasksList);
+        } else {
+          return ToDoListViewBody(
+            tasksList: tasksList,
+          );
+        }
+      },
     );
   }
 }

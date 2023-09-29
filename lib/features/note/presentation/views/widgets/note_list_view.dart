@@ -29,9 +29,17 @@ class NoteListView extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      builder: (context, state) => NoteListViewBody(
-        notesList: notesList,
-      ),
+      builder: (context, state) {
+        if (state is NoteSearch) {
+          return NoteListViewBody(
+            notesList: state.notesList,
+          );
+        } else {
+          return NoteListViewBody(
+            notesList: notesList,
+          );
+        }
+      },
     );
   }
 }

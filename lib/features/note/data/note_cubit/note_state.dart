@@ -17,3 +17,9 @@ class EditNoteFailure extends NoteState {
   final String errMessage;
   EditNoteFailure(this.errMessage);
 }
+
+class NoteSearch extends NoteState {
+  final List<NoteModel> notesList;
+
+  NoteSearch({required this.notesList});
+}

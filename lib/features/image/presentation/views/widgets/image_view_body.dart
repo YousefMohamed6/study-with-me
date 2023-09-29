@@ -16,6 +16,9 @@ class ImageViewBody extends StatelessWidget {
           BlocBuilder<ImageCubit, ImageState>(
             builder: (context, state) {
               return CustomAppBar(
+                 onChanged: (input){
+                  BlocProvider.of<ImageCubit>(context).searchImage(input: input);
+                 },
                 title: 'Picture',
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
               );

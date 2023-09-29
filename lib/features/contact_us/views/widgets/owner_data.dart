@@ -14,7 +14,7 @@ class OwnerData extends StatelessWidget {
         const CustomText(
           text: kTeacherName,
           textAlign: TextAlign.center,
-          fontSize: 20,
+          fontSize: 24,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -22,7 +22,7 @@ class OwnerData extends StatelessWidget {
         const CustomText(
           text: kTeacherJob,
           textAlign: TextAlign.center,
-          fontSize: 24,
+          fontSize: 22,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),

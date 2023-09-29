@@ -13,6 +13,16 @@ class ImageCubit extends Cubit<ImageState> {
   String? imagePath;
   List<ImageModel> imagesList = [];
 
+  void searchImage({required String input}) {
+    List<ImageModel> result = [];
+    for (ImageModel image in imagesList) {
+      if (image.imageName.contains(input)) {
+        result.add(image);
+      }
+    }
+    emit(ImageSearch(imagesList: result));
+  }
+
   Future<void> pickFromCamera() async {
     try {
       var image = await ImagePicker().pickImage(source: ImageSource.camera);

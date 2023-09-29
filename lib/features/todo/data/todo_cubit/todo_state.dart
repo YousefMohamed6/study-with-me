@@ -19,3 +19,9 @@ class EditTaskFailed extends ToDoState {
 
   EditTaskFailed(this.errMessage);
 }
+
+class ToDoSearch extends ToDoState {
+  final List<ToDoModel> tasksList;
+
+  ToDoSearch({required this.tasksList});
+}

@@ -10,35 +10,40 @@ class ImageListView extends StatelessWidget {
   final List<ImageModel> imagesList;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ImageCubit, ImageState>(
-      listener: (context, state) {
-        if (state is PickImageSuccess) {
-          ShowMessage.show(context, msg: 'Select Image Success');
-        } else if (state is PickImageFailure) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Select Image Failed');
-        }
-        if (state is AddImageSuccess) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Add Success');
-        } else if (state is AddImageFailure) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Failed,try again');
-        }
-        if (state is EditImageSuccess) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Edit Success');
-        } else if (state is EditImageFailure) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Failed,try again');
-        }
-        if (state is UnSelectedImage) {
-          ShowMessage.show(context, msg: 'Please Select Image');
-        }
-      },
-      builder: (context, state) => ImageListViewBody(
-        imagesList: imagesList,
-      ),
-    );
+    return BlocConsumer<ImageCubit, ImageState>(listener: (context, state) {
+      if (state is PickImageSuccess) {
+        ShowMessage.show(context, msg: 'Select Image Success');
+      } else if (state is PickImageFailure) {
+        Navigator.pop(context);
+        ShowMessage.show(context, msg: 'Select Image Failed');
+      }
+      if (state is AddImageSuccess) {
+        Navigator.pop(context);
+        ShowMessage.show(context, msg: 'Add Success');
+      } else if (state is AddImageFailure) {
+        Navigator.pop(context);
+        ShowMessage.show(context, msg: 'Failed,try again');
+      }
+      if (state is EditImageSuccess) {
+        Navigator.pop(context);
+        ShowMessage.show(context, msg: 'Edit Success');
+      } else if (state is EditImageFailure) {
+        Navigator.pop(context);
+        ShowMessage.show(context, msg: 'Failed,try again');
+      }
+      if (state is UnSelectedImage) {
+        ShowMessage.show(context, msg: 'Please Select Image');
+      }
+    }, builder: (context, state) {
+      if (state is ImageSearch) {
+        return ImageListViewBody(
+          imagesList: state.imagesList,
+        );
+      } else {
+        return ImageListViewBody(
+          imagesList: imagesList,
+        );
+      }
+    });
   }
 }

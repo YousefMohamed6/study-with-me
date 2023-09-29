@@ -16,6 +16,9 @@ class ToDoViewBody extends StatelessWidget {
           BlocBuilder<ToDoCubit, ToDoState>(
             builder: (context, state) {
               return CustomAppBar(
+                onChanged: (input) {
+                  BlocProvider.of<ToDoCubit>(context).searchTask(input: input);
+                },
                 title: 'ToDo',
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
               );
@@ -23,7 +26,7 @@ class ToDoViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ToDoListView(
-            tasksList: BlocProvider.of<ToDoCubit>(context).taskList,
+            tasksList: BlocProvider.of<ToDoCubit>(context).tasksList,
           ),
         ],
       ),

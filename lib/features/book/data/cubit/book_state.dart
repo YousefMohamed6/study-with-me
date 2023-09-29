@@ -21,3 +21,9 @@ class EditBookFailure extends BookState {}
 class PickBookSuccess extends BookState {}
 
 class PickBookFailure extends BookState {}
+
+class BookSearch extends BookState {
+  final List<BookModel> booksList;
+
+  BookSearch({required this.booksList});
+}

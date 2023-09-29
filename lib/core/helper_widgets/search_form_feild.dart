@@ -14,6 +14,7 @@ class SearchFormField extends StatelessWidget {
         ),
         style: const TextStyle(color: Colors.white),
         onChanged: onChanged,
+        
       ),
     );
   }

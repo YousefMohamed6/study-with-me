@@ -30,9 +30,17 @@ class BookListView extends StatelessWidget {
           ShowMessage.show(context, msg: 'Please Select Book');
         }
       },
-      builder: (context, state) => BookListViewBody(
-        booksList: booksList,
-      ),
+      builder: (context, state) {
+        if (state is BookSearch) {
+          return BookListViewBody(
+            booksList: state.booksList,
+          );
+        } else {
+          return BookListViewBody(
+            booksList: booksList,
+          );
+        }
+      },
     );
   }
 }

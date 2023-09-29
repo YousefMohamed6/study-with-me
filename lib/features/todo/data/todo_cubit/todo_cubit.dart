@@ -9,12 +9,21 @@ part 'todo_state.dart';
 class ToDoCubit extends Cubit<ToDoState> {
   ToDoCubit() : super(TodoInitial());
   var taskCtrl = TextEditingController();
-  List<ToDoModel> taskList = [];
+  List<ToDoModel> tasksList = [];
+  void searchTask({required String input}) {
+    List<ToDoModel> result = [];
+    for (ToDoModel task in tasksList) {
+      if (task.taskName.contains(input)) {
+        result.add(task);
+      }
+    }
+    emit(ToDoSearch(tasksList: result));
+  }
 
   void fetchTasks() {
-    taskList.clear();
+    tasksList.clear();
     var taskBox = Hive.box<ToDoModel>(kToDoBox);
-    taskList.addAll(taskBox.values.toList());
+    tasksList.addAll(taskBox.values.toList());
     emit(TodoInitial());
   }
 

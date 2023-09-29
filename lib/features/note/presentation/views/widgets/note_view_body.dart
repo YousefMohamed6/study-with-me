@@ -16,6 +16,9 @@ class NoteViewBody extends StatelessWidget {
           BlocBuilder<NoteCubit, NoteState>(
             builder: (context, state) {
               return CustomAppBar(
+                onChanged: (input) {
+                  BlocProvider.of<NoteCubit>(context).searchNote(input: input);
+                },
                 title: 'Note',
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
               );

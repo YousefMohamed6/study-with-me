@@ -16,6 +16,9 @@ class BookViewBody extends StatelessWidget {
           BlocBuilder<BookCubit, BookState>(
             builder: (context, state) {
               return CustomAppBar(
+                onChanged: (input) {
+                  BlocProvider.of<BookCubit>(context).searchBook(input: input);
+                },
                 title: 'Book',
                 //onpress SearchIcon show SearchView
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,

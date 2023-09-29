@@ -14,6 +14,16 @@ class BookCubit extends Cubit<BookState> {
   List<BookModel> booksList = [];
   final bookCtrl = TextEditingController();
 
+  void searchBook({required String input}) {
+    List<BookModel> result = [];
+    for (BookModel book in booksList) {
+      if (book.name.contains(input)) {
+        result.add(book);
+      }
+    }
+    emit(BookSearch(booksList: result));
+  }
+
   Future<void> pdfPickerFromMemory() async {
     try {
       final pdf = await FilePicker.platform.pickFiles(

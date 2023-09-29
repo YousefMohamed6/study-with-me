@@ -14,6 +14,16 @@ class NoteCubit extends Cubit<NoteState> {
   var titleCtrl = TextEditingController();
   var contentCtrl = TextEditingController();
 
+  void searchNote({required String input}) {
+    List<NoteModel> result = [];
+    for (NoteModel note in notesList) {
+      if (note.title.contains(input) || note.content.contains(input)) {
+        result.add(note);
+      }
+    }
+    emit(NoteSearch(notesList: result));
+  }
+
   void addNoteToMemory({required int color}) async {
     try {
       var noteBox = Hive.box<NoteModel>(kNoteBox);

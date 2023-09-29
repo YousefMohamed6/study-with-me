@@ -21,3 +21,9 @@ class EditImageFailure extends ImageState {}
 class PickImageSuccess extends ImageState {}
 
 class PickImageFailure extends ImageState {}
+
+class ImageSearch extends ImageState {
+  final List<ImageModel> imagesList;
+
+  ImageSearch({required this.imagesList});
+}
