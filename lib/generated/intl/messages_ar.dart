@@ -24,16 +24,26 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("اضافة"),
         "addSuccess": MessageLookupByLibrary.simpleMessage("تمت الاضافة بنجاح"),
+        "alert": MessageLookupByLibrary.simpleMessage("!تحذير"),
+        "ar": MessageLookupByLibrary.simpleMessage("العربية"),
         "book": MessageLookupByLibrary.simpleMessage("الكتب"),
         "bookName": MessageLookupByLibrary.simpleMessage("اسم الكتاب"),
+        "cancel": MessageLookupByLibrary.simpleMessage("رجوع"),
         "contactUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
         "content": MessageLookupByLibrary.simpleMessage("المحتوي"),
         "deleteMessage":
-            MessageLookupByLibrary.simpleMessage("هل تريد ان تحذف هذا؟"),
+            MessageLookupByLibrary.simpleMessage("هل تريد حذف هذا ؟"),
         "editSuccess":
             MessageLookupByLibrary.simpleMessage(" تم التعديل بنجاح"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الالكتروني  : "),
         "emptyName": MessageLookupByLibrary.simpleMessage("اسم فارغ"),
+        "en": MessageLookupByLibrary.simpleMessage("الانجليزية"),
+        "jop": MessageLookupByLibrary.simpleMessage("مهندس برمجيات"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "name": MessageLookupByLibrary.simpleMessage("يوسف محمد"),
         "note": MessageLookupByLibrary.simpleMessage("الملاحظات"),
+        "ok": MessageLookupByLibrary.simpleMessage("موافق"),
+        "phone": MessageLookupByLibrary.simpleMessage("رقم الهاتف  : "),
         "picture": MessageLookupByLibrary.simpleMessage("الصور"),
         "pictureName": MessageLookupByLibrary.simpleMessage("اسم الصورة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
@@ -48,6 +58,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم اختيار الصورة"),
         "taskName": MessageLookupByLibrary.simpleMessage("اسم المهمة"),
         "title": MessageLookupByLibrary.simpleMessage("العنوان"),
-        "todo": MessageLookupByLibrary.simpleMessage("المهام")
+        "todo": MessageLookupByLibrary.simpleMessage("المهام"),
+        "usSelectedBook":
+            MessageLookupByLibrary.simpleMessage("يجب تحديد كتاب"),
+        "usSelectedImage":
+            MessageLookupByLibrary.simpleMessage("يجب تحديد صورة")
       };
 }

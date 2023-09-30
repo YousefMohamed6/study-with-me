@@ -4,6 +4,7 @@ import 'package:studytome/core/helper_widgets/custom_appbar.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/presentation/views/widgets/book__list_view.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class BookViewBody extends StatelessWidget {
   const BookViewBody({super.key});
@@ -19,7 +20,7 @@ class BookViewBody extends StatelessWidget {
                 onChanged: (input) {
                   BlocProvider.of<BookCubit>(context).searchBook(input: input);
                 },
-                title: 'Book',
+                title: S.of(context).book,
                 //onpress SearchIcon show SearchView
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
               );

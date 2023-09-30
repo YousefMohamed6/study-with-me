@@ -12,7 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
   bool isTapSearch = false;
   int _currentIndex = 0;
   get currentIndex => _currentIndex;
-
+  bool isArabic = true;
+  String language = 'ar';
   int color = Colors.blue.value; //Default Color
   List<int> colors = [
     Colors.lightGreen.value,
@@ -21,6 +22,11 @@ class HomeCubit extends Cubit<HomeState> {
     Colors.red.shade300.value,
     Colors.grey.value,
   ];
+  void changeLanguage() {
+    isArabic = !isArabic;
+    language = isArabic ? 'ar' : 'en';
+    emit(ContactUs());
+  }
 
   void changeIndex(int select) {
     _currentIndex = select;

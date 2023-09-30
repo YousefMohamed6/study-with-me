@@ -27,7 +27,12 @@ void main() async {
   Hive.registerAdapter(ToDoModelAdapter());
   await Hive.openBox<ToDoModel>(kToDoBox);
   Bloc.observer = SimpleObserver();
-  runApp(const MyApp());
+  runApp(
+    BlocProvider(
+      create: (context) => HomeCubit(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,9 +41,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => HomeCubit(),
-        ),
         BlocProvider(
           create: (context) => BookCubit(),
         ),
@@ -52,17 +54,24 @@ class MyApp extends StatelessWidget {
           create: (context) => ToDoCubit(),
         ),
       ],
-      child: MaterialApp(
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(useMaterial3: true).copyWith(),
-        home: const HomeView(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            locale: Locale(
+              BlocProvider.of<HomeCubit>(context).isArabic ? 'ar' : 'en',
+            ),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.dark(useMaterial3: true),
+            home: const HomeView(),
+          );
+        },
       ),
     );
   }

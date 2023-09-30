@@ -24,15 +24,25 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addSuccess": MessageLookupByLibrary.simpleMessage("Add Success"),
+        "alert": MessageLookupByLibrary.simpleMessage("Alert"),
+        "ar": MessageLookupByLibrary.simpleMessage("Arabic"),
         "book": MessageLookupByLibrary.simpleMessage("Book"),
         "bookName": MessageLookupByLibrary.simpleMessage("Book Name"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "content": MessageLookupByLibrary.simpleMessage("Content"),
         "deleteMessage":
             MessageLookupByLibrary.simpleMessage("Do you want to delete this?"),
         "editSuccess": MessageLookupByLibrary.simpleMessage("Edit Success"),
+        "email": MessageLookupByLibrary.simpleMessage("Email Address  : "),
         "emptyName": MessageLookupByLibrary.simpleMessage("Empty Name"),
+        "en": MessageLookupByLibrary.simpleMessage("English"),
+        "jop": MessageLookupByLibrary.simpleMessage("Software Engineer"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "name": MessageLookupByLibrary.simpleMessage("Yousef Mohamed"),
         "note": MessageLookupByLibrary.simpleMessage("Note"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone Number  : "),
         "picture": MessageLookupByLibrary.simpleMessage("Picture"),
         "pictureName": MessageLookupByLibrary.simpleMessage("Picture Name"),
         "save": MessageLookupByLibrary.simpleMessage("Sava"),
@@ -47,6 +57,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("select Picture Success"),
         "taskName": MessageLookupByLibrary.simpleMessage("Task Name"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
-        "todo": MessageLookupByLibrary.simpleMessage("ToDo")
+        "todo": MessageLookupByLibrary.simpleMessage("ToDo"),
+        "usSelectedBook":
+            MessageLookupByLibrary.simpleMessage("Plesae select Book"),
+        "usSelectedImage":
+            MessageLookupByLibrary.simpleMessage("Plesae select picture")
       };
 }

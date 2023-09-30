@@ -5,7 +5,7 @@ import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/presentation/views/widgets/todo_action_button.dart';
 import 'package:studytome/features/todo/presentation/views/widgets/todo_form_field.dart';
-
+import 'package:studytome/generated/l10n.dart';
 class AddTaskView extends StatelessWidget {
   const AddTaskView({super.key, required this.taskCtrl, required this.formKey});
   final TextEditingController taskCtrl;
@@ -24,7 +24,7 @@ class AddTaskView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           ToDoActionButton(
-            actionName: 'Add',
+            actionName: S.of(context).add,
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 BlocProvider.of<ToDoCubit>(context)

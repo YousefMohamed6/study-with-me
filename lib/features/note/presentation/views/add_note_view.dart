@@ -6,6 +6,7 @@ import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
 import 'package:studytome/features/note/presentation/views/widgets/content_form_feild.dart';
 import 'package:studytome/features/note/presentation/views/widgets/note_action_button.dart';
 import 'package:studytome/features/note/presentation/views/widgets/title_form_feild.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class AddNoteView extends StatelessWidget {
   const AddNoteView({
@@ -40,7 +41,7 @@ class AddNoteView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             NoteActionButton(
-              actionName: 'Add',
+              actionName: S.of(context).add,
               onPressed: () {
                 if (formkey.currentState!.validate()) {
                   BlocProvider.of<NoteCubit>(context).addNoteToMemory(

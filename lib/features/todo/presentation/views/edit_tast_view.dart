@@ -6,6 +6,7 @@ import 'package:studytome/features/todo/data/todo_cubit/todo_cubit.dart';
 import 'package:studytome/features/todo/data/todo_model/todo_model.dart';
 import 'package:studytome/features/todo/presentation/views/widgets/todo_action_button.dart';
 import 'package:studytome/features/todo/presentation/views/widgets/todo_form_field.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class EditTaskView extends StatelessWidget {
   const EditTaskView(
@@ -34,7 +35,7 @@ class EditTaskView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           ToDoActionButton(
-            actionName: 'Save',
+            actionName: S.of(context).save,
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();

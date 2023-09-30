@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studytome/core/helper_widgets/custom_text_button.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class OkButton extends StatelessWidget {
   const OkButton({super.key, required this.onPressOK});
@@ -7,7 +8,7 @@ class OkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextButton(
-      text: "Ok",
+      text: S.of(context).ok,
       onPressed: () {
         onPressOK();
         Navigator.pop(context);

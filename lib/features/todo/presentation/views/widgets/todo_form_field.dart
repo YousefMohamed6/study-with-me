@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studytome/core/helper_widgets/custom_form_field.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class ToDoFormFeild extends StatelessWidget {
   const ToDoFormFeild(
@@ -12,8 +13,7 @@ class ToDoFormFeild extends StatelessWidget {
       key: formKey,
       child: CustomFormField(
         controller: taskCtrl,
-        hintText: 'Enter your Task',
-        lablelText: 'Task Name',
+        lablelText: S.of(context).taskName,
         maxLine: 1,
       ),
     );

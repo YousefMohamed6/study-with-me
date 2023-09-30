@@ -180,6 +180,76 @@ class S {
     );
   }
 
+  /// `Alert`
+  String get alert {
+    return Intl.message(
+      'Alert',
+      name: 'alert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yousef Mohamed`
+  String get name {
+    return Intl.message(
+      'Yousef Mohamed',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number  : `
+  String get phone {
+    return Intl.message(
+      'Phone Number  : ',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Software Engineer`
+  String get jop {
+    return Intl.message(
+      'Software Engineer',
+      name: 'jop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address  : `
+  String get email {
+    return Intl.message(
+      'Email Address  : ',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Empty Name`
   String get emptyName {
     return Intl.message(
@@ -255,6 +325,56 @@ class S {
     return Intl.message(
       'Add Success',
       name: 'addSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plesae select Book`
+  String get usSelectedBook {
+    return Intl.message(
+      'Plesae select Book',
+      name: 'usSelectedBook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plesae select picture`
+  String get usSelectedImage {
+    return Intl.message(
+      'Plesae select picture',
+      name: 'usSelectedImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get ar {
+    return Intl.message(
+      'Arabic',
+      name: 'ar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get en {
+    return Intl.message(
+      'English',
+      name: 'en',
       desc: '',
       args: [],
     );

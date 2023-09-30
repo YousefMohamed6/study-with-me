@@ -7,6 +7,7 @@ import 'package:studytome/features/note/data/note_cubit/note_cubit.dart';
 import 'package:studytome/features/note/presentation/views/widgets/content_form_feild.dart';
 import 'package:studytome/features/note/presentation/views/widgets/note_action_button.dart';
 import 'package:studytome/features/note/presentation/views/widgets/title_form_feild.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class EditNoteView extends StatelessWidget {
   const EditNoteView(
@@ -42,7 +43,7 @@ class EditNoteView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             NoteActionButton(
-              actionName: 'Save',
+              actionName: S.of(context).save,
               onPressed: () {
                 BlocProvider.of<NoteCubit>(context).editNote(
                   note: note,

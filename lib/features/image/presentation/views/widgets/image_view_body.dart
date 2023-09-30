@@ -4,6 +4,7 @@ import 'package:studytome/core/helper_widgets/custom_appbar.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
 import 'package:studytome/features/image/data/cubit/image_cubit.dart';
 import 'package:studytome/features/image/presentation/views/widgets/image_list_view.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class ImageViewBody extends StatelessWidget {
   const ImageViewBody({super.key});
@@ -16,10 +17,11 @@ class ImageViewBody extends StatelessWidget {
           BlocBuilder<ImageCubit, ImageState>(
             builder: (context, state) {
               return CustomAppBar(
-                 onChanged: (input){
-                  BlocProvider.of<ImageCubit>(context).searchImage(input: input);
-                 },
-                title: 'Picture',
+                onChanged: (input) {
+                  BlocProvider.of<ImageCubit>(context)
+                      .searchImage(input: input);
+                },
+                title: S.of(context).picture,
                 isTapSearch: BlocProvider.of<HomeCubit>(context).isTapSearch,
               );
             },

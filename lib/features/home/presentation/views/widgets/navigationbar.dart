@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studytome/core/helper_widgets/custom_text.dart';
 import 'package:studytome/features/home/data/cubit/home_cubit.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({super.key, required this.currentIndex});
@@ -17,56 +18,56 @@ class CustomNavigationBar extends StatelessWidget {
       onTap: (select) {
         BlocProvider.of<HomeCubit>(context).changeIndex(select);
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
           activeIcon: Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Book',
+              text: S.of(context).book,
             ),
           ),
           label: '',
-          icon: Icon(
+          icon: const Icon(
             Icons.menu_book,
           ),
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Picture',
+              text: S.of(context).picture,
             ),
           ),
           label: '',
-          icon: Icon(
+          icon: const Icon(
             Icons.image,
           ),
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Note',
+              text: S.of(context).note,
             ),
           ),
           label: '',
-          icon: Icon(
+          icon: const Icon(
             Icons.note_alt,
           ),
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'ToDo',
+              text: S.of(context).todo,
             ),
           ),
           label: '',
-          icon: Icon(
+          icon: const Icon(
             Icons.checklist,
           ),
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           activeIcon: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: CustomText(
@@ -80,13 +81,13 @@ class CustomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           activeIcon: Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: CustomText(
-              text: 'Contact Us',
+              text: S.of(context).contactUs,
             ),
           ),
           label: '',
-          icon: Icon(
+          icon: const Icon(
             Icons.support_agent_outlined,
           ),
         ),

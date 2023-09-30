@@ -4,6 +4,7 @@ import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/book/presentation/views/widgets/book_action_button.dart';
 import 'package:studytome/features/book/presentation/views/widgets/book_text_feild.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class EditBookNameView extends StatelessWidget {
   const EditBookNameView(
@@ -28,7 +29,7 @@ class EditBookNameView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           BookActionButton(
-            actionName: 'Save',
+            actionName: S.of(context).save,
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 BlocProvider.of<BookCubit>(context).editBookName(book: book);

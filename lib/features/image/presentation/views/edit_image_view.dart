@@ -5,6 +5,7 @@ import 'package:studytome/features/image/data/model/image_model.dart';
 import 'package:studytome/features/image/presentation/views/widgets/action_image_button.dart';
 import 'package:studytome/features/image/presentation/views/widgets/image_form_feild.dart';
 import 'package:studytome/features/image/presentation/views/widgets/picker_image_icon_buttons.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class EditImageView extends StatelessWidget {
   const EditImageView(
@@ -31,7 +32,7 @@ class EditImageView extends StatelessWidget {
           const PickerImageIconButtons(),
           const SizedBox(height: 16),
           ActionImageButton(
-            actionName: 'Save',
+            actionName: S.of(context).save,
             onPressed: () {
               if (formkey.currentState!.validate()) {
                 BlocProvider.of<ImageCubit>(context)

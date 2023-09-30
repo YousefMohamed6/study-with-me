@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studytome/core/helper_widgets/custom_form_field.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class ImageFormFeild extends StatelessWidget {
   const ImageFormFeild({
@@ -15,7 +16,7 @@ class ImageFormFeild extends StatelessWidget {
       key: formKey,
       child: CustomFormField(
         controller: controller,
-        lablelText: 'Picture Name',
+        lablelText: S.of(context).pictureName,
       ),
     );
   }

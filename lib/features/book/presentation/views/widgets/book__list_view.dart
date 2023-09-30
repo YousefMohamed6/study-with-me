@@ -4,6 +4,7 @@ import 'package:studytome/core/utils/show_message.dart';
 import 'package:studytome/features/book/data/cubit/book_cubit.dart';
 import 'package:studytome/features/book/data/model/book_model.dart';
 import 'package:studytome/features/book/presentation/views/widgets/book_listview_body.dart';
+import 'package:studytome/generated/l10n.dart';
 
 class BookListView extends StatelessWidget {
   const BookListView({super.key, required this.booksList});
@@ -14,20 +15,17 @@ class BookListView extends StatelessWidget {
       listener: (context, state) {
         if (state is AddBookSuccess) {
           Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Add Success');
+          ShowMessage.show(context, msg: S.of(context).addSuccess);
         } else if (state is AddBookFailure) {
           Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Faild,try again');
+          ShowMessage.show(context, msg: S.of(context).addSuccess);
         }
         if (state is EditBookSuccess) {
           Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Edit Success');
-        } else if (state is EditBookFailure) {
-          Navigator.pop(context);
-          ShowMessage.show(context, msg: 'Faild,try again');
+          ShowMessage.show(context, msg: S.of(context).editSuccess);
         }
         if (state is UnSelectedBook) {
-          ShowMessage.show(context, msg: 'Please Select Book');
+          ShowMessage.show(context, msg: S.of(context).usSelectedBook);
         }
       },
       builder: (context, state) {

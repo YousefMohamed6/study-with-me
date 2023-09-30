@@ -31,7 +31,7 @@ class NavigationViewBody extends StatelessWidget {
           BlocProvider.of<ImageCubit>(context).fetchImagesFromMemory();
           return const ImagesView();
         } else {
-          return const ContactUsView();
+          return const Scaffold(body: ContactUsView());
         }
       },
     );
