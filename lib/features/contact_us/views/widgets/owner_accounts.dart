@@ -8,25 +8,32 @@ class OwnerAccounts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         AccountItem(
           accountUrl: kFaceBookUrl,
           accountLogo: kFacebookLogo,
+          height: MediaQuery.sizeOf(context).height * 0.085,
+          width: MediaQuery.sizeOf(context).height * 0.085,
         ),
         AccountItem(
           accountUrl: kYoutubeUrl,
           accountLogo: kYoutubeLogo,
-          iconSize: 60,
+          height: MediaQuery.sizeOf(context).height * 0.060,
+          width: MediaQuery.sizeOf(context).height * 0.060,
         ),
         AccountItem(
           accountUrl: kLinkedinUrl,
           accountLogo: kLinkedinLogo,
+          height: MediaQuery.sizeOf(context).height * 0.060,
+          width: MediaQuery.sizeOf(context).height * 0.060,
         ),
         AccountItem(
           accountUrl: kGithubUrl,
           accountLogo: kGithubLogo,
+          height: MediaQuery.sizeOf(context).height * 0.060,
+          width: MediaQuery.sizeOf(context).height * 0.060,
         ),
       ],
     );
